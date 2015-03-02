@@ -20,24 +20,24 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 "}"		{return tCBRACKET;}
 "const"		{return tCONST;}
 "int"		{return tINT;}
-"if"    {return tIF;}
-"while" {return tWHILE;}
-"else"  {return tELSE;}
-"=="    {return tEQUAL;}
-"<="    {return tLE;}
-">="    {return tGE;}
-"!="    {return tNE;}
-"<"     {return tLT;}
-">"     {return tGT;}
+"if"    	{return tIF;}
+"while" 	{return tWHILE;}
+"else"  	{return tELSE;}
+"=="    	{return tEQUAL;}
+"<="    	{return tLE;}
+">="    	{return tGE;}
+"!="    	{return tNE;}
+"<"     	{return tLT;}
+">"     	{return tGT;}
 "+"		{return tPLUS;}
 "-"		{return tLESS;}
 "*"		{return tMUL;}
 "/"		{return tDIV;}
 "="		{return tEQ;}
 "("		{return tOPAR;}
-")" 	{return tCPAR;}
+")" 		{return tCPAR;}
 " "		{printf(" ");}
-"\t"	{printf("	");}
+"\t"		{printf("	");}
 ","		{return tVIR;}
 "\n"		{yylineno = yylineno + 1;}
 ";"		{return tSEMICOLON;}

@@ -8,29 +8,45 @@ extern int yylineno;
 %union {long expo; int num; char* var;}
 
 
-%token tMAIN tOBRACKET tCBRACKET tWHILE tIF tELSE tCONST tINT tPLUS tLESS tMUL tDIV tEQ tOPAR tCPAR tVIR tSEMICOLON tPRINTF
+     
 %token tLE tLT tGE tGT tNE tEQUAL
 %token <var> tVAR
 %token <num> tNUM
 %token <expo> tEXPO
+%token tOPAR tCPAR tVIR tSEMICOLON 
+%token tPLUS tLESS tEQ
+%token tMUL tDIV 
+%token tWHILE tIF tELSE tPRINTF
+%token tOBRACKET tCBRACKET tINT tCONST
+%token tMAIN
 %start Main
 	 
 %%
 Main: tMAIN Block
 	;
 
-Block: tOBRACKET Declaration tCBRACKET
+Block: tOBRACKET Declarations Instructions tCBRACKET
+	;
+
+Declarations: Declaration Declarations
+	|
 	;
 
 Declaration: tCONST tINT Assignment tSEMICOLON 
 	| tINT Assignment tSEMICOLON
-	| Assignment tSEMICOLON
-	| StatementList
+	;
+	
+Instructions: Instruction Instructions
+	|
+	;
+	
+Instruction: Assignment tSEMICOLON
+	| Statement
 	;
 
-Assignment: tVAR tEQ Assignment
+Assignment: tNUM tVIR Assignment 
 	| tVAR tVIR Assignment
-	| tNUM tVIR Assignment 
+	| tVAR tEQ Assignment
 	| tVAR tPLUS Assignment
 	| tVAR tLESS Assignment
 	| tVAR tDIV Assignment
@@ -40,21 +56,13 @@ Assignment: tVAR tEQ Assignment
 	| tNUM tDIV Assignment
 	| tNUM tMUL Assignment
 	| tEXPO tPLUS Assignment
-    | tEXPO tLESS Assignment
-    | tEXPO tDIV Assignment
-    | tEXPO tMUL Assignment
+    	| tEXPO tLESS Assignment
+    	| tEXPO tDIV Assignment
+    	| tEXPO tMUL Assignment
 	| tOPAR Assignment tCPAR
-	| tLESS tOPAR Assignment tCPAR
-	| tLESS tNUM
-	| tLESS tVAR
-	| tLESS tEXPO
-	| tNUM
-	| tVAR
-	| tEXPO
-	;
-
-StatementList: StatementList Statement
-	|
+	| tNUM 
+	| tVAR 
+	| tEXPO 
 	;
 
 Statement: While
@@ -64,24 +72,28 @@ Statement: While
 	| tSEMICOLON
 	;
 
-While: tWHILE tOPAR Expression tCPAR Statement
-	| tWHILE tOPAR Expression tCPAR tOBRACKET StatementList tCBRACKET
+While: tWHILE tOPAR Expressions tCPAR Statement
+	| tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
 	;
 
 If: tIF tOPAR Expression tCPAR Statement
-	| tIF tOPAR Expression tCPAR tOBRACKET StatementList tCBRACKET
-	| tIF tOPAR Expression tCPAR tOBRACKET StatementList tCBRACKET tELSE tOBRACKET StatementList tCBRACKET
+	| tIF tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
+	| tIF tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET
 	;
 
-Printf: tPRINTF tOPAR Assignment tCPAR tSEMICOLON
+Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 	;
 
-Expression: Expression tEQUAL Expression
-	| Expression tNE Expression
-	| Expression tLE Expression
-	| Expression tLT Expression
-	| Expression tGE Expression
-	| Expression tGT Expression
+Expressions: Expression Expressions
+	| 
+	;
+	
+Expression: Assignment tEQUAL Assignment
+	| Assignment tNE Assignment
+	| Assignment tLE Assignment
+	| Assignment tLT Assignment
+	| Assignment tGE Assignment
+	| Assignment tGT Assignment
 	| Assignment
 	;
 
