@@ -1,27 +1,33 @@
 TARGETS=compilateur
-FLEX=lex.yy.c
 YACC=y.tab.c
+FLEX=lex.yy.c
 YACC=compilateur.y
-OBJECTS=lex.yy.o y.tab.o
+OBJECTS=y.tab.o lex.yy.o
 LDFLAGS=-ll
 DEPENDS=$(patsubst %.o, %.dep, $(OBJECTS))
 
-%.dep: %.c
-gcc -MM $^ -o $@
+all: $(TARGETS)
 
-lex.yy.c: compilateur.lex
-	flex compilateur.lex
-	
-y.tab.c: compilateur.y
-	yacc -v compilateur.y
-	
 compilateur: $(OBJECTS)
 	gcc $(LDFLAGS) -o $@ $^
-	
+
 %.o: %.c %.dep
 	gcc -c $<
 
+depend: $(DEPENDS)
+
+%.dep: %.c
+	gcc -MM $^ -o $@
+
 include $(wildcard *.dep)
 
-run:
-./compilateur
+y.tab.c: compilateur.y
+	yacc -d compilateur.y
+
+lex.yy.c: compilateur.lex
+	flex compilateur.lex
+
+clean:
+	rm -rf $(OBJECTS) $(DEPENDS)
+			
+run: ./compilateur
