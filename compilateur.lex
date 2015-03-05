@@ -47,7 +47,7 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 {EXPONENTIAL}   {yylval.expo = (long)atof(yytext);
 		return tEXPO;}
 
-{VAR}		{yylval.var=yytext;
+{VAR}		{yylval.var= strdup(yytext);
 		return tVAR;}		
 
 %%

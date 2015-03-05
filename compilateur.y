@@ -1,6 +1,9 @@
+//TODO démultipléxer les règles pour se simplifier la vie du code c
 %{
 #include <stdlib.h>
 #include <stdio.h>
+#include "table_symb.h"
+
 void yyerror (char*s);
 extern int yylineno;
 %}
@@ -32,36 +35,77 @@ Declarations: Declaration Declarations
 	|
 	;
 
-Declaration: tCONST tINT Assignment tSEMICOLON 
-	| tINT Assignment tSEMICOLON
+Declaration: tCONST tINT tVAR tSEMICOLON			{	if (!findSymb($3)) {
+										addSymb($3,1);
+										printTabSymb();
+									}else {
+										printf("ECHEC: %s existe deja\n",$3);
+									}
+								}
+										
+	| tINT tVAR tSEMICOLON					{
+									if (!findSymb($2)) {
+										addSymb($2,0);
+										printTabSymb();
+									}else {
+										printf("ECHEC: %s existe deja\n",$2);
+									}
+								}
+	
+	| tCONST tINT AssignmentConst tSEMICOLON					
+	| tINT AssignmentInt tSEMICOLON
 	;
 	
 Instructions: Instruction Instructions
 	|
 	;
 	
-Instruction: Assignment tSEMICOLON
+Instruction: Operation tSEMICOLON
 	| Statement
 	;
 
-Assignment: tNUM tVIR Assignment 
-	| tVAR tVIR Assignment
-	| tVAR tEQ Assignment
-	| tVAR tPLUS Assignment
-	| tVAR tLESS Assignment
-	| tVAR tDIV Assignment
-	| tVAR tMUL Assignment
-	| tNUM tPLUS Assignment
-	| tNUM tLESS Assignment
-	| tNUM tDIV Assignment
-	| tNUM tMUL Assignment
-	| tEXPO tPLUS Assignment
-    	| tEXPO tLESS Assignment
-    	| tEXPO tDIV Assignment
-    	| tEXPO tMUL Assignment
-	| tOPAR Assignment tCPAR
+AssignmentInt: tNUM tVIR AssignmentInt
+	| tVAR tVIR AssignmentInt
+	| tVAR tEQ AssignmentInt
 	| tNUM 
-	| tVAR 
+	| tVAR					
+	| tEXPO 
+	;
+	
+AssignmentConst: tNUM tVIR AssignmentConst
+	| tVAR tVIR AssignmentConst
+	| tVAR tEQ AssignmentConst
+	| tNUM 
+	| tVAR					
+	| tEXPO 
+	;
+
+Assignment: tNUM tVIR Assignment
+    | tVAR tVIR Assignment
+    | tVAR tEQ Assignment
+    | tNUM
+    | tVAR
+    | tEXPO
+    ;
+
+Operation: tNUM tVIR Operation
+	| tVAR tVIR Operation
+	| tVAR tEQ Operation
+	| tVAR tPLUS Operation
+	| tVAR tLESS Operation
+	| tVAR tDIV Operation
+	| tVAR tMUL Operation
+	| tNUM tPLUS Operation
+	| tNUM tLESS Operation
+	| tNUM tDIV Operation
+	| tNUM tMUL Operation
+	| tEXPO tPLUS Operation
+    	| tEXPO tLESS Operation
+    	| tEXPO tDIV Operation
+    	| tEXPO tMUL Operation
+	| tOPAR Operation tCPAR
+	| tNUM 
+	| tVAR					
 	| tEXPO 
 	;
 
@@ -102,7 +146,7 @@ void yyerror(char*s){
     printf("%d : %s\n", yylineno, s);
 }
 
-int main(void){
+int main(int argc, char* argv[]){
     yyparse();
     return 0;
 }
