@@ -1,8 +1,8 @@
-#define maxSymb 250
+#define maxSymb 5
 
 struct symb{
 	char* identif;
-	int constant; /* if 1 : var is const int type; else 0 : var is int*/
+	int type; /* if 1 : var is const int type; else if 0 : var is int; else if 2: var is temp*/
 	int adresse;
 };
 
@@ -17,10 +17,12 @@ int nb_chiffre_rec(int nombre, int compt) ;
 
 int initTab(void);
 
-int addSymb(char* identif, int constant);
+int addSymb(char* identif, int type);
 
 int addTemp();
 
 int findSymb(char* identif);
+
+int getAddr(char* identif);
 
 void printTabSymb(void);
