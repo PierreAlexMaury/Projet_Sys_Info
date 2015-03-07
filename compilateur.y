@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "table_symb.h"
 
+#define YYPARSE_PARAM
+
 void yyerror (char*s);
 extern int yylineno;
 %}
@@ -193,6 +195,6 @@ void yyerror(char*s){
 }
 
 int main(int argc, char* argv[]){
-    yyparse();
+    yyparse(argv[0]);
     return 0;
 }
