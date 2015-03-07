@@ -1,4 +1,6 @@
 main() {
 	int a;
-	int const b;
+	const int b;
+	int c,d;
+	const int b,s;
 }

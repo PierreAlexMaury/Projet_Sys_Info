@@ -134,6 +134,8 @@
 #include <stdio.h>
 #include "table_symb.h"
 
+extern FILE* yyin;
+
 void yyerror (char*s);
 extern int yylineno;
 
@@ -158,10 +160,10 @@ extern int yylineno;
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 11 "compilateur.y"
+#line 13 "compilateur.y"
 {long expo; int num; char* var;}
 /* Line 193 of yacc.c.  */
-#line 165 "y.tab.c"
+#line 167 "y.tab.c"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -174,7 +176,7 @@ typedef union YYSTYPE
 
 
 /* Line 216 of yacc.c.  */
-#line 178 "y.tab.c"
+#line 180 "y.tab.c"
 
 #ifdef short
 # undef short
@@ -464,9 +466,9 @@ static const yytype_int8 yyrhs[] =
       27,     9,    15,    -1,    28,    27,    38,    15,    -1,    27,
       37,    15,    -1,    36,    35,    -1,    -1,    40,    15,    -1,
       41,    -1,    10,    14,    37,    -1,     9,    14,    37,    -1,
-       9,    18,    37,    -1,    10,    -1,     9,    -1,    11,    -1,
+       9,    18,    37,    -1,     9,    -1,    10,    -1,    11,    -1,
       10,    14,    38,    -1,     9,    14,    38,    -1,     9,    18,
-      38,    -1,    10,    -1,     9,    -1,    11,    -1,    10,    14,
+      38,    -1,     9,    -1,    11,    -1,    10,    -1,    10,    14,
       39,    -1,     9,    14,    39,    -1,     9,    18,    39,    -1,
       10,    -1,     9,    -1,    11,    -1,    10,    14,    40,    -1,
        9,    14,    40,    -1,     9,    18,    40,    -1,     9,    16,
@@ -490,14 +492,14 @@ static const yytype_int8 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    28,    28,    31,    34,    35,    38,    46,    55,    56,
-      59,    60,    63,    64,    67,    68,    69,    70,    71,    72,
-      75,    76,    77,    78,    79,    80,    83,    84,    85,    86,
-      87,    88,    91,    92,    93,    94,    95,    96,    97,    98,
-      99,   100,   101,   102,   103,   104,   105,   106,   107,   108,
-     109,   112,   113,   114,   115,   116,   119,   120,   123,   124,
-     125,   128,   131,   132,   135,   136,   137,   138,   139,   140,
-     141
+       0,    30,    30,    33,    36,    37,    40,    48,    57,    58,
+      61,    62,    65,    66,    69,    70,    79,    88,    96,    97,
+     100,   101,   110,   119,   127,   128,   131,   132,   133,   134,
+     135,   136,   139,   140,   141,   142,   143,   144,   145,   146,
+     147,   148,   149,   150,   151,   152,   153,   154,   155,   156,
+     157,   160,   161,   162,   163,   164,   167,   168,   171,   172,
+     173,   176,   179,   180,   183,   184,   185,   186,   187,   188,
+     189
 };
 #endif
 
@@ -560,15 +562,15 @@ static const yytype_uint8 yyr2[] =
 static const yytype_uint8 yydefact[] =
 {
        0,     0,     0,     5,     2,     1,     0,     0,    11,     5,
-       0,    17,    19,     0,     0,    49,    48,    50,     0,    55,
+       0,    18,    19,     0,     0,    49,    48,    50,     0,    55,
        0,     0,     0,    54,     0,    11,     0,    13,    51,    52,
-      53,     4,     0,     7,     0,     0,     9,     0,    23,    25,
+      53,     4,     0,     7,     0,     0,     9,     0,    25,    24,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,     0,     0,     0,     0,     0,    63,    63,     0,
-       3,    10,    12,    18,    15,    16,    14,     0,     6,     0,
+       3,    10,    12,    17,    15,    16,    14,     0,     6,     0,
        0,     8,    33,    35,    36,    34,    38,    37,    32,    39,
       40,    42,    41,    43,    44,    46,    45,    47,    30,    29,
-      31,    70,     0,    63,     0,     0,     0,    24,    21,    22,
+      31,    70,     0,    63,     0,     0,     0,    23,    21,    22,
       20,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,    62,     0,     0,     0,    27,    28,    26,    66,    67,
       68,    69,    65,    64,    11,    56,    11,    58,    61,     0,
@@ -1487,7 +1489,7 @@ yyreduce:
   switch (yyn)
     {
         case 6:
-#line 38 "compilateur.y"
+#line 40 "compilateur.y"
     {	if (!findSymb((yyvsp[(3) - (4)].var))) {
 										addSymb((yyvsp[(3) - (4)].var),1);
 										printTabSymb();
@@ -1498,7 +1500,7 @@ yyreduce:
     break;
 
   case 7:
-#line 46 "compilateur.y"
+#line 48 "compilateur.y"
     {
 									if (!findSymb((yyvsp[(2) - (3)].var))) {
 										addSymb((yyvsp[(2) - (3)].var),0);
@@ -1509,9 +1511,81 @@ yyreduce:
 								}
     break;
 
+  case 15:
+#line 70 "compilateur.y"
+    {
+												if (!findSymb((yyvsp[(1) - (3)].var))) {
+													addSymb((yyvsp[(1) - (3)].var),0);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",(yyvsp[(1) - (3)].var));
+												}
+											}
+    break;
+
+  case 16:
+#line 79 "compilateur.y"
+    {
+												if (!findSymb((yyvsp[(1) - (3)].var))) {
+													addSymb((yyvsp[(1) - (3)].var),0);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",(yyvsp[(1) - (3)].var));
+												}
+											}
+    break;
+
+  case 17:
+#line 88 "compilateur.y"
+    {
+												if (!findSymb((yyvsp[(1) - (1)].var))) {
+													addSymb((yyvsp[(1) - (1)].var),0);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",(yyvsp[(1) - (1)].var));
+												}
+											}
+    break;
+
+  case 21:
+#line 101 "compilateur.y"
+    {
+												if (!findSymb((yyvsp[(1) - (3)].var))) {
+													addSymb((yyvsp[(1) - (3)].var),1);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",(yyvsp[(1) - (3)].var));
+												}
+											}
+    break;
+
+  case 22:
+#line 110 "compilateur.y"
+    {
+												if (!findSymb((yyvsp[(1) - (3)].var))) {
+													addSymb((yyvsp[(1) - (3)].var),1);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",(yyvsp[(1) - (3)].var));
+												}
+											}
+    break;
+
+  case 23:
+#line 119 "compilateur.y"
+    {
+												if (!findSymb((yyvsp[(1) - (1)].var))) {
+													addSymb((yyvsp[(1) - (1)].var),1);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",(yyvsp[(1) - (1)].var));
+												}
+											}
+    break;
+
 
 /* Line 1267 of yacc.c.  */
-#line 1515 "y.tab.c"
+#line 1589 "y.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1725,14 +1799,13 @@ yyreturn:
 }
 
 
-#line 144 "compilateur.y"
+#line 192 "compilateur.y"
 
 void yyerror(char*s){
     printf("%d : %s\n", yylineno, s);
 }
 
-int main(int argc, char* argv[]){
+int main(){
     yyparse();
-    return 0;
 }
 

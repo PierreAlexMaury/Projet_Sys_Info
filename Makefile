@@ -30,4 +30,4 @@ lex.yy.c: compilateur.lex
 clean:
 	rm -rf $(OBJECTS) $(DEPENDS)
 			
-run: ./compilateur
+run: ./$(TARGETS) 

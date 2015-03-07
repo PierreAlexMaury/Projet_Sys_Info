@@ -194,17 +194,6 @@ void yyerror(char*s){
     printf("%d : %s\n", yylineno, s);
 }
 
-int main(int argc, char* argv[]){
-	if (argc == 1) {
-		printf("Input file missing");
-		return EXIT_FAILURE;
-	}
-
-	if (!(yyin = fopen(argv[1],"r")) {
-		printf("could not open file %s",argv[1]);
-		return EXIT_FAILURE;
-	}
-
+int main(){
     yyparse();
-    return EXIT_SUCCESS;
 }
