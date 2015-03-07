@@ -65,19 +65,65 @@ Instruction: Operation tSEMICOLON
 	;
 
 AssignmentInt: tNUM tVIR AssignmentInt
-	| tVAR tVIR AssignmentInt
-	| tVAR tEQ AssignmentInt
+	| tVAR tVIR AssignmentInt				{
+												if (!findSymb($1)) {
+													addSymb($1,0);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",$2);
+												}
+											}
+
+	| tVAR tEQ AssignmentInt				{
+												if (!findSymb($1)) {
+													addSymb($1,0);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",$2);
+												}
+											}
+
+	| tVAR									{
+												if (!findSymb($1)) {
+													addSymb($1,0);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",$2);
+												}
+											}
 	| tNUM 
-	| tVAR					
 	| tEXPO 
 	;
 	
-AssignmentConst: tNUM tVIR AssignmentConst
-	| tVAR tVIR AssignmentConst
-	| tVAR tEQ AssignmentConst
-	| tNUM 
-	| tVAR					
-	| tEXPO 
+AssignmentConst: tNUM tVIR AssignmentConst 
+	| tVAR tVIR AssignmentConst 			{
+												if (!findSymb($1)) {
+													addSymb($1,1);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",$2);
+												}
+											}
+
+	| tVAR tEQ AssignmentConst				{
+												if (!findSymb($1)) {
+													addSymb($1,1);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",$2);
+												}
+											}
+	
+	| tVAR									{
+												if (!findSymb($1)) {
+													addSymb($1,1);
+													printTabSymb();
+												}else {
+													printf("ECHEC: %s existe deja\n",$2);
+												}
+											}				
+	| tEXPO  
+	| tNUM
 	;
 
 Assignment: tNUM tVIR Assignment
