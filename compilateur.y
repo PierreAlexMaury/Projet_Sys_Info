@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include "table_symb.h"
 
-#define YYPARSE_PARAM
+#define __cpluplus
+#define	__STDC__
 
 void yyerror (char*s);
 extern int yylineno;
