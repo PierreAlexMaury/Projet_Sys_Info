@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include "table_symb.h"
 
-#define __cpluplus
-#define	__STDC__
 
 void yyerror (char*s);
 extern int yylineno;
@@ -196,7 +194,13 @@ void yyerror(char*s){
 }
 
 int main(int argc, char* argv[]){
-	printf("%s",argv[1]);
-    yyparse(argv[1]);
+	FILE * pFile;
+
+   	pFileOut = fopen ("out.txt","w");
+
+	fprintf (pFileOut, "test");
+	}
+	fclose (pFile);
+    yyparse();
     return 0;
 }
