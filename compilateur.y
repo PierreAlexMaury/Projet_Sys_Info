@@ -196,7 +196,7 @@ void yyerror(char*s){
 }
 
 int main(int argc, char* argv[]){
-	printf("%s",argv[0]);
+	printf("%d",argc);
     yyparse(argv[0]);
     return 0;
 }
