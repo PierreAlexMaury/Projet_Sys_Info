@@ -196,6 +196,7 @@ void yyerror(char*s){
 }
 
 int main(int argc, char* argv[]){
+	printf("toto");
 	printf("%d",argc);
     yyparse(argv[0]);
     return 0;
