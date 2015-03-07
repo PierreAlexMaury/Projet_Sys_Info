@@ -138,7 +138,11 @@ Assignment: tNUM tVIR Assignment
 
 Operation: tNUM tVIR Operation
 	| tVAR tVIR Operation
-	| tVAR tEQ Operation
+	| tVAR tEQ Operation					{
+												printf("COP %d %d", $3, getAddr($1));
+												/* !!!!! PK ts_init($1) ???????*/
+												clear_temp();
+											}
 	| tVAR tPLUS Operation
 	| tVAR tLESS Operation
 	| tVAR tDIV Operation
@@ -152,7 +156,12 @@ Operation: tNUM tVIR Operation
     	| tEXPO tDIV Operation
     	| tEXPO tMUL Operation
 	| tOPAR Operation tCPAR
-	| tNUM 
+	| tNUM 									{
+												int ptemp = addTemp();
+												printTabSymb();
+												printf("AFC %d %d\n",$1, ptemp);
+												$$ = ptemp;
+											}
 	| tVAR					
 	| tEXPO 
 	;

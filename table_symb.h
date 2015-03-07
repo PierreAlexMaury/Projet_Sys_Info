@@ -11,9 +11,15 @@ struct table_symbole{
 	int sommet;
 };
 
+int nb_chiffre(int nombre) ;
+
+int nb_chiffre_rec(int nombre, int compt) ;
+
 int initTab(void);
 
 int addSymb(char* identif, int constant);
+
+int addTemp();
 
 int findSymb(char* identif);
 
