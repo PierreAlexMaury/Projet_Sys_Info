@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "table_symb.h"
 
+extern FILE* yyin;
 
 void yyerror (char*s);
 extern int yylineno;
@@ -194,12 +195,11 @@ void yyerror(char*s){
 }
 
 int main(int argc, char* argv[]){
-	FILE * pFile;
+	FILE* pFile;
 
    	pFileOut = fopen ("out.txt","w");
 
 	fprintf (pFileOut, "test");
-	}
 	fclose (pFile);
     yyparse();
     return 0;
