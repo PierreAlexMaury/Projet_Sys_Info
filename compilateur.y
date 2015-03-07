@@ -70,7 +70,7 @@ AssignmentInt: tNUM tVIR AssignmentInt
 													addSymb($1,0);
 													printTabSymb();
 												}else {
-													printf("ECHEC: %s existe deja\n",$2);
+													printf("ECHEC: %s existe deja\n",$1);
 												}
 											}
 
@@ -79,7 +79,7 @@ AssignmentInt: tNUM tVIR AssignmentInt
 													addSymb($1,0);
 													printTabSymb();
 												}else {
-													printf("ECHEC: %s existe deja\n",$2);
+													printf("ECHEC: %s existe deja\n",$1);
 												}
 											}
 
@@ -88,7 +88,7 @@ AssignmentInt: tNUM tVIR AssignmentInt
 													addSymb($1,0);
 													printTabSymb();
 												}else {
-													printf("ECHEC: %s existe deja\n",$2);
+													printf("ECHEC: %s existe deja\n",$1);
 												}
 											}
 	| tNUM 
@@ -101,7 +101,7 @@ AssignmentConst: tNUM tVIR AssignmentConst
 													addSymb($1,1);
 													printTabSymb();
 												}else {
-													printf("ECHEC: %s existe deja\n",$2);
+													printf("ECHEC: %s existe deja\n",$1);
 												}
 											}
 
@@ -110,7 +110,7 @@ AssignmentConst: tNUM tVIR AssignmentConst
 													addSymb($1,1);
 													printTabSymb();
 												}else {
-													printf("ECHEC: %s existe deja\n",$2);
+													printf("ECHEC: %s existe deja\n",$1);
 												}
 											}
 	
@@ -119,7 +119,7 @@ AssignmentConst: tNUM tVIR AssignmentConst
 													addSymb($1,1);
 													printTabSymb();
 												}else {
-													printf("ECHEC: %s existe deja\n",$2);
+													printf("ECHEC: %s existe deja\n",$1);
 												}
 											}				
 	| tEXPO  
