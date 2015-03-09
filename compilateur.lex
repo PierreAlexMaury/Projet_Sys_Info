@@ -13,6 +13,7 @@ EXPONENTIAL {NUMBER}e{NUMBER}
 INTEGER {NUMBER}|{EXONENTIAL}
 VAR [A-Za-z][A-Z_a-z0-9]*
 
+
 %%
 
 "main()"	{return tMAIN;}
@@ -44,7 +45,7 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 "printf"	{return tPRINTF;}
 {NUMBER}	{yylval.num = atoi(yytext);
 		return tNUM;}
-{EXPONENTIAL}   {yylval.expo = (long)atof(yytext);
+{EXPONENTIAL}   {yylval.expo = (int)atof(yytext);
 		return tEXPO;}
 
 {VAR}		{yylval.var= strdup(yytext);

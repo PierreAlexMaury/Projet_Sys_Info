@@ -1,5 +1,5 @@
 #!/bin/bash
 
-make
 make clean
+make
 ./compilateur < test_compilo.c

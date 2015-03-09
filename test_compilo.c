@@ -1,6 +1,10 @@
 main() {
 	int a;
 	const int b;
-	int c,d;
-	const int b,s;
+
+	a = 5;
+	b = 1;
+	
+	a = 3 / a - b;
+
 }

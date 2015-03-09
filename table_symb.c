@@ -45,9 +45,11 @@ int addSymb(char* identif, int type) {
 int addTemp() {
     printf("**** START **** addTemp\n");
 
-	if (table.sommet == maxSymb)
+	if (table.sommet == maxSymb) {
+		printf("addTemp : Erreur, table des symbole pleine");
 		return -1;
-
+	}
+	
 	struct symb symb_temp;
 
 	symb_temp.identif = malloc(sizeof(char)*(4+nb_chiffre(table.sommet)));

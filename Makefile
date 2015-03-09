@@ -1,7 +1,6 @@
 TARGETS=compilateur
 YACC=y.tab.c
 FLEX=lex.yy.c
-YACC=compilateur.y
 OBJECTS=y.tab.o lex.yy.o table_symb.o
 LDFLAGS=-ll
 DEPENDS=$(patsubst %.o, %.dep, $(OBJECTS))
@@ -9,7 +8,7 @@ DEPENDS=$(patsubst %.o, %.dep, $(OBJECTS))
 all: $(TARGETS)
 
 compilateur: $(OBJECTS)
-	gcc $(LDFLAGS) -o $@ $^
+	gcc -o $@ $^ $(LDFLAGS)
 
 %.o: %.c %.dep
 	gcc -c $<
@@ -22,12 +21,12 @@ depend: $(DEPENDS)
 include $(wildcard *.dep)
 
 y.tab.c: compilateur.y
-	yacc -d compilateur.y
+	yacc -v -d compilateur.y
 
 lex.yy.c: compilateur.lex
 	flex compilateur.lex
 
 clean:
-	rm -rf $(OBJECTS) $(DEPENDS)
+	rm -rf $(OBJECTS) $(DEPENDS) $(YACC) $(FLEX)
 			
 run: ./$(TARGETS) 

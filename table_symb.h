@@ -1,4 +1,4 @@
-#define maxSymb 5
+#define maxSymb 250
 
 struct symb{
 	char* identif;
@@ -24,5 +24,7 @@ int addTemp();
 int findSymb(char* identif);
 
 int getAddr(char* identif);
+
+void clearTemp();
 
 void printTabSymb(void);
