@@ -1,0 +1,8 @@
+AFC 2 5
+COP 0 2
+AFC 2 1
+COP 1 2
+COP 2 0
+COP 3 1
+ADD 4 2 3
+COP 0 4

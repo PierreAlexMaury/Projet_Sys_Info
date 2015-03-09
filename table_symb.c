@@ -46,7 +46,7 @@ int addTemp() {
     printf("**** START **** addTemp\n");
 
 	if (table.sommet == maxSymb) {
-		printf("addTemp : Erreur, table des symbole pleine");
+		printf("\naddTemp : Erreur, table des symbole pleine\n");
 		return -1;
 	}
 	

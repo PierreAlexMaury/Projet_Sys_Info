@@ -5,7 +5,7 @@
 #include "table_symb.h"
 
 
-extern FILE* yyin;
+FILE * ASM;
 
 void yyerror (char*s);
 extern int yylineno;
@@ -148,34 +148,34 @@ Assignment: tNUM tVIR Assignment
 Operation: Operation tPLUS Operation				{
 									int ptemp = addTemp();
 									printTabSymb();
-									printf("ADD %d %d %d\n",ptemp,$1,$3);
+									fprintf(ASM,"ADD %d %d %d\n",ptemp,$1,$3);
 									$$ = ptemp;
 								}
 								
 	| Operation tLESS Operation				{
 									int ptemp = addTemp();
 									printTabSymb();
-									printf("LESS %d %d %d\n",ptemp,$1,$3);
+									fprintf(ASM,"LESS %d %d %d\n",ptemp,$1,$3);
 									$$ = ptemp;
 								}
 								
 	| Operation tMUL Operation				{
 									int ptemp = addTemp();
 									printTabSymb();
-									printf("MUL %d %d %d\n",ptemp,$1,$3);
+									fprintf(ASM,"MUL %d %d %d\n",ptemp,$1,$3);
 									$$ = ptemp;
 								}
 						
 	| Operation tDIV Operation				{
 									int ptemp = addTemp();
 									printTabSymb();
-									printf("DIV %d %d %d\n",ptemp,$1,$3);
+									fprintf(ASM,"DIV %d %d %d\n",ptemp,$1,$3);
 									$$ = ptemp;
 								}
 								
 								
 	| tVAR tEQ Operation					{
-									printf("COP %d %d\n", getAddr($1), $3);
+									fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
 									printTabSymb();
 									$$ = getAddr($1);
 								}
@@ -183,21 +183,21 @@ Operation: Operation tPLUS Operation				{
 	| tNUM 							{
 									int ptemp = addTemp();
 									printTabSymb();
-									printf("AFC %d %d\n",ptemp, $1);
+									fprintf(ASM,"AFC %d %d\n",ptemp, $1);
 									$$ = ptemp;
 								}
 	
 	| tVAR							{       
 									int ptemp = addTemp();
 									printTabSymb();
-									printf("COP %d %d\n", ptemp, getAddr($1));
+									fprintf(ASM,"COP %d %d\n", ptemp, getAddr($1));
 									$$ = ptemp; 
 								}
 	
 	| tEXPO 						{       
 									int ptemp = addTemp();
 									printTabSymb();
-									printf("AFC %d %d\n",ptemp, $1);
+									fprintf(ASM,"AFC %d %d\n",ptemp, $1);
 									$$ = ptemp;
 								}
 	
@@ -243,5 +243,14 @@ void yyerror(char*s){
 }
 
 int main(){
-    yyparse();
+    
+    ASM = fopen("ASM.txt", "w+"); //on supprime le contenu au préalable avant de réécrire 
+
+    if (ASM == NULL){
+       printf("fichier ASM.txt inexistant dans ce répertoire ! ");
+    }else{
+    	yyparse();
+    	fclose(ASM);
+    }
+
 }
