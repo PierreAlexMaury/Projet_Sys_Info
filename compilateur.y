@@ -297,7 +297,7 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 											}else{
 												fprintf(ASM,"COP %d %d\n", getAddr($1), getAddr($3));
 												printTabSymb();
-											} 
+										    } 
 								        }
 
 
