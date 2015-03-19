@@ -146,14 +146,12 @@ Assignment: tNUM tVIR Assignment
     ;
 
 Operation: tOPAR Operation tCPAR	{
-										printf("tOPAR Operation tCPAR");
 										int ptemp = addTemp();
 										printTabSymb();
 										$$ = ptemp;
 									}
 
 	| Operation tPLUS Operation				{
-									printf("Operation tPLUS Operation");
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"ADD %d %d %d\n",ptemp,$1,$3);
@@ -168,7 +166,6 @@ Operation: tOPAR Operation tCPAR	{
 								}
 								
 	| Operation tMUL Operation				{
-									printf("Operation tMUL Operation");
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"MUL %d %d %d\n",ptemp,$1,$3);
@@ -184,11 +181,18 @@ Operation: tOPAR Operation tCPAR	{
 								
 								
 	| tVAR tEQ Operation					{
-									printf("tVAR tEQ Operation");
 									fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
 									printTabSymb();
 									$$ = getAddr($1);
 								}
+
+	| tLESS Operation				{
+										int ptemp_neg = addTemp();
+										int ptemp = addTemp();
+										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$2);
+										$$ = ptemp;
+									}
 									
 	| tNUM 							{
 									int ptemp = addTemp();
