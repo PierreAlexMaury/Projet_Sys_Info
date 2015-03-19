@@ -1,4 +1,3 @@
-//TODO démultipléxer les règles pour se simplifier la vie du code c
 %{
 #include <stdlib.h>
 #include <stdio.h>
