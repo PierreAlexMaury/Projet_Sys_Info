@@ -1,5 +1,6 @@
 	main() { 
-		int e = -2;
-		int a = -3e2, b = -4 , c = e;
+		const int e = -2;
+		const int c = e;
+		const int d = -6, b, a = 2;
 
 }

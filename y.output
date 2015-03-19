@@ -40,91 +40,100 @@ Grammar
    21              | tVAR tEQ tLESS tEXPO
    22              | tVAR
 
-   23 AssignmentConst: tNUM tVIR AssignmentConst
-   24                | tVAR tVIR AssignmentConst
-   25                | tVAR tEQ AssignmentConst
-   26                | tVAR
-   27                | tEXPO
-   28                | tNUM
+   23 AssignmentConst: tVAR tVIR AssignmentConst
+   24                | tVAR tEQ tVAR tVIR AssignmentConst
+   25                | tVAR tEQ tLESS tVAR tVIR AssignmentConst
+   26                | tVAR tEQ tVAR
+   27                | tVAR tEQ tLESS tVAR
+   28                | tVAR tEQ tNUM tVIR AssignmentConst
+   29                | tVAR tEQ tLESS tNUM tVIR AssignmentConst
+   30                | tVAR tEQ tNUM
+   31                | tVAR tEQ tLESS tNUM
+   32                | tVAR tEQ tEXPO tVIR AssignmentConst
+   33                | tVAR tEQ tLESS tEXPO tVIR AssignmentConst
+   34                | tVAR tEQ tEXPO
+   35                | tVAR tEQ tLESS tEXPO
+   36                | tVAR
 
-   29 Assignment: tNUM tVIR Assignment
-   30           | tVAR tVIR Assignment
-   31           | tVAR tEQ Assignment
-   32           | tNUM
-   33           | tVAR
-   34           | tEXPO
+   37 Assignment: tNUM tVIR Assignment
+   38           | tVAR tVIR Assignment
+   39           | tVAR tEQ Assignment
+   40           | tNUM
+   41           | tVAR
+   42           | tEXPO
 
-   35 Instructions: Instruction Instructions
-   36             | /* empty */
+   43 Instructions: Instruction Instructions
+   44             | /* empty */
 
-   37 Instruction: Operation tSEMICOLON
-   38            | Statement
+   45 Instruction: Operation tSEMICOLON
+   46            | Statement
 
-   39 Operation: tOPAR Operation tCPAR
-   40          | Operation tPLUS Operation
-   41          | Operation tLESS Operation
-   42          | Operation tMUL Operation
-   43          | Operation tDIV Operation
-   44          | tVAR tEQ Operation
-   45          | tLESS Operation
-   46          | tNUM
-   47          | tVAR
-   48          | tEXPO
+   47 Operation: tOPAR Operation tCPAR
+   48          | Operation tPLUS Operation
+   49          | Operation tLESS Operation
+   50          | Operation tMUL Operation
+   51          | Operation tDIV Operation
+   52          | tVAR tEQ Operation
+   53          | tLESS Operation
+   54          | tNUM
+   55          | tVAR
+   56          | tEXPO
 
-   49 Statement: While
-   50          | If
-   51          | Printf
-   52          | Declaration
-   53          | tSEMICOLON
+   57 Statement: While
+   58          | If
+   59          | Printf
+   60          | Declaration
+   61          | tSEMICOLON
 
-   54 While: tWHILE tOPAR Expressions tCPAR Statement
-   55      | tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
+   62 While: tWHILE tOPAR Expressions tCPAR Statement
+   63      | tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
 
-   56 If: tIF tOPAR Expression tCPAR Statement
+   64 If: tIF tOPAR Expression tCPAR Statement
 
-   57 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
+   65 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 
-   58 Expressions: Expression Expressions
-   59            | /* empty */
+   66 Expressions: Expression Expressions
+   67            | /* empty */
 
-   60 Expression: Assignment tEQUAL Assignment
-   61           | Assignment tNE Assignment
-   62           | Assignment tLE Assignment
-   63           | Assignment tLT Assignment
-   64           | Assignment tGE Assignment
-   65           | Assignment tGT Assignment
-   66           | Assignment
+   68 Expression: Assignment tEQUAL Assignment
+   69           | Assignment tNE Assignment
+   70           | Assignment tLE Assignment
+   71           | Assignment tLT Assignment
+   72           | Assignment tGE Assignment
+   73           | Assignment tGT Assignment
+   74           | Assignment
 
 
 Terminals, with rules where they appear
 
 $end (0) 0
 error (256)
-tLE (258) 62
-tLT (259) 63
-tGE (260) 64
-tGT (261) 65
-tNE (262) 61
-tEQUAL (263) 60
-tVAR (264) 5 6 9 10 11 12 13 14 15 16 17 18 19 20 21 22 24 25 26 30
-    31 33 44 47 57
-tNUM (265) 14 15 16 17 23 28 29 32 46
-tEXPO (266) 18 19 20 21 27 34 48
-tOPAR (267) 39 54 55 56 57
-tCPAR (268) 39 54 55 56 57
-tVIR (269) 9 10 11 14 15 18 19 23 24 29 30
-tSEMICOLON (270) 5 6 7 8 37 53 57
-tEQ (271) 10 11 12 13 14 15 16 17 18 19 20 21 25 31 44
-tPLUS (272) 40
-tLESS (273) 11 13 15 17 19 21 41 45
-tMUL (274) 42
-tDIV (275) 43
-tWHILE (276) 54 55
-tIF (277) 56
+tLE (258) 70
+tLT (259) 71
+tGE (260) 72
+tGT (261) 73
+tNE (262) 69
+tEQUAL (263) 68
+tVAR (264) 5 6 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+    27 28 29 30 31 32 33 34 35 36 38 39 41 52 55 65
+tNUM (265) 14 15 16 17 28 29 30 31 37 40 54
+tEXPO (266) 18 19 20 21 32 33 34 35 42 56
+tOPAR (267) 47 62 63 64 65
+tCPAR (268) 47 62 63 64 65
+tVIR (269) 9 10 11 14 15 18 19 23 24 25 28 29 32 33 37 38
+tSEMICOLON (270) 5 6 7 8 45 61 65
+tEQ (271) 10 11 12 13 14 15 16 17 18 19 20 21 24 25 26 27 28 29 30
+    31 32 33 34 35 39 52
+tPLUS (272) 48
+tLESS (273) 11 13 15 17 19 21 25 27 29 31 33 35 49 53
+tMUL (274) 50
+tDIV (275) 51
+tWHILE (276) 62 63
+tIF (277) 64
 tELSE (278)
-tPRINTF (279) 57
-tOBRACKET (280) 2 55
-tCBRACKET (281) 2 55
+tPRINTF (279) 65
+tOBRACKET (280) 2 63
+tCBRACKET (281) 2 63
 tINT (282) 5 6 7 8
 tCONST (283) 5 7
 tMAIN (284) 1
@@ -141,34 +150,35 @@ Block (32)
 Declarations (33)
     on left: 3 4, on right: 2 3
 Declaration (34)
-    on left: 5 6 7 8, on right: 3 52
+    on left: 5 6 7 8, on right: 3 60
 AssignmentInt (35)
     on left: 9 10 11 12 13 14 15 16 17 18 19 20 21 22,
     on right: 8 9 10 11 14 15 18 19
 AssignmentConst (36)
-    on left: 23 24 25 26 27 28, on right: 7 23 24 25
+    on left: 23 24 25 26 27 28 29 30 31 32 33 34 35 36,
+    on right: 7 23 24 25 28 29 32 33
 Assignment (37)
-    on left: 29 30 31 32 33 34, on right: 29 30 31 60 61 62 63 64 65
-    66
+    on left: 37 38 39 40 41 42, on right: 37 38 39 68 69 70 71 72 73
+    74
 Instructions (38)
-    on left: 35 36, on right: 2 35 55
+    on left: 43 44, on right: 2 43 63
 Instruction (39)
-    on left: 37 38, on right: 35
+    on left: 45 46, on right: 43
 Operation (40)
-    on left: 39 40 41 42 43 44 45 46 47 48, on right: 37 39 40 41 42
-    43 44 45
+    on left: 47 48 49 50 51 52 53 54 55 56, on right: 45 47 48 49 50
+    51 52 53
 Statement (41)
-    on left: 49 50 51 52 53, on right: 38 54 56
+    on left: 57 58 59 60 61, on right: 46 62 64
 While (42)
-    on left: 54 55, on right: 49
+    on left: 62 63, on right: 57
 If (43)
-    on left: 56, on right: 50
+    on left: 64, on right: 58
 Printf (44)
-    on left: 57, on right: 51
+    on left: 65, on right: 59
 Expressions (45)
-    on left: 58 59, on right: 54 55 58
+    on left: 66 67, on right: 62 63 66
 Expression (46)
-    on left: 60 61 62 63 64 65 66, on right: 56 58
+    on left: 68 69 70 71 72 73 74, on right: 64 66
 
 
 state 0
@@ -259,7 +269,7 @@ state 8
     tINT        shift, and go to state 6
     tCONST      shift, and go to state 7
 
-    $default  reduce using rule 36 (Instructions)
+    $default  reduce using rule 44 (Instructions)
 
     Declaration   go to state 22
     Instructions  go to state 23
@@ -323,40 +333,38 @@ state 12
     5 Declaration: tCONST tINT . tVAR tSEMICOLON
     7            | tCONST tINT . AssignmentConst tSEMICOLON
 
-    tVAR   shift, and go to state 35
-    tNUM   shift, and go to state 36
-    tEXPO  shift, and go to state 37
+    tVAR  shift, and go to state 35
 
-    AssignmentConst  go to state 38
+    AssignmentConst  go to state 36
 
 
 state 13
 
-   44 Operation: tVAR . tEQ Operation
-   47          | tVAR .
+   52 Operation: tVAR . tEQ Operation
+   55          | tVAR .
 
-    tEQ  shift, and go to state 39
+    tEQ  shift, and go to state 37
 
-    $default  reduce using rule 47 (Operation)
+    $default  reduce using rule 55 (Operation)
 
 
 state 14
 
-   46 Operation: tNUM .
+   54 Operation: tNUM .
 
-    $default  reduce using rule 46 (Operation)
+    $default  reduce using rule 54 (Operation)
 
 
 state 15
 
-   48 Operation: tEXPO .
+   56 Operation: tEXPO .
 
-    $default  reduce using rule 48 (Operation)
+    $default  reduce using rule 56 (Operation)
 
 
 state 16
 
-   39 Operation: tOPAR . Operation tCPAR
+   47 Operation: tOPAR . Operation tCPAR
 
     tVAR   shift, and go to state 13
     tNUM   shift, and go to state 14
@@ -364,19 +372,19 @@ state 16
     tOPAR  shift, and go to state 16
     tLESS  shift, and go to state 18
 
-    Operation  go to state 40
+    Operation  go to state 38
 
 
 state 17
 
-   53 Statement: tSEMICOLON .
+   61 Statement: tSEMICOLON .
 
-    $default  reduce using rule 53 (Statement)
+    $default  reduce using rule 61 (Statement)
 
 
 state 18
 
-   45 Operation: tLESS . Operation
+   53 Operation: tLESS . Operation
 
     tVAR   shift, and go to state 13
     tNUM   shift, and go to state 14
@@ -384,48 +392,48 @@ state 18
     tOPAR  shift, and go to state 16
     tLESS  shift, and go to state 18
 
-    Operation  go to state 41
+    Operation  go to state 39
 
 
 state 19
 
-   54 While: tWHILE . tOPAR Expressions tCPAR Statement
-   55      | tWHILE . tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
+   62 While: tWHILE . tOPAR Expressions tCPAR Statement
+   63      | tWHILE . tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
 
-    tOPAR  shift, and go to state 42
+    tOPAR  shift, and go to state 40
 
 
 state 20
 
-   56 If: tIF . tOPAR Expression tCPAR Statement
+   64 If: tIF . tOPAR Expression tCPAR Statement
 
-    tOPAR  shift, and go to state 43
+    tOPAR  shift, and go to state 41
 
 
 state 21
 
-   57 Printf: tPRINTF . tOPAR tVAR tCPAR tSEMICOLON
+   65 Printf: tPRINTF . tOPAR tVAR tCPAR tSEMICOLON
 
-    tOPAR  shift, and go to state 44
+    tOPAR  shift, and go to state 42
 
 
 state 22
 
-   52 Statement: Declaration .
+   60 Statement: Declaration .
 
-    $default  reduce using rule 52 (Statement)
+    $default  reduce using rule 60 (Statement)
 
 
 state 23
 
     2 Block: tOBRACKET Declarations Instructions . tCBRACKET
 
-    tCBRACKET  shift, and go to state 45
+    tCBRACKET  shift, and go to state 43
 
 
 state 24
 
-   35 Instructions: Instruction . Instructions
+   43 Instructions: Instruction . Instructions
 
     tVAR        shift, and go to state 13
     tNUM        shift, and go to state 14
@@ -439,10 +447,10 @@ state 24
     tINT        shift, and go to state 6
     tCONST      shift, and go to state 7
 
-    $default  reduce using rule 36 (Instructions)
+    $default  reduce using rule 44 (Instructions)
 
     Declaration   go to state 22
-    Instructions  go to state 46
+    Instructions  go to state 44
     Instruction   go to state 24
     Operation     go to state 25
     Statement     go to state 26
@@ -453,45 +461,45 @@ state 24
 
 state 25
 
-   37 Instruction: Operation . tSEMICOLON
-   40 Operation: Operation . tPLUS Operation
-   41          | Operation . tLESS Operation
-   42          | Operation . tMUL Operation
-   43          | Operation . tDIV Operation
+   45 Instruction: Operation . tSEMICOLON
+   48 Operation: Operation . tPLUS Operation
+   49          | Operation . tLESS Operation
+   50          | Operation . tMUL Operation
+   51          | Operation . tDIV Operation
 
-    tSEMICOLON  shift, and go to state 47
-    tPLUS       shift, and go to state 48
-    tLESS       shift, and go to state 49
-    tMUL        shift, and go to state 50
-    tDIV        shift, and go to state 51
+    tSEMICOLON  shift, and go to state 45
+    tPLUS       shift, and go to state 46
+    tLESS       shift, and go to state 47
+    tMUL        shift, and go to state 48
+    tDIV        shift, and go to state 49
 
 
 state 26
 
-   38 Instruction: Statement .
+   46 Instruction: Statement .
 
-    $default  reduce using rule 38 (Instruction)
+    $default  reduce using rule 46 (Instruction)
 
 
 state 27
 
-   49 Statement: While .
+   57 Statement: While .
 
-    $default  reduce using rule 49 (Statement)
+    $default  reduce using rule 57 (Statement)
 
 
 state 28
 
-   50 Statement: If .
+   58 Statement: If .
 
-    $default  reduce using rule 50 (Statement)
+    $default  reduce using rule 58 (Statement)
 
 
 state 29
 
-   51 Statement: Printf .
+   59 Statement: Printf .
 
-    $default  reduce using rule 51 (Statement)
+    $default  reduce using rule 59 (Statement)
 
 
 state 30
@@ -505,9 +513,9 @@ state 31
 
     9 AssignmentInt: tVAR tVIR . AssignmentInt
 
-    tVAR  shift, and go to state 52
+    tVAR  shift, and go to state 50
 
-    AssignmentInt  go to state 53
+    AssignmentInt  go to state 51
 
 
 state 32
@@ -532,10 +540,10 @@ state 33
    20              | tVAR tEQ . tEXPO
    21              | tVAR tEQ . tLESS tEXPO
 
-    tVAR   shift, and go to state 54
-    tNUM   shift, and go to state 55
-    tEXPO  shift, and go to state 56
-    tLESS  shift, and go to state 57
+    tVAR   shift, and go to state 52
+    tNUM   shift, and go to state 53
+    tEXPO  shift, and go to state 54
+    tLESS  shift, and go to state 55
 
 
 state 34
@@ -548,44 +556,38 @@ state 34
 state 35
 
     5 Declaration: tCONST tINT tVAR . tSEMICOLON
-   24 AssignmentConst: tVAR . tVIR AssignmentConst
-   25                | tVAR . tEQ AssignmentConst
-   26                | tVAR .
+   23 AssignmentConst: tVAR . tVIR AssignmentConst
+   24                | tVAR . tEQ tVAR tVIR AssignmentConst
+   25                | tVAR . tEQ tLESS tVAR tVIR AssignmentConst
+   26                | tVAR . tEQ tVAR
+   27                | tVAR . tEQ tLESS tVAR
+   28                | tVAR . tEQ tNUM tVIR AssignmentConst
+   29                | tVAR . tEQ tLESS tNUM tVIR AssignmentConst
+   30                | tVAR . tEQ tNUM
+   31                | tVAR . tEQ tLESS tNUM
+   32                | tVAR . tEQ tEXPO tVIR AssignmentConst
+   33                | tVAR . tEQ tLESS tEXPO tVIR AssignmentConst
+   34                | tVAR . tEQ tEXPO
+   35                | tVAR . tEQ tLESS tEXPO
+   36                | tVAR .
 
-    tVIR        shift, and go to state 58
-    tSEMICOLON  shift, and go to state 59
-    tEQ         shift, and go to state 60
+    tVIR        shift, and go to state 56
+    tSEMICOLON  shift, and go to state 57
+    tEQ         shift, and go to state 58
 
-    tSEMICOLON  [reduce using rule 26 (AssignmentConst)]
+    tSEMICOLON  [reduce using rule 36 (AssignmentConst)]
 
 
 state 36
 
-   23 AssignmentConst: tNUM . tVIR AssignmentConst
-   28                | tNUM .
+    7 Declaration: tCONST tINT AssignmentConst . tSEMICOLON
 
-    tVIR  shift, and go to state 61
-
-    $default  reduce using rule 28 (AssignmentConst)
+    tSEMICOLON  shift, and go to state 59
 
 
 state 37
 
-   27 AssignmentConst: tEXPO .
-
-    $default  reduce using rule 27 (AssignmentConst)
-
-
-state 38
-
-    7 Declaration: tCONST tINT AssignmentConst . tSEMICOLON
-
-    tSEMICOLON  shift, and go to state 62
-
-
-state 39
-
-   44 Operation: tVAR tEQ . Operation
+   52 Operation: tVAR tEQ . Operation
 
     tVAR   shift, and go to state 13
     tNUM   shift, and go to state 14
@@ -593,97 +595,136 @@ state 39
     tOPAR  shift, and go to state 16
     tLESS  shift, and go to state 18
 
-    Operation  go to state 63
+    Operation  go to state 60
+
+
+state 38
+
+   47 Operation: tOPAR Operation . tCPAR
+   48          | Operation . tPLUS Operation
+   49          | Operation . tLESS Operation
+   50          | Operation . tMUL Operation
+   51          | Operation . tDIV Operation
+
+    tCPAR  shift, and go to state 61
+    tPLUS  shift, and go to state 46
+    tLESS  shift, and go to state 47
+    tMUL   shift, and go to state 48
+    tDIV   shift, and go to state 49
+
+
+state 39
+
+   48 Operation: Operation . tPLUS Operation
+   49          | Operation . tLESS Operation
+   50          | Operation . tMUL Operation
+   51          | Operation . tDIV Operation
+   53          | tLESS Operation .
+
+    tMUL  shift, and go to state 48
+    tDIV  shift, and go to state 49
+
+    $default  reduce using rule 53 (Operation)
 
 
 state 40
 
-   39 Operation: tOPAR Operation . tCPAR
-   40          | Operation . tPLUS Operation
-   41          | Operation . tLESS Operation
-   42          | Operation . tMUL Operation
-   43          | Operation . tDIV Operation
+   62 While: tWHILE tOPAR . Expressions tCPAR Statement
+   63      | tWHILE tOPAR . Expressions tCPAR tOBRACKET Instructions tCBRACKET
 
-    tCPAR  shift, and go to state 64
-    tPLUS  shift, and go to state 48
-    tLESS  shift, and go to state 49
-    tMUL   shift, and go to state 50
-    tDIV   shift, and go to state 51
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
+
+    $default  reduce using rule 67 (Expressions)
+
+    Assignment   go to state 65
+    Expressions  go to state 66
+    Expression   go to state 67
 
 
 state 41
 
-   40 Operation: Operation . tPLUS Operation
-   41          | Operation . tLESS Operation
-   42          | Operation . tMUL Operation
-   43          | Operation . tDIV Operation
-   45          | tLESS Operation .
+   64 If: tIF tOPAR . Expression tCPAR Statement
 
-    tMUL  shift, and go to state 50
-    tDIV  shift, and go to state 51
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
 
-    $default  reduce using rule 45 (Operation)
+    Assignment  go to state 65
+    Expression  go to state 68
 
 
 state 42
 
-   54 While: tWHILE tOPAR . Expressions tCPAR Statement
-   55      | tWHILE tOPAR . Expressions tCPAR tOBRACKET Instructions tCBRACKET
+   65 Printf: tPRINTF tOPAR . tVAR tCPAR tSEMICOLON
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
-
-    $default  reduce using rule 59 (Expressions)
-
-    Assignment   go to state 68
-    Expressions  go to state 69
-    Expression   go to state 70
+    tVAR  shift, and go to state 69
 
 
 state 43
-
-   56 If: tIF tOPAR . Expression tCPAR Statement
-
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
-
-    Assignment  go to state 68
-    Expression  go to state 71
-
-
-state 44
-
-   57 Printf: tPRINTF tOPAR . tVAR tCPAR tSEMICOLON
-
-    tVAR  shift, and go to state 72
-
-
-state 45
 
     2 Block: tOBRACKET Declarations Instructions tCBRACKET .
 
     $default  reduce using rule 2 (Block)
 
 
+state 44
+
+   43 Instructions: Instruction Instructions .
+
+    $default  reduce using rule 43 (Instructions)
+
+
+state 45
+
+   45 Instruction: Operation tSEMICOLON .
+
+    $default  reduce using rule 45 (Instruction)
+
+
 state 46
 
-   35 Instructions: Instruction Instructions .
+   48 Operation: Operation tPLUS . Operation
 
-    $default  reduce using rule 35 (Instructions)
+    tVAR   shift, and go to state 13
+    tNUM   shift, and go to state 14
+    tEXPO  shift, and go to state 15
+    tOPAR  shift, and go to state 16
+    tLESS  shift, and go to state 18
+
+    Operation  go to state 70
 
 
 state 47
 
-   37 Instruction: Operation tSEMICOLON .
+   49 Operation: Operation tLESS . Operation
 
-    $default  reduce using rule 37 (Instruction)
+    tVAR   shift, and go to state 13
+    tNUM   shift, and go to state 14
+    tEXPO  shift, and go to state 15
+    tOPAR  shift, and go to state 16
+    tLESS  shift, and go to state 18
+
+    Operation  go to state 71
 
 
 state 48
 
-   40 Operation: Operation tPLUS . Operation
+   50 Operation: Operation tMUL . Operation
+
+    tVAR   shift, and go to state 13
+    tNUM   shift, and go to state 14
+    tEXPO  shift, and go to state 15
+    tOPAR  shift, and go to state 16
+    tLESS  shift, and go to state 18
+
+    Operation  go to state 72
+
+
+state 49
+
+   51 Operation: Operation tDIV . Operation
 
     tVAR   shift, and go to state 13
     tNUM   shift, and go to state 14
@@ -694,46 +735,7 @@ state 48
     Operation  go to state 73
 
 
-state 49
-
-   41 Operation: Operation tLESS . Operation
-
-    tVAR   shift, and go to state 13
-    tNUM   shift, and go to state 14
-    tEXPO  shift, and go to state 15
-    tOPAR  shift, and go to state 16
-    tLESS  shift, and go to state 18
-
-    Operation  go to state 74
-
-
 state 50
-
-   42 Operation: Operation tMUL . Operation
-
-    tVAR   shift, and go to state 13
-    tNUM   shift, and go to state 14
-    tEXPO  shift, and go to state 15
-    tOPAR  shift, and go to state 16
-    tLESS  shift, and go to state 18
-
-    Operation  go to state 75
-
-
-state 51
-
-   43 Operation: Operation tDIV . Operation
-
-    tVAR   shift, and go to state 13
-    tNUM   shift, and go to state 14
-    tEXPO  shift, and go to state 15
-    tOPAR  shift, and go to state 16
-    tLESS  shift, and go to state 18
-
-    Operation  go to state 76
-
-
-state 52
 
     9 AssignmentInt: tVAR . tVIR AssignmentInt
    10              | tVAR . tEQ tVAR tVIR AssignmentInt
@@ -756,44 +758,44 @@ state 52
     $default  reduce using rule 22 (AssignmentInt)
 
 
-state 53
+state 51
 
     9 AssignmentInt: tVAR tVIR AssignmentInt .
 
     $default  reduce using rule 9 (AssignmentInt)
 
 
-state 54
+state 52
 
    10 AssignmentInt: tVAR tEQ tVAR . tVIR AssignmentInt
    12              | tVAR tEQ tVAR .
 
-    tVIR  shift, and go to state 77
+    tVIR  shift, and go to state 74
 
     $default  reduce using rule 12 (AssignmentInt)
 
 
-state 55
+state 53
 
    14 AssignmentInt: tVAR tEQ tNUM . tVIR AssignmentInt
    16              | tVAR tEQ tNUM .
 
-    tVIR  shift, and go to state 78
+    tVIR  shift, and go to state 75
 
     $default  reduce using rule 16 (AssignmentInt)
 
 
-state 56
+state 54
 
    18 AssignmentInt: tVAR tEQ tEXPO . tVIR AssignmentInt
    20              | tVAR tEQ tEXPO .
 
-    tVIR  shift, and go to state 79
+    tVIR  shift, and go to state 76
 
     $default  reduce using rule 20 (AssignmentInt)
 
 
-state 57
+state 55
 
    11 AssignmentInt: tVAR tEQ tLESS . tVAR tVIR AssignmentInt
    13              | tVAR tEQ tLESS . tVAR
@@ -802,436 +804,474 @@ state 57
    19              | tVAR tEQ tLESS . tEXPO tVIR AssignmentInt
    21              | tVAR tEQ tLESS . tEXPO
 
-    tVAR   shift, and go to state 80
-    tNUM   shift, and go to state 81
-    tEXPO  shift, and go to state 82
+    tVAR   shift, and go to state 77
+    tNUM   shift, and go to state 78
+    tEXPO  shift, and go to state 79
 
 
-state 58
+state 56
 
-   24 AssignmentConst: tVAR tVIR . AssignmentConst
+   23 AssignmentConst: tVAR tVIR . AssignmentConst
 
-    tVAR   shift, and go to state 83
-    tNUM   shift, and go to state 36
-    tEXPO  shift, and go to state 37
+    tVAR  shift, and go to state 80
 
-    AssignmentConst  go to state 84
+    AssignmentConst  go to state 81
 
 
-state 59
+state 57
 
     5 Declaration: tCONST tINT tVAR tSEMICOLON .
 
     $default  reduce using rule 5 (Declaration)
 
 
-state 60
+state 58
 
-   25 AssignmentConst: tVAR tEQ . AssignmentConst
+   24 AssignmentConst: tVAR tEQ . tVAR tVIR AssignmentConst
+   25                | tVAR tEQ . tLESS tVAR tVIR AssignmentConst
+   26                | tVAR tEQ . tVAR
+   27                | tVAR tEQ . tLESS tVAR
+   28                | tVAR tEQ . tNUM tVIR AssignmentConst
+   29                | tVAR tEQ . tLESS tNUM tVIR AssignmentConst
+   30                | tVAR tEQ . tNUM
+   31                | tVAR tEQ . tLESS tNUM
+   32                | tVAR tEQ . tEXPO tVIR AssignmentConst
+   33                | tVAR tEQ . tLESS tEXPO tVIR AssignmentConst
+   34                | tVAR tEQ . tEXPO
+   35                | tVAR tEQ . tLESS tEXPO
 
-    tVAR   shift, and go to state 83
-    tNUM   shift, and go to state 36
-    tEXPO  shift, and go to state 37
-
-    AssignmentConst  go to state 85
-
-
-state 61
-
-   23 AssignmentConst: tNUM tVIR . AssignmentConst
-
-    tVAR   shift, and go to state 83
-    tNUM   shift, and go to state 36
-    tEXPO  shift, and go to state 37
-
-    AssignmentConst  go to state 86
+    tVAR   shift, and go to state 82
+    tNUM   shift, and go to state 83
+    tEXPO  shift, and go to state 84
+    tLESS  shift, and go to state 85
 
 
-state 62
+state 59
 
     7 Declaration: tCONST tINT AssignmentConst tSEMICOLON .
 
     $default  reduce using rule 7 (Declaration)
 
 
+state 60
+
+   48 Operation: Operation . tPLUS Operation
+   49          | Operation . tLESS Operation
+   50          | Operation . tMUL Operation
+   51          | Operation . tDIV Operation
+   52          | tVAR tEQ Operation .
+
+    tPLUS  shift, and go to state 46
+    tLESS  shift, and go to state 47
+    tMUL   shift, and go to state 48
+    tDIV   shift, and go to state 49
+
+    $default  reduce using rule 52 (Operation)
+
+
+state 61
+
+   47 Operation: tOPAR Operation tCPAR .
+
+    $default  reduce using rule 47 (Operation)
+
+
+state 62
+
+   38 Assignment: tVAR . tVIR Assignment
+   39           | tVAR . tEQ Assignment
+   41           | tVAR .
+
+    tVIR  shift, and go to state 86
+    tEQ   shift, and go to state 87
+
+    $default  reduce using rule 41 (Assignment)
+
+
 state 63
 
-   40 Operation: Operation . tPLUS Operation
-   41          | Operation . tLESS Operation
-   42          | Operation . tMUL Operation
-   43          | Operation . tDIV Operation
-   44          | tVAR tEQ Operation .
+   37 Assignment: tNUM . tVIR Assignment
+   40           | tNUM .
 
-    tPLUS  shift, and go to state 48
-    tLESS  shift, and go to state 49
-    tMUL   shift, and go to state 50
-    tDIV   shift, and go to state 51
+    tVIR  shift, and go to state 88
 
-    $default  reduce using rule 44 (Operation)
+    $default  reduce using rule 40 (Assignment)
 
 
 state 64
 
-   39 Operation: tOPAR Operation tCPAR .
+   42 Assignment: tEXPO .
 
-    $default  reduce using rule 39 (Operation)
+    $default  reduce using rule 42 (Assignment)
 
 
 state 65
 
-   30 Assignment: tVAR . tVIR Assignment
-   31           | tVAR . tEQ Assignment
-   33           | tVAR .
+   68 Expression: Assignment . tEQUAL Assignment
+   69           | Assignment . tNE Assignment
+   70           | Assignment . tLE Assignment
+   71           | Assignment . tLT Assignment
+   72           | Assignment . tGE Assignment
+   73           | Assignment . tGT Assignment
+   74           | Assignment .
 
-    tVIR  shift, and go to state 87
-    tEQ   shift, and go to state 88
+    tLE     shift, and go to state 89
+    tLT     shift, and go to state 90
+    tGE     shift, and go to state 91
+    tGT     shift, and go to state 92
+    tNE     shift, and go to state 93
+    tEQUAL  shift, and go to state 94
 
-    $default  reduce using rule 33 (Assignment)
+    $default  reduce using rule 74 (Expression)
 
 
 state 66
 
-   29 Assignment: tNUM . tVIR Assignment
-   32           | tNUM .
+   62 While: tWHILE tOPAR Expressions . tCPAR Statement
+   63      | tWHILE tOPAR Expressions . tCPAR tOBRACKET Instructions tCBRACKET
 
-    tVIR  shift, and go to state 89
-
-    $default  reduce using rule 32 (Assignment)
+    tCPAR  shift, and go to state 95
 
 
 state 67
 
-   34 Assignment: tEXPO .
+   66 Expressions: Expression . Expressions
 
-    $default  reduce using rule 34 (Assignment)
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
+
+    $default  reduce using rule 67 (Expressions)
+
+    Assignment   go to state 65
+    Expressions  go to state 96
+    Expression   go to state 67
 
 
 state 68
 
-   60 Expression: Assignment . tEQUAL Assignment
-   61           | Assignment . tNE Assignment
-   62           | Assignment . tLE Assignment
-   63           | Assignment . tLT Assignment
-   64           | Assignment . tGE Assignment
-   65           | Assignment . tGT Assignment
-   66           | Assignment .
+   64 If: tIF tOPAR Expression . tCPAR Statement
 
-    tLE     shift, and go to state 90
-    tLT     shift, and go to state 91
-    tGE     shift, and go to state 92
-    tGT     shift, and go to state 93
-    tNE     shift, and go to state 94
-    tEQUAL  shift, and go to state 95
-
-    $default  reduce using rule 66 (Expression)
+    tCPAR  shift, and go to state 97
 
 
 state 69
 
-   54 While: tWHILE tOPAR Expressions . tCPAR Statement
-   55      | tWHILE tOPAR Expressions . tCPAR tOBRACKET Instructions tCBRACKET
-
-    tCPAR  shift, and go to state 96
-
-
-state 70
-
-   58 Expressions: Expression . Expressions
-
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
-
-    $default  reduce using rule 59 (Expressions)
-
-    Assignment   go to state 68
-    Expressions  go to state 97
-    Expression   go to state 70
-
-
-state 71
-
-   56 If: tIF tOPAR Expression . tCPAR Statement
+   65 Printf: tPRINTF tOPAR tVAR . tCPAR tSEMICOLON
 
     tCPAR  shift, and go to state 98
 
 
+state 70
+
+   48 Operation: Operation . tPLUS Operation
+   48          | Operation tPLUS Operation .
+   49          | Operation . tLESS Operation
+   50          | Operation . tMUL Operation
+   51          | Operation . tDIV Operation
+
+    tMUL  shift, and go to state 48
+    tDIV  shift, and go to state 49
+
+    $default  reduce using rule 48 (Operation)
+
+
+state 71
+
+   48 Operation: Operation . tPLUS Operation
+   49          | Operation . tLESS Operation
+   49          | Operation tLESS Operation .
+   50          | Operation . tMUL Operation
+   51          | Operation . tDIV Operation
+
+    tMUL  shift, and go to state 48
+    tDIV  shift, and go to state 49
+
+    $default  reduce using rule 49 (Operation)
+
+
 state 72
 
-   57 Printf: tPRINTF tOPAR tVAR . tCPAR tSEMICOLON
+   48 Operation: Operation . tPLUS Operation
+   49          | Operation . tLESS Operation
+   50          | Operation . tMUL Operation
+   50          | Operation tMUL Operation .
+   51          | Operation . tDIV Operation
 
-    tCPAR  shift, and go to state 99
+    $default  reduce using rule 50 (Operation)
 
 
 state 73
 
-   40 Operation: Operation . tPLUS Operation
-   40          | Operation tPLUS Operation .
-   41          | Operation . tLESS Operation
-   42          | Operation . tMUL Operation
-   43          | Operation . tDIV Operation
+   48 Operation: Operation . tPLUS Operation
+   49          | Operation . tLESS Operation
+   50          | Operation . tMUL Operation
+   51          | Operation . tDIV Operation
+   51          | Operation tDIV Operation .
 
-    tMUL  shift, and go to state 50
-    tDIV  shift, and go to state 51
-
-    $default  reduce using rule 40 (Operation)
+    $default  reduce using rule 51 (Operation)
 
 
 state 74
 
-   40 Operation: Operation . tPLUS Operation
-   41          | Operation . tLESS Operation
-   41          | Operation tLESS Operation .
-   42          | Operation . tMUL Operation
-   43          | Operation . tDIV Operation
+   10 AssignmentInt: tVAR tEQ tVAR tVIR . AssignmentInt
 
-    tMUL  shift, and go to state 50
-    tDIV  shift, and go to state 51
+    tVAR  shift, and go to state 50
 
-    $default  reduce using rule 41 (Operation)
+    AssignmentInt  go to state 99
 
 
 state 75
 
-   40 Operation: Operation . tPLUS Operation
-   41          | Operation . tLESS Operation
-   42          | Operation . tMUL Operation
-   42          | Operation tMUL Operation .
-   43          | Operation . tDIV Operation
+   14 AssignmentInt: tVAR tEQ tNUM tVIR . AssignmentInt
 
-    $default  reduce using rule 42 (Operation)
-
-
-state 76
-
-   40 Operation: Operation . tPLUS Operation
-   41          | Operation . tLESS Operation
-   42          | Operation . tMUL Operation
-   43          | Operation . tDIV Operation
-   43          | Operation tDIV Operation .
-
-    $default  reduce using rule 43 (Operation)
-
-
-state 77
-
-   10 AssignmentInt: tVAR tEQ tVAR tVIR . AssignmentInt
-
-    tVAR  shift, and go to state 52
+    tVAR  shift, and go to state 50
 
     AssignmentInt  go to state 100
 
 
-state 78
+state 76
 
-   14 AssignmentInt: tVAR tEQ tNUM tVIR . AssignmentInt
+   18 AssignmentInt: tVAR tEQ tEXPO tVIR . AssignmentInt
 
-    tVAR  shift, and go to state 52
+    tVAR  shift, and go to state 50
 
     AssignmentInt  go to state 101
 
 
-state 79
-
-   18 AssignmentInt: tVAR tEQ tEXPO tVIR . AssignmentInt
-
-    tVAR  shift, and go to state 52
-
-    AssignmentInt  go to state 102
-
-
-state 80
+state 77
 
    11 AssignmentInt: tVAR tEQ tLESS tVAR . tVIR AssignmentInt
    13              | tVAR tEQ tLESS tVAR .
 
-    tVIR  shift, and go to state 103
+    tVIR  shift, and go to state 102
 
     $default  reduce using rule 13 (AssignmentInt)
 
 
-state 81
+state 78
 
    15 AssignmentInt: tVAR tEQ tLESS tNUM . tVIR AssignmentInt
    17              | tVAR tEQ tLESS tNUM .
 
-    tVIR  shift, and go to state 104
+    tVIR  shift, and go to state 103
 
     $default  reduce using rule 17 (AssignmentInt)
 
 
-state 82
+state 79
 
    19 AssignmentInt: tVAR tEQ tLESS tEXPO . tVIR AssignmentInt
    21              | tVAR tEQ tLESS tEXPO .
 
-    tVIR  shift, and go to state 105
+    tVIR  shift, and go to state 104
 
     $default  reduce using rule 21 (AssignmentInt)
 
 
-state 83
+state 80
 
-   24 AssignmentConst: tVAR . tVIR AssignmentConst
-   25                | tVAR . tEQ AssignmentConst
-   26                | tVAR .
+   23 AssignmentConst: tVAR . tVIR AssignmentConst
+   24                | tVAR . tEQ tVAR tVIR AssignmentConst
+   25                | tVAR . tEQ tLESS tVAR tVIR AssignmentConst
+   26                | tVAR . tEQ tVAR
+   27                | tVAR . tEQ tLESS tVAR
+   28                | tVAR . tEQ tNUM tVIR AssignmentConst
+   29                | tVAR . tEQ tLESS tNUM tVIR AssignmentConst
+   30                | tVAR . tEQ tNUM
+   31                | tVAR . tEQ tLESS tNUM
+   32                | tVAR . tEQ tEXPO tVIR AssignmentConst
+   33                | tVAR . tEQ tLESS tEXPO tVIR AssignmentConst
+   34                | tVAR . tEQ tEXPO
+   35                | tVAR . tEQ tLESS tEXPO
+   36                | tVAR .
 
-    tVIR  shift, and go to state 58
-    tEQ   shift, and go to state 60
+    tVIR  shift, and go to state 56
+    tEQ   shift, and go to state 58
 
-    $default  reduce using rule 26 (AssignmentConst)
-
-
-state 84
-
-   24 AssignmentConst: tVAR tVIR AssignmentConst .
-
-    $default  reduce using rule 24 (AssignmentConst)
-
-
-state 85
-
-   25 AssignmentConst: tVAR tEQ AssignmentConst .
-
-    $default  reduce using rule 25 (AssignmentConst)
+    $default  reduce using rule 36 (AssignmentConst)
 
 
-state 86
+state 81
 
-   23 AssignmentConst: tNUM tVIR AssignmentConst .
+   23 AssignmentConst: tVAR tVIR AssignmentConst .
 
     $default  reduce using rule 23 (AssignmentConst)
 
 
-state 87
+state 82
 
-   30 Assignment: tVAR tVIR . Assignment
+   24 AssignmentConst: tVAR tEQ tVAR . tVIR AssignmentConst
+   26                | tVAR tEQ tVAR .
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
+    tVIR  shift, and go to state 105
 
-    Assignment  go to state 106
-
-
-state 88
-
-   31 Assignment: tVAR tEQ . Assignment
-
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
-
-    Assignment  go to state 107
+    $default  reduce using rule 26 (AssignmentConst)
 
 
-state 89
+state 83
 
-   29 Assignment: tNUM tVIR . Assignment
+   28 AssignmentConst: tVAR tEQ tNUM . tVIR AssignmentConst
+   30                | tVAR tEQ tNUM .
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
+    tVIR  shift, and go to state 106
 
-    Assignment  go to state 108
-
-
-state 90
-
-   62 Expression: Assignment tLE . Assignment
-
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
-
-    Assignment  go to state 109
+    $default  reduce using rule 30 (AssignmentConst)
 
 
-state 91
+state 84
 
-   63 Expression: Assignment tLT . Assignment
+   32 AssignmentConst: tVAR tEQ tEXPO . tVIR AssignmentConst
+   34                | tVAR tEQ tEXPO .
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
+    tVIR  shift, and go to state 107
 
-    Assignment  go to state 110
+    $default  reduce using rule 34 (AssignmentConst)
 
 
-state 92
+state 85
 
-   64 Expression: Assignment tGE . Assignment
+   25 AssignmentConst: tVAR tEQ tLESS . tVAR tVIR AssignmentConst
+   27                | tVAR tEQ tLESS . tVAR
+   29                | tVAR tEQ tLESS . tNUM tVIR AssignmentConst
+   31                | tVAR tEQ tLESS . tNUM
+   33                | tVAR tEQ tLESS . tEXPO tVIR AssignmentConst
+   35                | tVAR tEQ tLESS . tEXPO
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
+    tVAR   shift, and go to state 108
+    tNUM   shift, and go to state 109
+    tEXPO  shift, and go to state 110
+
+
+state 86
+
+   38 Assignment: tVAR tVIR . Assignment
+
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
 
     Assignment  go to state 111
 
 
-state 93
+state 87
 
-   65 Expression: Assignment tGT . Assignment
+   39 Assignment: tVAR tEQ . Assignment
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
 
     Assignment  go to state 112
 
 
-state 94
+state 88
 
-   61 Expression: Assignment tNE . Assignment
+   37 Assignment: tNUM tVIR . Assignment
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
 
     Assignment  go to state 113
 
 
-state 95
+state 89
 
-   60 Expression: Assignment tEQUAL . Assignment
+   70 Expression: Assignment tLE . Assignment
 
-    tVAR   shift, and go to state 65
-    tNUM   shift, and go to state 66
-    tEXPO  shift, and go to state 67
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
 
     Assignment  go to state 114
 
 
-state 96
+state 90
 
-   54 While: tWHILE tOPAR Expressions tCPAR . Statement
-   55      | tWHILE tOPAR Expressions tCPAR . tOBRACKET Instructions tCBRACKET
+   71 Expression: Assignment tLT . Assignment
+
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
+
+    Assignment  go to state 115
+
+
+state 91
+
+   72 Expression: Assignment tGE . Assignment
+
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
+
+    Assignment  go to state 116
+
+
+state 92
+
+   73 Expression: Assignment tGT . Assignment
+
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
+
+    Assignment  go to state 117
+
+
+state 93
+
+   69 Expression: Assignment tNE . Assignment
+
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
+
+    Assignment  go to state 118
+
+
+state 94
+
+   68 Expression: Assignment tEQUAL . Assignment
+
+    tVAR   shift, and go to state 62
+    tNUM   shift, and go to state 63
+    tEXPO  shift, and go to state 64
+
+    Assignment  go to state 119
+
+
+state 95
+
+   62 While: tWHILE tOPAR Expressions tCPAR . Statement
+   63      | tWHILE tOPAR Expressions tCPAR . tOBRACKET Instructions tCBRACKET
 
     tSEMICOLON  shift, and go to state 17
     tWHILE      shift, and go to state 19
     tIF         shift, and go to state 20
     tPRINTF     shift, and go to state 21
-    tOBRACKET   shift, and go to state 115
+    tOBRACKET   shift, and go to state 120
     tINT        shift, and go to state 6
     tCONST      shift, and go to state 7
 
     Declaration  go to state 22
-    Statement    go to state 116
+    Statement    go to state 121
     While        go to state 27
     If           go to state 28
     Printf       go to state 29
+
+
+state 96
+
+   66 Expressions: Expression Expressions .
+
+    $default  reduce using rule 66 (Expressions)
 
 
 state 97
 
-   58 Expressions: Expression Expressions .
-
-    $default  reduce using rule 58 (Expressions)
-
-
-state 98
-
-   56 If: tIF tOPAR Expression tCPAR . Statement
+   64 If: tIF tOPAR Expression tCPAR . Statement
 
     tSEMICOLON  shift, and go to state 17
     tWHILE      shift, and go to state 19
@@ -1241,133 +1281,190 @@ state 98
     tCONST      shift, and go to state 7
 
     Declaration  go to state 22
-    Statement    go to state 117
+    Statement    go to state 122
     While        go to state 27
     If           go to state 28
     Printf       go to state 29
 
 
+state 98
+
+   65 Printf: tPRINTF tOPAR tVAR tCPAR . tSEMICOLON
+
+    tSEMICOLON  shift, and go to state 123
+
+
 state 99
-
-   57 Printf: tPRINTF tOPAR tVAR tCPAR . tSEMICOLON
-
-    tSEMICOLON  shift, and go to state 118
-
-
-state 100
 
    10 AssignmentInt: tVAR tEQ tVAR tVIR AssignmentInt .
 
     $default  reduce using rule 10 (AssignmentInt)
 
 
-state 101
+state 100
 
    14 AssignmentInt: tVAR tEQ tNUM tVIR AssignmentInt .
 
     $default  reduce using rule 14 (AssignmentInt)
 
 
-state 102
+state 101
 
    18 AssignmentInt: tVAR tEQ tEXPO tVIR AssignmentInt .
 
     $default  reduce using rule 18 (AssignmentInt)
 
 
-state 103
+state 102
 
    11 AssignmentInt: tVAR tEQ tLESS tVAR tVIR . AssignmentInt
 
-    tVAR  shift, and go to state 52
+    tVAR  shift, and go to state 50
 
-    AssignmentInt  go to state 119
+    AssignmentInt  go to state 124
+
+
+state 103
+
+   15 AssignmentInt: tVAR tEQ tLESS tNUM tVIR . AssignmentInt
+
+    tVAR  shift, and go to state 50
+
+    AssignmentInt  go to state 125
 
 
 state 104
 
-   15 AssignmentInt: tVAR tEQ tLESS tNUM tVIR . AssignmentInt
+   19 AssignmentInt: tVAR tEQ tLESS tEXPO tVIR . AssignmentInt
 
-    tVAR  shift, and go to state 52
+    tVAR  shift, and go to state 50
 
-    AssignmentInt  go to state 120
+    AssignmentInt  go to state 126
 
 
 state 105
 
-   19 AssignmentInt: tVAR tEQ tLESS tEXPO tVIR . AssignmentInt
+   24 AssignmentConst: tVAR tEQ tVAR tVIR . AssignmentConst
 
-    tVAR  shift, and go to state 52
+    tVAR  shift, and go to state 80
 
-    AssignmentInt  go to state 121
+    AssignmentConst  go to state 127
 
 
 state 106
 
-   30 Assignment: tVAR tVIR Assignment .
+   28 AssignmentConst: tVAR tEQ tNUM tVIR . AssignmentConst
 
-    $default  reduce using rule 30 (Assignment)
+    tVAR  shift, and go to state 80
+
+    AssignmentConst  go to state 128
 
 
 state 107
 
-   31 Assignment: tVAR tEQ Assignment .
+   32 AssignmentConst: tVAR tEQ tEXPO tVIR . AssignmentConst
 
-    $default  reduce using rule 31 (Assignment)
+    tVAR  shift, and go to state 80
+
+    AssignmentConst  go to state 129
 
 
 state 108
 
-   29 Assignment: tNUM tVIR Assignment .
+   25 AssignmentConst: tVAR tEQ tLESS tVAR . tVIR AssignmentConst
+   27                | tVAR tEQ tLESS tVAR .
 
-    $default  reduce using rule 29 (Assignment)
+    tVIR  shift, and go to state 130
+
+    $default  reduce using rule 27 (AssignmentConst)
 
 
 state 109
 
-   62 Expression: Assignment tLE Assignment .
+   29 AssignmentConst: tVAR tEQ tLESS tNUM . tVIR AssignmentConst
+   31                | tVAR tEQ tLESS tNUM .
 
-    $default  reduce using rule 62 (Expression)
+    tVIR  shift, and go to state 131
+
+    $default  reduce using rule 31 (AssignmentConst)
 
 
 state 110
 
-   63 Expression: Assignment tLT Assignment .
+   33 AssignmentConst: tVAR tEQ tLESS tEXPO . tVIR AssignmentConst
+   35                | tVAR tEQ tLESS tEXPO .
 
-    $default  reduce using rule 63 (Expression)
+    tVIR  shift, and go to state 132
+
+    $default  reduce using rule 35 (AssignmentConst)
 
 
 state 111
 
-   64 Expression: Assignment tGE Assignment .
+   38 Assignment: tVAR tVIR Assignment .
 
-    $default  reduce using rule 64 (Expression)
+    $default  reduce using rule 38 (Assignment)
 
 
 state 112
 
-   65 Expression: Assignment tGT Assignment .
+   39 Assignment: tVAR tEQ Assignment .
 
-    $default  reduce using rule 65 (Expression)
+    $default  reduce using rule 39 (Assignment)
 
 
 state 113
 
-   61 Expression: Assignment tNE Assignment .
+   37 Assignment: tNUM tVIR Assignment .
 
-    $default  reduce using rule 61 (Expression)
+    $default  reduce using rule 37 (Assignment)
 
 
 state 114
 
-   60 Expression: Assignment tEQUAL Assignment .
+   70 Expression: Assignment tLE Assignment .
 
-    $default  reduce using rule 60 (Expression)
+    $default  reduce using rule 70 (Expression)
 
 
 state 115
 
-   55 While: tWHILE tOPAR Expressions tCPAR tOBRACKET . Instructions tCBRACKET
+   71 Expression: Assignment tLT Assignment .
+
+    $default  reduce using rule 71 (Expression)
+
+
+state 116
+
+   72 Expression: Assignment tGE Assignment .
+
+    $default  reduce using rule 72 (Expression)
+
+
+state 117
+
+   73 Expression: Assignment tGT Assignment .
+
+    $default  reduce using rule 73 (Expression)
+
+
+state 118
+
+   69 Expression: Assignment tNE Assignment .
+
+    $default  reduce using rule 69 (Expression)
+
+
+state 119
+
+   68 Expression: Assignment tEQUAL Assignment .
+
+    $default  reduce using rule 68 (Expression)
+
+
+state 120
+
+   63 While: tWHILE tOPAR Expressions tCPAR tOBRACKET . Instructions tCBRACKET
 
     tVAR        shift, and go to state 13
     tNUM        shift, and go to state 14
@@ -1381,10 +1478,10 @@ state 115
     tINT        shift, and go to state 6
     tCONST      shift, and go to state 7
 
-    $default  reduce using rule 36 (Instructions)
+    $default  reduce using rule 44 (Instructions)
 
     Declaration   go to state 22
-    Instructions  go to state 122
+    Instructions  go to state 133
     Instruction   go to state 24
     Operation     go to state 25
     Statement     go to state 26
@@ -1393,57 +1490,126 @@ state 115
     Printf        go to state 29
 
 
-state 116
+state 121
 
-   54 While: tWHILE tOPAR Expressions tCPAR Statement .
+   62 While: tWHILE tOPAR Expressions tCPAR Statement .
 
-    $default  reduce using rule 54 (While)
-
-
-state 117
-
-   56 If: tIF tOPAR Expression tCPAR Statement .
-
-    $default  reduce using rule 56 (If)
+    $default  reduce using rule 62 (While)
 
 
-state 118
+state 122
 
-   57 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON .
+   64 If: tIF tOPAR Expression tCPAR Statement .
 
-    $default  reduce using rule 57 (Printf)
+    $default  reduce using rule 64 (If)
 
 
-state 119
+state 123
+
+   65 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON .
+
+    $default  reduce using rule 65 (Printf)
+
+
+state 124
 
    11 AssignmentInt: tVAR tEQ tLESS tVAR tVIR AssignmentInt .
 
     $default  reduce using rule 11 (AssignmentInt)
 
 
-state 120
+state 125
 
    15 AssignmentInt: tVAR tEQ tLESS tNUM tVIR AssignmentInt .
 
     $default  reduce using rule 15 (AssignmentInt)
 
 
-state 121
+state 126
 
    19 AssignmentInt: tVAR tEQ tLESS tEXPO tVIR AssignmentInt .
 
     $default  reduce using rule 19 (AssignmentInt)
 
 
-state 122
+state 127
 
-   55 While: tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions . tCBRACKET
+   24 AssignmentConst: tVAR tEQ tVAR tVIR AssignmentConst .
 
-    tCBRACKET  shift, and go to state 123
+    $default  reduce using rule 24 (AssignmentConst)
 
 
-state 123
+state 128
 
-   55 While: tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET .
+   28 AssignmentConst: tVAR tEQ tNUM tVIR AssignmentConst .
 
-    $default  reduce using rule 55 (While)
+    $default  reduce using rule 28 (AssignmentConst)
+
+
+state 129
+
+   32 AssignmentConst: tVAR tEQ tEXPO tVIR AssignmentConst .
+
+    $default  reduce using rule 32 (AssignmentConst)
+
+
+state 130
+
+   25 AssignmentConst: tVAR tEQ tLESS tVAR tVIR . AssignmentConst
+
+    tVAR  shift, and go to state 80
+
+    AssignmentConst  go to state 134
+
+
+state 131
+
+   29 AssignmentConst: tVAR tEQ tLESS tNUM tVIR . AssignmentConst
+
+    tVAR  shift, and go to state 80
+
+    AssignmentConst  go to state 135
+
+
+state 132
+
+   33 AssignmentConst: tVAR tEQ tLESS tEXPO tVIR . AssignmentConst
+
+    tVAR  shift, and go to state 80
+
+    AssignmentConst  go to state 136
+
+
+state 133
+
+   63 While: tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions . tCBRACKET
+
+    tCBRACKET  shift, and go to state 137
+
+
+state 134
+
+   25 AssignmentConst: tVAR tEQ tLESS tVAR tVIR AssignmentConst .
+
+    $default  reduce using rule 25 (AssignmentConst)
+
+
+state 135
+
+   29 AssignmentConst: tVAR tEQ tLESS tNUM tVIR AssignmentConst .
+
+    $default  reduce using rule 29 (AssignmentConst)
+
+
+state 136
+
+   33 AssignmentConst: tVAR tEQ tLESS tEXPO tVIR AssignmentConst .
+
+    $default  reduce using rule 33 (AssignmentConst)
+
+
+state 137
+
+   63 While: tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET .
+
+    $default  reduce using rule 63 (While)
