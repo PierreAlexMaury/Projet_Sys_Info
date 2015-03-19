@@ -224,7 +224,6 @@ While: tWHILE tOPAR Expressions tCPAR Statement
 
 If: tIF tOPAR Expression tCPAR Statement
 	| tIF tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
-	| tIF tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET
 	;
 
 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
