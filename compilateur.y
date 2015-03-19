@@ -216,6 +216,7 @@ Statement: While
 	| Printf
 	| Declaration
 	| tSEMICOLON
+	| Else
 	;
 
 While: tWHILE tOPAR Expressions tCPAR Statement
@@ -223,8 +224,14 @@ While: tWHILE tOPAR Expressions tCPAR Statement
 	;
 
 If: tIF tOPAR Expression tCPAR Statement
+<<<<<<< Updated upstream
 	| tIF tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
+=======
+>>>>>>> Stashed changes
 	;
+
+Else: tElse............	//rajouter le non terminal else pour développer les tELSE
+	; 
 
 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 	;
@@ -256,6 +263,7 @@ int main(){
     }else{
     	yyparse();
     	fclose(ASM);
+    	//réouvrir le fichier pour le copier dans le vrai fichier final en remplaçant tout les saut manquant avec la pile que l'on va créer pour les sauts
     }
 
 }
