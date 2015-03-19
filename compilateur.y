@@ -71,7 +71,7 @@ Instructions: Instruction Instructions
 	;
 	
 Instruction: Operation tSEMICOLON				{clearTemp();
-								printTabSymb();}
+												printTabSymb();}
 	| Statement
 	;
 
@@ -145,7 +145,13 @@ Assignment: tNUM tVIR Assignment
     | tEXPO
     ;
 
-Operation: Operation tPLUS Operation				{
+Operation: tOPAR Operation tCPAR	{
+										int ptemp = addTemp();
+										printTabSymb();
+										$$ = ptemp;
+									}
+
+	| Operation tPLUS Operation				{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"ADD %d %d %d\n",ptemp,$1,$3);
