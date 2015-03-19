@@ -146,12 +146,14 @@ Assignment: tNUM tVIR Assignment
     ;
 
 Operation: tOPAR Operation tCPAR	{
+										printf("tOPAR Operation tCPAR");
 										int ptemp = addTemp();
 										printTabSymb();
 										$$ = ptemp;
 									}
 
 	| Operation tPLUS Operation				{
+									printf("Operation tPLUS Operation");
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"ADD %d %d %d\n",ptemp,$1,$3);
@@ -166,6 +168,7 @@ Operation: tOPAR Operation tCPAR	{
 								}
 								
 	| Operation tMUL Operation				{
+									printf("Operation tMUL Operation");
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"MUL %d %d %d\n",ptemp,$1,$3);
@@ -181,6 +184,7 @@ Operation: tOPAR Operation tCPAR	{
 								
 								
 	| tVAR tEQ Operation					{
+									printf("tVAR tEQ Operation");
 									fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
 									printTabSymb();
 									$$ = getAddr($1);
@@ -216,7 +220,7 @@ Statement: While
 	| Printf
 	| Declaration
 	| tSEMICOLON
-	| Else
+	//| Else
 	;
 
 While: tWHILE tOPAR Expressions tCPAR Statement
@@ -224,14 +228,10 @@ While: tWHILE tOPAR Expressions tCPAR Statement
 	;
 
 If: tIF tOPAR Expression tCPAR Statement
-<<<<<<< Updated upstream
-	| tIF tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
-=======
->>>>>>> Stashed changes
 	;
 
-Else: tElse............	//rajouter le non terminal else pour développer les tELSE
-	; 
+/*Else: tElse............	//rajouter le non terminal else pour développer les tELSE
+	; */
 
 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 	;
