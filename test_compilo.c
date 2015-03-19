@@ -1,6 +1,6 @@
 	main() { 
-		const int f = -2;
-		const int c = f;
-		const int d = -6, b, a = 2;
+		int a = -2;
+		const int b = a;
+		int c = -6e2, d, e = 2;
 
 }
