@@ -105,8 +105,8 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,($4));
 														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-														clearTemp();
 														printTabSymb();
+														clearTemp();
 													} 
 								        	}
 						
@@ -142,8 +142,8 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-										clearTemp();
 										printTabSymb();
+										clearTemp();
 									}
 
 								}
@@ -170,8 +170,8 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 													fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 													fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-													clearTemp();
 													printTabSymb();
+													clearTemp();
 												}else {
 													printf("ECHEC: %s existe deja\n",$1);
 												}
@@ -199,8 +199,8 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-										clearTemp();
 										printTabSymb();
+										clearTemp();
 									}else {
 										printf("ECHEC: %s existe deja\n",$1);
 									}
@@ -229,8 +229,8 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-														clearTemp();
 														printTabSymb();
+														clearTemp();
 													}else {
 														printf("ECHEC: %s existe deja\n",$1);
 													}
@@ -258,8 +258,8 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 											fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 											fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 											fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-											clearTemp();
 											printTabSymb();
+											clearTemp();
 										}else {
 											printf("ECHEC: %s existe deja\n",$1);
 										}
@@ -315,8 +315,8 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,($4));
 														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-														clearTemp();
 														printTabSymb();
+														clearTemp();
 													} 
 								        	}
 						
@@ -352,8 +352,8 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-										clearTemp();
 										printTabSymb();
+										clearTemp();
 									}
 
 								}
@@ -380,8 +380,8 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 													fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 													fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-													clearTemp();
 													printTabSymb();
+													clearTemp();
 												}else {
 													printf("ECHEC: %s existe deja\n",$1);
 												}
@@ -409,8 +409,8 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-										clearTemp();
 										printTabSymb();
+										clearTemp();
 									}else {
 										printf("ECHEC: %s existe deja\n",$1);
 									}
@@ -439,8 +439,8 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-														clearTemp();
 														printTabSymb();
+														clearTemp();
 													}else {
 														printf("ECHEC: %s existe deja\n",$1);
 													}
@@ -468,8 +468,8 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 											fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
 											fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
 											fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
-											clearTemp();
 											printTabSymb();
+											clearTemp();
 										}else {
 											printf("ECHEC: %s existe deja\n",$1);
 										}
