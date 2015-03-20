@@ -140,7 +140,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										int ptemp_neg = addTemp();
 										int ptemp = addTemp();
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
-										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
+										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4)); 
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
 										printTabSymb();
 										clearTemp();
