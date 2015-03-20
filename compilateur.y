@@ -589,22 +589,22 @@ While: tWHILE tOPAR Conditions tCPAR Instruction
 	;
 
 BIfElse: tIF tOPAR Conditions tCPAR Instruction																{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction");
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction\n");
 																											}
 	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET											{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET");
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET\n");
 																											}
 	| tIF tOPAR Conditions tCPAR Instruction tELSE Instruction												{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE Instruction");
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE Instruction\n");
 																											}
 	| tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET							{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET");
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET\n");
 																											}
 	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction 						{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET");
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
 																											}
 	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET");
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET\n");
 																											}
 
 	;
@@ -641,6 +641,8 @@ int main(){
 	}else if(debbug_out == NULL) {
 		printf("fichier debbug_out.txt inexistant !\n");
     }else{
+    	fprintf(ASM,"\n**** Nous sommes dans le fichier de code assembleur ****\n\n");
+    	fprintf(debbug_out,"\n*** Nous sommes dans le fichier de debbug ***\n\n");
     	yyparse();
     	fclose(ASM);
 		fclose(debbug_out);

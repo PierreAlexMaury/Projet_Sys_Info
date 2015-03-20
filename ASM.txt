@@ -1,8 +1,15 @@
+
+**** Nous sommes dans le fichier de code assembleur ****
+
 COP 1 -1
-COP 2 2
-MUL 0 1 2
+MUL 2 1 2
+COP 0 2
 COP 1 0
-COP 2 2
-COP 5 -1
-COP 6 600
-MUL 4 5 6
+COP 2 0
+AFC 3 2
+ADD 4 2 3
+COP 0 4
+AFC 2 3
+COP 0 2
+AFC 2 2
+COP 0 2
