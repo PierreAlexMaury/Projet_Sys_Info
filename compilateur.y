@@ -5,6 +5,7 @@
 
 
 FILE * ASM;
+FILE * debbug_out;
 
 void yyerror (char*s);
 extern int yylineno;
@@ -140,7 +141,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										int ptemp_neg = addTemp();
 										int ptemp = addTemp();
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
-										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4)); 
+										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
 										printTabSymb();
 										clearTemp();
@@ -168,8 +169,8 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 													int ptemp_neg = addTemp();
 													int ptemp = addTemp();
 													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
-													fprintf(ASM,"COP %d %d\n", ptemp,$4);
-													fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
+													fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+													fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
 													printTabSymb();
 													clearTemp();
 												}else {
@@ -190,22 +191,22 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 
 								}
 
-	| tVAR tEQ tLESS tNUM					{ 
-												if (!findSymb($1)) {
-													addSymb($1,0);
-													printTabSymb();
-													int ptemp_neg = addTemp();
-													int ptemp = addTemp();
-													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
-													fprintf(ASM,"COP %d %d\n", ptemp,$4);
-													fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
-													printTabSymb();
-													clearTemp();
-												}else {
-													printf("ECHEC: %s existe deja\n",$1);
-												}
+	| tVAR tEQ tLESS tNUM		{ 
+									if (!findSymb($1)) {
+										addSymb($1,0);
+										printTabSymb();
+										int ptemp_neg = addTemp();
+										int ptemp = addTemp();
+										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+										printTabSymb();
+										clearTemp();
+									}else {
+										printf("ECHEC: %s existe deja\n",$1);
+									}
 
-											}
+								}
 
 
 	| tVAR tEQ tEXPO tVIR AssignmentInt {
@@ -220,22 +221,22 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 
 										}
 
-	| tVAR tEQ tLESS tEXPO tVIR AssignmentInt{
-												if (!findSymb($1)) {
-													addSymb($1,0);
-													printTabSymb();
-													int ptemp_neg = addTemp();
-													int ptemp = addTemp();
-													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
-													fprintf(ASM,"COP %d %d\n", ptemp,$4);
-													fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
-													printTabSymb();
-													clearTemp();
-												}else {
-													printf("ECHEC: %s existe deja\n",$1);
-												}
+	| tVAR tEQ tLESS tEXPO tVIR AssignmentInt	{
+													if (!findSymb($1)) {
+														addSymb($1,0);
+														printTabSymb();
+														int ptemp_neg = addTemp();
+														int ptemp = addTemp();
+														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+														printTabSymb();
+														clearTemp();
+													}else {
+														printf("ECHEC: %s existe deja\n",$1);
+													}
 
-											}
+												}
 
 	| tVAR tEQ tEXPO				{
 										if (!findSymb($1)) {
@@ -249,22 +250,22 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 
 									}
 
-	| tVAR tEQ tLESS tEXPO					{
-												if (!findSymb($1)) {
-													addSymb($1,0);
-													printTabSymb();
-													int ptemp_neg = addTemp();
-													int ptemp = addTemp();
-													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
-													fprintf(ASM,"COP %d %d\n", ptemp,$4);
-													fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
-													printTabSymb();
-													clearTemp();
-												}else {
-													printf("ECHEC: %s existe deja\n",$1);
-												}
+	| tVAR tEQ tLESS tEXPO			{
+										if (!findSymb($1)) {
+											addSymb($1,0);
+											printTabSymb();
+											int ptemp_neg = addTemp();
+											int ptemp = addTemp();
+											fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+											fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+											fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+											printTabSymb();
+											clearTemp();
+										}else {
+											printf("ECHEC: %s existe deja\n",$1);
+										}
 
-											}
+									}
 	
 	| tVAR							{
 									if (!findSymb($1)) {
@@ -465,8 +466,8 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 											int ptemp_neg = addTemp();
 											int ptemp = addTemp();
 											fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
-											fprintf(ASM,"COP %d %d\n", ptemp,$4);
-											fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
+											fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+											fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
 											printTabSymb();
 											clearTemp();
 										}else {
@@ -498,8 +499,10 @@ Instructions: Instruction Instructions
 	|
 	;
 	
-Instruction: Operation tSEMICOLON				{clearTemp();
-												printTabSymb();}
+Instruction: Operation tSEMICOLON				{
+													clearTemp();
+													printTabSymb();
+												}
 	| Statement
 	;
 
@@ -575,27 +578,45 @@ Operation: tOPAR Operation tCPAR	{
 	;
 
 Statement: While
-	| If
+	| BIfElse
 	| Printf
 	| Declaration
 	| tSEMICOLON
 	;
 
-While: tWHILE tOPAR Expressions tCPAR Statement
-	| tWHILE tOPAR Expressions tCPAR tOBRACKET Instructions tCBRACKET
+While: tWHILE tOPAR Conditions tCPAR Instruction
+	| tWHILE tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET
 	;
 
-If: tIF tOPAR Expression tCPAR Statement
+BIfElse: tIF tOPAR Conditions tCPAR Instruction																{
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction");
+																											}
+	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET											{
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET");
+																											}
+	| tIF tOPAR Conditions tCPAR Instruction tELSE Instruction												{
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE Instruction");
+																											}
+	| tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET							{
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET");
+																											}
+	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction 						{
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET");
+																											}
+	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET{
+																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET");
+																											}
+
 	;
 
 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 	;
 
-Expressions: Expression Expressions
+Conditions: Condition Conditions
 	| 
 	;
 	
-Expression: Assignment tEQUAL Assignment
+Condition: Assignment tEQUAL Assignment
 	| Assignment tNE Assignment
 	| Assignment tLE Assignment
 	| Assignment tLT Assignment
@@ -612,12 +633,17 @@ void yyerror(char*s){
 int main(){
     
     ASM = fopen("ASM.txt", "w+"); //on supprime le contenu au préalable avant de réécrire 
+	debbug_out = fopen("debbug_out.txt","w+");
+
 
     if (ASM == NULL){
-       printf("fichier ASM.txt inexistant dans ce répertoire ! ");
+       printf("fichier ASM.txt inexistant dans ce répertoire ! \n");
+	}else if(debbug_out == NULL) {
+		printf("fichier debbug_out.txt inexistant !\n");
     }else{
     	yyparse();
     	fclose(ASM);
+		fclose(debbug_out);
     	//réouvrir le fichier pour le copier dans le vrai fichier final en remplaçant tout les saut manquant avec la pile que l'on va créer pour les sauts
     }
 
