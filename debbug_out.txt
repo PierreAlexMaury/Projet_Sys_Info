@@ -1,5 +1,4 @@
 
 *** Nous sommes dans le fichier de debbug ***
 
-tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET
-tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction
+tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET

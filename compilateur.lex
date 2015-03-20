@@ -40,7 +40,7 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 " "		{printf(" ");}
 "\t"		{printf("	");}
 ","		{return tVIR;}
-"\n"		{yylineno = yylineno + 1;}
+"\n"		{yylineno;}
 ";"		{return tSEMICOLON;}
 "printf"	{return tPRINTF;}
 {NUMBER}	{yylval.num = atoi(yytext);

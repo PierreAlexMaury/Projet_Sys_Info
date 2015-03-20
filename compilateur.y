@@ -487,14 +487,6 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 
 	;
 
-Assignment: tNUM tVIR Assignment
-    | tVAR tVIR Assignment
-    | tVAR tEQ Assignment
-    | tNUM
-    | tVAR
-    | tEXPO
-    ;
-
 Instructions: Instruction Instructions
 	|
 	;
@@ -584,45 +576,41 @@ Statement: While
 	| tSEMICOLON
 	;
 
-While: tWHILE tOPAR Conditions tCPAR Instruction
-	| tWHILE tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET
+While: tWHILE tOPAR Condition tCPAR Instruction
+	| tWHILE tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET
 	;
 
-BIfElse: tIF tOPAR Conditions tCPAR Instruction																{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction\n");
+BIfElse: tIF tOPAR Condition tCPAR Instruction																{
+																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction\n");
 																											}
-	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET											{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET\n");
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET											{
+																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET\n");
 																											}
-	| tIF tOPAR Conditions tCPAR Instruction tELSE Instruction												{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE Instruction\n");
+	| tIF tOPAR Condition tCPAR Instruction tELSE Instruction												{
+																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE Instruction\n");
 																											}
-	| tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET							{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET\n");
+	| tIF tOPAR Condition tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET							{
+																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET\n");
 																											}
-	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction 						{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction 						{
+																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
 																											}
-	| tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET{
-																												fprintf(debbug_out ,"tIF tOPAR Conditions tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET\n");
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET{
+																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET\n");
 																											}
 
 	;
 
 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 	;
-
-Conditions: Condition Conditions
-	| 
-	;
 	
-Condition: Assignment tEQUAL Assignment
-	| Assignment tNE Assignment
-	| Assignment tLE Assignment
-	| Assignment tLT Assignment
-	| Assignment tGE Assignment
-	| Assignment tGT Assignment
-	| Assignment
+Condition: Operation tEQUAL Operation
+	| Operation tNE Operation
+	| Operation tLE Operation
+	| Operation tLT Operation
+	| Operation tGE Operation
+	| Operation tGT Operation
+	| Operation
 	;
 
 %%

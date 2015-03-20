@@ -1,11 +1,8 @@
 	main() { 
-		int a = -2;
+		int a = -2, c ;
 		const int b = a;
-		if (1){
-			a=a+2;
-		}else if(1){ 
-			a=3;
-		}else{
-			a=2;
-		}
+		int c ;
+		int d;
+		if(1){;}
+		
 }
