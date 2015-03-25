@@ -9,6 +9,7 @@ FILE * debbug_out;
 
 void yyerror (char*s);
 extern int yylineno;
+int compteur = 0;
 %}
 
 %union {int expo; int num; char* var;}
@@ -87,6 +88,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 												printf("ECHEC: %s n'existe pas\n",$3);													
 											}else{
 												fprintf(ASM,"COP %d %d\n", getAddr($1), getAddr($3));
+												compteur++;
 												printTabSymb();
 											} 
 								        }
@@ -104,8 +106,11 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 														int ptemp_neg = addTemp();
 														int ptemp = addTemp();
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+														compteur++;
 														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
+														compteur ++;
 														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+														compteur ++;
 														printTabSymb();
 														clearTemp();
 													} 
@@ -123,6 +128,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										printf("ECHEC: %s n'existe pas\n",$3);
 									}else{
 										fprintf(ASM,"COP %d %d\n", getAddr($1), getAddr($3));
+										compteur ++;
 										printTabSymb();
 									}
 
@@ -141,8 +147,11 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										int ptemp_neg = addTemp();
 										int ptemp = addTemp();
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+										compteur ++;
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
+										compteur ++;
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+										compteur ++;
 										printTabSymb();
 										clearTemp();
 									}
@@ -154,6 +163,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 												addSymb($1,0);
 												printTabSymb();
 												fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+												compteur ++;
 												printTabSymb();
 											}else {
 												printf("ECHEC: %s existe deja\n",$1);
@@ -169,8 +179,11 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 													int ptemp_neg = addTemp();
 													int ptemp = addTemp();
 													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+													compteur ++;
 													fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+													compteur ++;
 													fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+													compteur ++;
 													printTabSymb();
 													clearTemp();
 												}else {
@@ -184,6 +197,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										addSymb($1,0);
 										printTabSymb();
 										fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+										compteur ++;
 										printTabSymb();
 									}else {
 										printf("ECHEC: %s existe deja\n",$1);
@@ -198,8 +212,11 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 										int ptemp_neg = addTemp();
 										int ptemp = addTemp();
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+										compteur ++;
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+										compteur ++;
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+										compteur ++;
 										printTabSymb();
 										clearTemp();
 									}else {
@@ -214,6 +231,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 												addSymb($1,0);
 												printTabSymb();
 												fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+												compteur ++;
 												printTabSymb();
 											}else {
 												printf("ECHEC: %s existe deja\n",$1);
@@ -228,8 +246,11 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 														int ptemp_neg = addTemp();
 														int ptemp = addTemp();
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+														compteur ++;
 														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+														compteur ++;
 														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+														compteur ++;
 														printTabSymb();
 														clearTemp();
 													}else {
@@ -243,6 +264,7 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 											addSymb($1,0);
 											printTabSymb();
 											fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+											compteur ++;
 											printTabSymb();
 										}else {
 											printf("ECHEC: %s existe deja\n",$1);
@@ -257,8 +279,11 @@ Declaration: tCONST tINT tVAR tSEMICOLON	{
 											int ptemp_neg = addTemp();
 											int ptemp = addTemp();
 											fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+											compteur ++;
 											fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+											compteur ++;
 											fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+											compteur ++;
 											printTabSymb();
 											clearTemp();
 										}else {
@@ -297,6 +322,7 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 												printf("ECHEC: %s n'existe pas\n",$3);													
 											}else{
 												fprintf(ASM,"COP %d %d\n", getAddr($1), getAddr($3));
+												compteur ++;
 												printTabSymb();
 										    } 
 								        }
@@ -314,8 +340,11 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 														int ptemp_neg = addTemp();
 														int ptemp = addTemp();
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+														compteur ++;
 														fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
+														compteur ++;
 														fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+														compteur ++;
 														printTabSymb();
 														clearTemp();
 													} 
@@ -333,6 +362,7 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 										printf("ECHEC: %s n'existe pas\n",$3);
 									}else{
 										fprintf(ASM,"COP %d %d\n", getAddr($1), getAddr($3));
+										compteur ++;
 										printTabSymb();
 									}
 
@@ -351,8 +381,11 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 										int ptemp_neg = addTemp();
 										int ptemp = addTemp();
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+										compteur ++;
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4));
+										compteur ++;
 										fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+										compteur ++;
 										printTabSymb();
 										clearTemp();
 									}
@@ -364,6 +397,7 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 												addSymb($1,1);
 												printTabSymb();
 												fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+												compteur ++;
 												printTabSymb();
 											}else {
 												printf("ECHEC: %s existe deja\n",$1);
@@ -379,8 +413,11 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 													int ptemp_neg = addTemp();
 													int ptemp = addTemp();
 													fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+													compteur ++;
 													fprintf(ASM,"COP %d %d\n", ptemp,$4);
+													compteur ++;
 													fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
+													compteur ++;
 													printTabSymb();
 													clearTemp();
 												}else {
@@ -394,6 +431,7 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 										addSymb($1,1);
 										printTabSymb();
 										fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+										compteur ++;
 										printTabSymb();
 									}else {
 										printf("ECHEC: %s existe deja\n",$1);
@@ -408,8 +446,11 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 										int ptemp_neg = addTemp();
 										int ptemp = addTemp();
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+										compteur ++;
 										fprintf(ASM,"COP %d %d\n", ptemp,$4);
+										compteur ++;
 										fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
+										compteur ++;
 										printTabSymb();
 										clearTemp();
 									}else {
@@ -424,6 +465,7 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 												addSymb($1,1);
 												printTabSymb();
 												fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+												compteur ++;
 												printTabSymb();
 											}else {
 												printf("ECHEC: %s existe deja\n",$1);
@@ -438,8 +480,11 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 														int ptemp_neg = addTemp();
 														int ptemp = addTemp();
 														fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+														compteur ++;
 														fprintf(ASM,"COP %d %d\n", ptemp,$4);
+														compteur ++;
 														fprintf(ASM,"MUL %d %d %d\n",getAddr($1),ptemp_neg,ptemp);
+														compteur ++;
 														printTabSymb();
 														clearTemp();
 													}else {
@@ -452,6 +497,7 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 											addSymb($1,1);
 											printTabSymb();
 											fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+											compteur ++;
 											printTabSymb();
 										}else {
 											printf("ECHEC: %s existe deja\n",$1);
@@ -466,8 +512,11 @@ AssignmentConst: tVAR tVIR AssignmentConst	{
 											int ptemp_neg = addTemp();
 											int ptemp = addTemp();
 											fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+											compteur ++;
 											fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$4);
+											compteur ++;
 											fprintf(ASM,"COP %d %d\n", getAddr($1), ptemp);
+											compteur ++;
 											printTabSymb();
 											clearTemp();
 										}else {
@@ -508,6 +557,7 @@ Operation: tOPAR Operation tCPAR	{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"ADD %d %d %d\n",ptemp,$1,$3);
+									compteur ++;
 									$$ = ptemp;
 								}
 								
@@ -515,6 +565,7 @@ Operation: tOPAR Operation tCPAR	{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"LESS %d %d %d\n",ptemp,$1,$3);
+									compteur ++;
 									$$ = ptemp;
 								}
 								
@@ -522,6 +573,7 @@ Operation: tOPAR Operation tCPAR	{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"MUL %d %d %d\n",ptemp,$1,$3);
+									compteur ++;
 									$$ = ptemp;
 								}
 						
@@ -529,12 +581,14 @@ Operation: tOPAR Operation tCPAR	{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"DIV %d %d %d\n",ptemp,$1,$3);
+									compteur ++;
 									$$ = ptemp;
 								}
 								
 								
 	| tVAR tEQ Operation		{
 									fprintf(ASM,"COP %d %d\n", getAddr($1), $3);
+									compteur ++;
 									printTabSymb();
 									$$ = getAddr($1);
 								}
@@ -543,7 +597,9 @@ Operation: tOPAR Operation tCPAR	{
 										int ptemp_neg = addTemp();
 										int ptemp = addTemp();
 										fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+										compteur ++;
 										fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$2);
+										compteur ++;
 										$$ = ptemp;
 									}
 									
@@ -551,6 +607,7 @@ Operation: tOPAR Operation tCPAR	{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"AFC %d %d\n",ptemp, $1);
+									compteur ++;
 									$$ = ptemp;
 								}
 	
@@ -558,6 +615,7 @@ Operation: tOPAR Operation tCPAR	{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"COP %d %d\n", ptemp, getAddr($1));
+									compteur ++;
 									$$ = ptemp; 
 								}
 	
@@ -565,6 +623,7 @@ Operation: tOPAR Operation tCPAR	{
 									int ptemp = addTemp();
 									printTabSymb();
 									fprintf(ASM,"AFC %d %d\n",ptemp, $1);
+									compteur ++;
 									$$ = ptemp;
 								}
 	;
@@ -576,41 +635,108 @@ Statement: While
 	| tSEMICOLON
 	;
 
-While: tWHILE tOPAR Condition tCPAR Instruction
-	| tWHILE tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET
+While: tWHILE Nsaut tOPAR Condition tCPAR Instructions																{
+																														fprintf(debbug_out,"tWHILE Sautw tOPAR Condition tCPAR Instructions\n");
+																														fprintf(ASM,"JMP %d\n",$2);
+																														compteur++;
+																														pushWhile(-1, compteur);
+		
+																													}
+	| tWHILE Nsaut tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET											{
+																														fprintf(debbug_out,"tWHILE Sautw tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET");
+																														fprintf(ASM,"JMP %d\n",-1);
+																														compteur++;
+																														pushWhile(-1, compteur);
+																													}
 	;
 
-BIfElse: tIF tOPAR Condition tCPAR Instruction																{
-																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction\n");
-																											}
-	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET											{
-																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET\n");
-																											}
-	| tIF tOPAR Condition tCPAR Instruction tELSE Instruction												{
-																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE Instruction\n");
-																											}
-	| tIF tOPAR Condition tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET							{
-																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET\n");
-																											}
-	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction 						{
-																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
-																											}
-	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET{
-																												fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET\n");
-																											}
+BIfElse: tIF tOPAR Condition tCPAR Instruction																		{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction\n");
+																														pushIf(-1,compteur);
+																													}
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET													{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET\n");
+																														pushIf(-1,compteur);
+																													}
+	| tIF tOPAR Condition tCPAR Instruction Jmp tELSE  Instruction													{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE Instruction\n");
+																														pushIf(-1,compteur);
+																													}
+	| tIF tOPAR Condition tCPAR Instruction Jmp tELSE  tOBRACKET Instructions tCBRACKET								{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET\n");
+																														pushIf(-1,compteur);
+																													}
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET Jmp tELSE  Instruction 							{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
+																														pushIf(-1,compteur);
+																													}
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET Jmp tELSE tOBRACKET Instructions tCBRACKET			{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET\n");
+																														pushIf(-1,compteur);
+																													}
 
 	;
+
+Nsaut: {pushWhile(compteur, -1);}
+
+	;
+
 
 Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 	;
 	
-Condition: Operation tEQUAL Operation
-	| Operation tNE Operation
-	| Operation tLE Operation
-	| Operation tLT Operation
-	| Operation tGE Operation
-	| Operation tGT Operation
-	| Operation
+Condition: Operation tEQUAL Operation		{
+												int ptemp = addTemp();
+												printTabSymb();
+												fprintf(ASM,"EQU %d %d %d_n",ptemp,$1,$3);
+												compteur++;
+												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												compteur++;
+
+											}
+	| Operation tNE Operation				{	
+												int ptemp = addTemp();
+												printTabSymb();
+												fprintf(ASM,"LESS %d %d %d\n",ptemp,$1,$3);
+												compteur++;
+												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												compteur++;	
+											}
+	| Operation tLE Operation				{	
+												int ptemp = addTemp();
+												printTabSymb();
+												fprintf(ASM,"LEQ %d %d %d\n",ptemp,$1,$3);
+												compteur++;
+												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												compteur++;	
+											}
+	| Operation tLT Operation				{
+												int ptemp = addTemp();
+												printTabSymb();
+												fprintf(ASM,"INF %d %d %d_n",ptemp,$1,$3);
+												compteur++;
+												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												compteur++;
+											}
+	| Operation tGE Operation				{
+												int ptemp = addTemp();
+												printTabSymb();
+												fprintf(ASM,"SEQ %d %d %d\n",ptemp,$1,$3);
+												compteur++;
+												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												compteur++;	
+											}
+	| Operation tGT Operation				{
+												int ptemp = addTemp();
+												printTabSymb();
+												fprintf(ASM,"SUP %d %d %d\n",ptemp,$1,$3);
+												compteur++;
+												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												compteur++;	
+											}
+	| Operation								{
+												
+											}
 	;
 
 %%
