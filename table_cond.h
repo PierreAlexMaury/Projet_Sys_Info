@@ -6,13 +6,17 @@ struct cond {
 };
 
 struct table_cond{
-	struct cond[maxCond];
+	struct cond table[maxCond];
 	int position;
 };
 
+<<<<<<< Updated upstream
 int pushIf(int from,int to);
+=======
+int pushCond(int from,int to);
+>>>>>>> Stashed changes
 
-int addWhile(int from, int to);
+void printTableCond();
 
-int fillCond(FILE file);
+int toASM(char * input_file);
 

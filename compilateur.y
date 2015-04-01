@@ -9,7 +9,7 @@ FILE * debbug_out;
 
 void yyerror (char*s);
 extern int yylineno;
-int compteur = 0;
+int compteur = 1;
 %}
 
 %union {int expo; int num; char* var;}
@@ -32,7 +32,8 @@ int compteur = 0;
 %left tMUL tDIV
 
 
-%type <expo> Operation
+%type <expo> Operation 
+%type <num> While Nsautw
 %type <var> AssignmentInt AssignmentConst
 %start Main
 	 
@@ -635,62 +636,83 @@ Statement: While
 	| tSEMICOLON
 	;
 
-While: tWHILE Nsaut tOPAR Condition tCPAR Instructions																{
+While: tWHILE Nsautw tOPAR Condition tCPAR Instruction																{
 																														fprintf(debbug_out,"tWHILE Sautw tOPAR Condition tCPAR Instructions\n");
 																														fprintf(ASM,"JMP %d\n",$2);
 																														compteur++;
-																														pushWhile(-1, compteur);
+																														pushCond(-1, compteur);
+																														printTableCond();
 		
 																													}
-	| tWHILE Nsaut tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET											{
+	| tWHILE Nsautw tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET											{
 																														fprintf(debbug_out,"tWHILE Sautw tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET");
-																														fprintf(ASM,"JMP %d\n",-1);
+																														fprintf(ASM,"JMP %d\n",$2);
 																														compteur++;
-																														pushWhile(-1, compteur);
+																														pushCond(-1, compteur);
+																														printTableCond();
 																													}
-	;
+ 	;
 
-BIfElse: tIF tOPAR Condition tCPAR Instruction																		{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction\n");
-																														pushIf(-1,compteur);
+BIfElse: tIF tOPAR Condition tCPAR Instruction tELSE Nsaut Instruction											{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE Instruction\n");
+																														pushCond(-1,compteur);
+																														printTableCond();
 																													}
+
+	| tIF tOPAR Condition tCPAR Instruction																		{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction\n");
+																														pushCond(-1,compteur);
+																														printTableCond();
+																													}
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Nsaut Instruction 						{
+																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
+																														pushCond(-1,compteur);
+																														printTableCond();
+																													}
+
 	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET													{
 																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET\n");
-																														pushIf(-1,compteur);
+																														pushCond(-1,compteur);
+																														printTableCond();
 																													}
-	| tIF tOPAR Condition tCPAR Instruction Jmp tELSE  Instruction													{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE Instruction\n");
-																														pushIf(-1,compteur);
-																													}
-	| tIF tOPAR Condition tCPAR Instruction Jmp tELSE  tOBRACKET Instructions tCBRACKET								{
+	
+	| tIF tOPAR Condition tCPAR Instruction tELSE Nsaut tOBRACKET Instructions tCBRACKET						{
 																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET\n");
-																														pushIf(-1,compteur);
+																														pushCond(-1,compteur);
+																														printTableCond();
 																													}
-	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET Jmp tELSE  Instruction 							{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
-																														pushIf(-1,compteur);
-																													}
-	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET Jmp tELSE tOBRACKET Instructions tCBRACKET			{
+	
+	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE  Nsaut tOBRACKET Instructions tCBRACKET	{
 																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET\n");
-																														pushIf(-1,compteur);
+																														pushCond(-1,compteur);
+																														printTableCond();
 																													}
 
 	;
 
-Nsaut: {pushWhile(compteur, -1);}
-
+Nsautw:	{
+			$$ = compteur;
+		}
 	;
 
-
-Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
+Nsaut:	{
+			fprintf(ASM,"JMP %c\n",'?');
+			compteur++;
+			pushCond(-1,compteur);
+			printTableCond();
+			pushCond(compteur-1,-1);
+			printTableCond();
+		}
 	;
 	
 Condition: Operation tEQUAL Operation		{
 												int ptemp = addTemp();
 												printTabSymb();
-												fprintf(ASM,"EQU %d %d %d_n",ptemp,$1,$3);
+												fprintf(ASM,"EQU %d %d %d\n",ptemp,$1,$3);
 												compteur++;
-												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												fprintf(ASM,"JMF %d %c\n", ptemp, '?');
+												pushCond(compteur,-1);
+												printTableCond();
 												compteur++;
 
 											}
@@ -699,7 +721,9 @@ Condition: Operation tEQUAL Operation		{
 												printTabSymb();
 												fprintf(ASM,"LESS %d %d %d\n",ptemp,$1,$3);
 												compteur++;
-												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												fprintf(ASM,"JMF %d %c\n", ptemp, '?');
+												pushCond(compteur,-1);
+												printTableCond();
 												compteur++;	
 											}
 	| Operation tLE Operation				{	
@@ -707,7 +731,9 @@ Condition: Operation tEQUAL Operation		{
 												printTabSymb();
 												fprintf(ASM,"LEQ %d %d %d\n",ptemp,$1,$3);
 												compteur++;
-												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												fprintf(ASM,"JMF %d %c\n", ptemp, '?');
+												pushCond(compteur,-1);
+												printTableCond();
 												compteur++;	
 											}
 	| Operation tLT Operation				{
@@ -715,7 +741,9 @@ Condition: Operation tEQUAL Operation		{
 												printTabSymb();
 												fprintf(ASM,"INF %d %d %d_n",ptemp,$1,$3);
 												compteur++;
-												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												fprintf(ASM,"JMF %d %c\n", ptemp, '?');
+												pushCond(compteur,-1);
+												printTableCond();
 												compteur++;
 											}
 	| Operation tGE Operation				{
@@ -723,7 +751,9 @@ Condition: Operation tEQUAL Operation		{
 												printTabSymb();
 												fprintf(ASM,"SEQ %d %d %d\n",ptemp,$1,$3);
 												compteur++;
-												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												fprintf(ASM,"JMF %d %c\n", ptemp, '?');
+												pushCond(compteur,-1);
+												printTableCond();
 												compteur++;	
 											}
 	| Operation tGT Operation				{
@@ -731,12 +761,21 @@ Condition: Operation tEQUAL Operation		{
 												printTabSymb();
 												fprintf(ASM,"SUP %d %d %d\n",ptemp,$1,$3);
 												compteur++;
-												fprintf(ASM,"JMF %d %d\n", ptemp, -1);
+												fprintf(ASM,"JMF %d %c\n", ptemp, '?');
+												pushCond(compteur,-1);
+												printTableCond();
 												compteur++;	
 											}
 	| Operation								{
-												
+												int ptemp = addTemp();
+												fprintf(ASM,"JMF %d %c\n", ptemp, '?');
+												pushCond(compteur,-1);
+												printTableCond();
+												compteur++;
 											}
+	;
+
+Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
 	;
 
 %%
@@ -746,7 +785,7 @@ void yyerror(char*s){
 
 int main(){
     
-    ASM = fopen("ASM.txt", "w+"); //on supprime le contenu au préalable avant de réécrire 
+    ASM = fopen("ASM_temp.txt", "w+"); //on supprime le contenu au préalable avant de réécrire 
 	debbug_out = fopen("debbug_out.txt","w+");
 
 
@@ -755,12 +794,11 @@ int main(){
 	}else if(debbug_out == NULL) {
 		printf("fichier debbug_out.txt inexistant !\n");
     }else{
-    	fprintf(ASM,"\n**** Nous sommes dans le fichier de code assembleur ****\n\n");
     	fprintf(debbug_out,"\n*** Nous sommes dans le fichier de debbug ***\n\n");
     	yyparse();
     	fclose(ASM);
 		fclose(debbug_out);
-    	//réouvrir le fichier pour le copier dans le vrai fichier final en remplaçant tout les saut manquant avec la pile que l'on va créer pour les sauts
+    	toASM("ASM_temp.txt");
     }
 
 }

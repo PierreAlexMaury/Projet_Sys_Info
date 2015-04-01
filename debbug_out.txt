@@ -1,4 +1,3 @@
 
 *** Nous sommes dans le fichier de debbug ***
 
-tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET

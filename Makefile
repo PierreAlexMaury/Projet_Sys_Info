@@ -1,7 +1,7 @@
 TARGETS=compilateur
 YACC=y.tab.c
 FLEX=lex.yy.c
-OBJECTS=y.tab.o lex.yy.o table_symb.o
+OBJECTS=y.tab.o lex.yy.o table_symb.o table_cond.o
 LDFLAGS=-ll
 DEPENDS=$(patsubst %.o, %.dep, $(OBJECTS))
 
