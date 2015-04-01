@@ -10,7 +10,7 @@ struct table_cond{
 	int position;
 };
 
-int addIf(int from,int to);
+int pushIf(int from,int to);
 
 int addWhile(int from, int to);
 

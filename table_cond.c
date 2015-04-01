@@ -5,28 +5,33 @@
 
 struct table_cond tableCond = {.position = 0};
 
-int addIf(int from){
+int pushIf(int from, int to){
 	
-	printf("**** START **** addCond\n");
-
-	if (from < 0){
-		return -1;
-	}
-
-	if (table.sommet == maxSymb){
-		return -1;
-	}
-
+	printf("**** START **** pushIf");
+	
 	struct cond cond_temp;
 
-	cond_temp.from = from;
-	cond_temp.to = -1;
+	if (from == -1 && to >= 0){
+		/*On cherche à insérer une adresse d'atterissage*/
+	}
+
+	if (from >= 0 && to == -1){
+		if (tableCond.position <= maxCond) {
+			printf("pushIf : Table des conditions pleine\n");
+		}
+	}
+
+	else {
+		printf("pushIf : Parametres invalides\n");
+		return -1;
+	}
+
 
 	table_cond.tableCond[tableCond.position] = cond_temp;
 
 	tableCond.position ++;
 
-    printf("**** END **** addCond\n");
+    printf("**** END **** pushIf\n");
 
 	return 0;
 
