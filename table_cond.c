@@ -88,9 +88,9 @@ int pushCond(int from, int to){
 void printTableCond() {
 	int i;
 
-<<<<<<< Updated upstream
+
     printf("**** END **** pushIf\n");
-=======
+
 	for (i = tableCond.position - 1; i >= 0; i--) {
 		if (tableCond.table[i].from == -1)
 			printf("| - | %d |\n", tableCond.table[i].to);
@@ -101,7 +101,6 @@ void printTableCond() {
 	}
 	printf("---------\n");
 }
->>>>>>> Stashed changes
 
 int toASM(char * file_name) {
 	FILE * input_file = fopen(file_name,"r");
@@ -145,8 +144,6 @@ int toASM(char * file_name) {
 		}
 		fputc('\n',output_file);
 
-<<<<<<< Updated upstream
-=======
 		line++;
 	}
     
@@ -160,5 +157,4 @@ int toASM(char * file_name) {
 	fclose(output_file);
 
 	return 0;
->>>>>>> Stashed changes
 }

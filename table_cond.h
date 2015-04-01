@@ -10,11 +10,9 @@ struct table_cond{
 	int position;
 };
 
-<<<<<<< Updated upstream
 int pushIf(int from,int to);
-=======
+
 int pushCond(int from,int to);
->>>>>>> Stashed changes
 
 void printTableCond();
 
