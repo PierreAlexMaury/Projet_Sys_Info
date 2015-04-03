@@ -6,19 +6,9 @@
 
 struct table_cond tableCond = {.position = 0};
 
-<<<<<<< Updated upstream
-int pushIf(int from, int to){
-	
-	printf("**** START **** pushIf");
-	
-	struct cond cond_temp;
-
-	if (from == -1 && to >= 0){
-		/*On cherche à insérer une adresse d'atterissage*/
-=======
 int pushCond(int from, int to){
 	
-	printf("**** START **** pushIf\n");
+	printf("**** START **** pushCond\n");
 	
 	struct cond cond_temp;
 
@@ -35,10 +25,9 @@ int pushCond(int from, int to){
 		}
 
 		if (i < 0) {
-			printf("pushCond : Impossible de trouver le to a completer\n");
+			printf("pushCond : Impossible de trouver le to à completer\n");
 			return -1; /*ERREUR*/
 		}
->>>>>>> Stashed changes
 	}
 	else if (from > 0 && to == -1){
 
@@ -48,19 +37,18 @@ int pushCond(int from, int to){
 			return -1; /*ERREUR*/
 		}
 
-<<<<<<< Updated upstream
+
 	if (from >= 0 && to == -1){
 		if (tableCond.position <= maxCond) {
-			printf("pushIf : Table des conditions pleine\n");
+			printf("pushCond : Table des conditions pleine\n");
 		}
 	}
 
 	else {
-		printf("pushIf : Parametres invalides\n");
+		printf("pushCond : Parametres invalides\n");
 		return -1;
 	}
 
-=======
 		/*Si on insère un saut vers une ligne antérieur à la précédente*/
 		if (tableCond.position > 0 && tableCond.table[tableCond.position-1].from >= from) {
 			printf("pushCond : Tentative d'un push vers une ligne antérieure\n");
@@ -78,10 +66,9 @@ int pushCond(int from, int to){
 		return -1;
 	}
 
-    printf("**** END **** pushIf\n");
+    printf("**** END **** pushCond\n");
 
 	return 0;
->>>>>>> Stashed changes
 
 }
 
@@ -89,7 +76,7 @@ void printTableCond() {
 	int i;
 
 
-    printf("**** END **** pushIf\n");
+    printf("**** END **** pushCond\n");
 
 	for (i = tableCond.position - 1; i >= 0; i--) {
 		if (tableCond.table[i].from == -1)
@@ -111,9 +98,7 @@ int toASM(char * file_name) {
 	char c;
 
 	for (i = 0; i < tableCond.position; i++) {
-		printf("for loop\n");
 		while (line < tableCond.table[i].from) {
-			printf("while loop 1\n");
 			c = fgetc(input_file);
 			while (c != '\n') {
 				fputc(c,output_file);

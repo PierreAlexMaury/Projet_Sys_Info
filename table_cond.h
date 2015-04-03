@@ -10,8 +10,6 @@ struct table_cond{
 	int position;
 };
 
-int pushIf(int from,int to);
-
 int pushCond(int from,int to);
 
 void printTableCond();

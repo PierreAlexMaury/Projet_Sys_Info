@@ -13,8 +13,6 @@ int compteur = 1;
 %}
 
 %union {int expo; int num; char* var;}
-
-
      
 %token tLE tLT tGE tGT tNE tEQUAL
 %token <var> tVAR
@@ -637,7 +635,6 @@ Statement: While
 	;
 
 While: tWHILE Nsautw tOPAR Condition tCPAR Instruction																{
-																														fprintf(debbug_out,"tWHILE Sautw tOPAR Condition tCPAR Instructions\n");
 																														fprintf(ASM,"JMP %d\n",$2);
 																														compteur++;
 																														pushCond(-1, compteur);
@@ -645,7 +642,7 @@ While: tWHILE Nsautw tOPAR Condition tCPAR Instruction																{
 		
 																													}
 	| tWHILE Nsautw tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET											{
-																														fprintf(debbug_out,"tWHILE Sautw tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET");
+
 																														fprintf(ASM,"JMP %d\n",$2);
 																														compteur++;
 																														pushCond(-1, compteur);
@@ -654,36 +651,30 @@ While: tWHILE Nsautw tOPAR Condition tCPAR Instruction																{
  	;
 
 BIfElse: tIF tOPAR Condition tCPAR Instruction tELSE Nsaut Instruction											{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE Instruction\n");
 																														pushCond(-1,compteur);
 																														printTableCond();
 																													}
 
 	| tIF tOPAR Condition tCPAR Instruction																		{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction\n");
 																														pushCond(-1,compteur);
 																														printTableCond();
 																													}
 	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Nsaut Instruction 						{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE Instruction\n");
 																														pushCond(-1,compteur);
 																														printTableCond();
 																													}
 
 	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET													{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET\n");
 																														pushCond(-1,compteur);
 																														printTableCond();
 																													}
 	
 	| tIF tOPAR Condition tCPAR Instruction tELSE Nsaut tOBRACKET Instructions tCBRACKET						{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR Instruction tELSE tOBRACKET Instructions tCBRACKET\n");
 																														pushCond(-1,compteur);
 																														printTableCond();
 																													}
 	
 	| tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE  Nsaut tOBRACKET Instructions tCBRACKET	{
-																														fprintf(debbug_out ,"tIF tOPAR Condition tCPAR tOBRACKET Instructions tCBRACKET tELSE tOBRACKET Instructions tCBRACKET\n");
 																														pushCond(-1,compteur);
 																														printTableCond();
 																													}
@@ -775,7 +766,10 @@ Condition: Operation tEQUAL Operation		{
 											}
 	;
 
-Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON
+Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON	{
+												fprintf(ASM,"PRI %d\n",getAddr($3));
+												compteur++;
+											}//on doit afficher sa valeur 
 	;
 
 %%
