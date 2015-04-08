@@ -22,7 +22,6 @@ int nb_chiffre_rec(int nombre, int compt) {
 }
 
 int addSymb(char* identif, int type) {
-    printf("**** START **** addSymb\n");
 
 	if (table.sommet == maxSymb)
 		return -1;
@@ -37,13 +36,10 @@ int addSymb(char* identif, int type) {
 
 	table.sommet ++;
 
-    printf("**** END **** addSymb\n");
-
 	return 0;
 }
 
 int addTemp() {
-    printf("**** START **** addTemp\n");
 
 	if (table.sommet == maxSymb) {
 		printf("\naddTemp : Erreur, table des symbole pleine\n");
@@ -61,8 +57,6 @@ int addTemp() {
 
 	table.sommet ++;
 
-	printf("**** END **** addTemp\n");
-
 	return table.sommet - 1;
 }
 
@@ -70,8 +64,6 @@ int addTemp() {
 int findSymb(char* identif) {
 	int i = 0;
 	int found = 0;
-
-	printf("**** START **** findSymb\n");
 
 	while (!found && i < table.sommet) {
 		if (!strcmp(table.tab[i].identif,identif) && table.tab[i].type != 2) {
@@ -81,8 +73,6 @@ int findSymb(char* identif) {
 		}
 	}
 
-	printf("**** END **** findSymb\n");
-
 	return found;
 }
 
@@ -90,8 +80,6 @@ int findSymb(char* identif) {
 int getAddr(char* identif) {
   	int index = table.sommet-1;
 	int addr = -1;
-
-    printf("**** START **** getAddr\n");
 
 	while (addr == -1 && index >= 0) {
 		if(strcmp(table.tab[index].identif,identif) == 0 && table.tab[index].type != 2) {
@@ -102,16 +90,12 @@ int getAddr(char* identif) {
 
 	}
 
-	printf("**** END **** getAddr\n");
-
 	return addr;
 }
 
 void clearTemp() {
     int index = table.sommet-1;
     int others = 1;
-
-    printf("**** START **** clearTemp\n");
 
     while (others == 1 && index >= 0) {
         if (table.tab[index].type == 2) {
@@ -123,20 +107,19 @@ void clearTemp() {
         }
     }
 
-    printf("**** END **** clearTemp\n");
 }
 
 
 void printTabSymb(void) {
 	int i;
 
+	printf("-------------------- Table Symboles ----------------------\n\n");
+
     printf("-------------\n");
 	for (i = 0; i < table.sommet; i++) {
 		printf("| %s | %d | %d |\n",table.tab[i].identif, table.tab[i].type,table.tab[i].adresse);
 	}
-	printf("-------------\n");
-
-	printf("\n");
+	printf("-------------\n\n");
 }
 
 

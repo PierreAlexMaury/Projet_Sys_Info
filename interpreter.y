@@ -79,5 +79,5 @@ int main(){
     yyparse();
     printTabInst();
     execute();
-    printTabVar(5);
+    //printTabVar(5); uniquement pour le debbug
 }

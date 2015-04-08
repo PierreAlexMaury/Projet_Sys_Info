@@ -37,8 +37,8 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 "="		{return tEQ;}
 "("		{return tOPAR;}
 ")" 		{return tCPAR;}
-" "		{printf(" ");}
-"\t"		{printf("	");}
+" "		{}
+"\t"		{}
 ","		{return tVIR;}
 "\n"		{yylineno;}
 ";"		{return tSEMICOLON;}
@@ -49,7 +49,10 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 		return tEXPO;}
 
 {VAR}		{yylval.var= strdup(yytext);
-		return tVAR;}		
+		return tVAR;}	
+
+\/\/.* ;
+\/\*(.*\n)*.*\*\/ ;	
 
 %%
 

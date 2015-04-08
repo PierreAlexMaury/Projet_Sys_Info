@@ -8,8 +8,6 @@ struct table_cond tableCond = {.position = 0};
 
 int pushCond(int from, int to){
 	
-	printf("**** START **** pushCond\n");
-	
 	struct cond cond_temp;
 
 	if (from == -1 && to > 0){
@@ -37,18 +35,6 @@ int pushCond(int from, int to){
 			return -1; /*ERREUR*/
 		}
 
-
-	if (from >= 0 && to == -1){
-		if (tableCond.position <= maxCond) {
-			printf("pushCond : Table des conditions pleine\n");
-		}
-	}
-
-	else {
-		printf("pushCond : Parametres invalides\n");
-		return -1;
-	}
-
 		/*Si on insère un saut vers une ligne antérieur à la précédente*/
 		if (tableCond.position > 0 && tableCond.table[tableCond.position-1].from >= from) {
 			printf("pushCond : Tentative d'un push vers une ligne antérieure\n");
@@ -66,18 +52,14 @@ int pushCond(int from, int to){
 		return -1;
 	}
 
-    printf("**** END **** pushCond\n");
-
 	return 0;
 
 }
 
 void printTableCond() {
 	int i;
-
-
-    printf("**** END **** pushCond\n");
-
+	printf("-------------------- Table Conditions --------------------\n\n");
+	printf("-----------\n");
 	for (i = tableCond.position - 1; i >= 0; i--) {
 		if (tableCond.table[i].from == -1)
 			printf("| - | %d |\n", tableCond.table[i].to);
@@ -86,7 +68,7 @@ void printTableCond() {
 		else
 			printf("| %d | %d |\n",tableCond.table[i].from, tableCond.table[i].to);
 	}
-	printf("---------\n");
+	printf("-----------\n\n");
 }
 
 int toASM(char * file_name) {

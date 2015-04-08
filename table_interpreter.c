@@ -146,12 +146,86 @@ void printTabVar(int max) {
 
 void printTabInst(void) {
 	int i;
-
+	printf("-------------------- Table Instructions ------------------\n\n");
     printf("--------------------\n");
-	for (i = 0; i < table.PC; i++) {
-		printf("| %d | %d | %d | %d |\n",table.tab[i].code_op, table.tab[i].op1, table.tab[i].op2, table.tab[i].op3);
-	}
-	printf("--------------------\n");
+    char * nom;
 
-	printf("\n");
+	for (i = 0; i < table.PC; i++) {
+		switch (table.tab[i].code_op) {
+				case 1:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"ADD");
+					break;
+
+				case 2:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"MUL");
+					break;
+
+				case 3:
+					nom = malloc(4*sizeof(char));
+					strcpy(nom,"LESS");
+					break;
+
+				case 4:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"DIV");
+					break;
+
+				case 5:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"COP");
+					break;
+
+				case 6:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"AFC");
+					break;
+
+				case 7:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"JMP");
+					break;
+
+				case 8:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"JMF");
+					break;
+
+				case 9:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"INF");
+					break;
+
+				case 10:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"SUP");
+					break;
+
+				case 11:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"EQU");
+					break;
+
+				case 12:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"PRI");
+					break;
+
+				case 13:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"LEQ");
+					break;
+
+				case 14:
+					nom = malloc(3*sizeof(char));
+					strcpy(nom,"SEQ");
+					break;
+
+				default:
+					break;
+			}
+		printf("| %s | %d | %d | %d |\n",nom, table.tab[i].op1, table.tab[i].op2, table.tab[i].op3);
+	}
+	printf("--------------------\n\n");
 }
