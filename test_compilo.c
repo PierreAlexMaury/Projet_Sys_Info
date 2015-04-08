@@ -1,14 +1,16 @@
 main() { 
-		int a,b;
-		
-		if(a==1){
-			while(a==1)
-				a=b;
-				printf(b);
-		}else if(a==1)
-			while(a)
-				a=b;	
-
-		b=6;
-		printf(a);	
+		const int a = 3, b = 10;
+		int i = 0;
+		while (i < b) {
+			if (i == 11)
+				i = 3;
+			else if (i > a) {
+				printf(a);
+			}
+			else {
+				i = i + 1;
+			}
+			printf(i);
+			i = i + 1;
+		}
 }

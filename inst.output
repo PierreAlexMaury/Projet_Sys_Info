@@ -1,0 +1,478 @@
+Grammar
+
+    0 $accept: Start $end
+
+    1 Start: Instructions
+
+    2 Instructions: Instruction Instructions
+    3             | /* empty */
+
+    4 Instruction: tCOP tNUM tNUM
+    5            | tAFC tNUM tNUM
+    6            | tEQU tNUM tNUM tNUM
+    7            | tLEQ tNUM tNUM tNUM
+    8            | tINF tNUM tNUM tNUM
+    9            | tSEQ tNUM tNUM tNUM
+   10            | tSUP tNUM tNUM tNUM
+   11            | tADD tNUM tNUM tNUM
+   12            | tLESS tNUM tNUM tNUM
+   13            | tMUL tNUM tNUM tNUM
+   14            | tDIV tNUM tNUM tNUM
+   15            | tJMP tNUM
+   16            | tJMF tNUM tNUM
+   17            | tPRI tNUM
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+tCOP (258) 4
+tAFC (259) 5
+tEQU (260) 6
+tLEQ (261) 7
+tINF (262) 8
+tSEQ (263) 9
+tSUP (264) 10
+tADD (265) 11
+tLESS (266) 12
+tMUL (267) 13
+tDIV (268) 14
+tJMP (269) 15
+tJMF (270) 16
+tPRI (271) 17
+tNUM (272) 4 5 6 7 8 9 10 11 12 13 14 15 16 17
+
+
+Nonterminals, with rules where they appear
+
+$accept (18)
+    on left: 0
+Start (19)
+    on left: 1, on right: 0
+Instructions (20)
+    on left: 2 3, on right: 1 2
+Instruction (21)
+    on left: 4 5 6 7 8 9 10 11 12 13 14 15 16 17, on right: 2
+
+
+state 0
+
+    0 $accept: . Start $end
+
+    tCOP   shift, and go to state 1
+    tAFC   shift, and go to state 2
+    tEQU   shift, and go to state 3
+    tLEQ   shift, and go to state 4
+    tINF   shift, and go to state 5
+    tSEQ   shift, and go to state 6
+    tSUP   shift, and go to state 7
+    tADD   shift, and go to state 8
+    tLESS  shift, and go to state 9
+    tMUL   shift, and go to state 10
+    tDIV   shift, and go to state 11
+    tJMP   shift, and go to state 12
+    tJMF   shift, and go to state 13
+    tPRI   shift, and go to state 14
+
+    $default  reduce using rule 3 (Instructions)
+
+    Start         go to state 15
+    Instructions  go to state 16
+    Instruction   go to state 17
+
+
+state 1
+
+    4 Instruction: tCOP . tNUM tNUM
+
+    tNUM  shift, and go to state 18
+
+
+state 2
+
+    5 Instruction: tAFC . tNUM tNUM
+
+    tNUM  shift, and go to state 19
+
+
+state 3
+
+    6 Instruction: tEQU . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 20
+
+
+state 4
+
+    7 Instruction: tLEQ . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 21
+
+
+state 5
+
+    8 Instruction: tINF . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 22
+
+
+state 6
+
+    9 Instruction: tSEQ . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 23
+
+
+state 7
+
+   10 Instruction: tSUP . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 24
+
+
+state 8
+
+   11 Instruction: tADD . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 25
+
+
+state 9
+
+   12 Instruction: tLESS . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 26
+
+
+state 10
+
+   13 Instruction: tMUL . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 27
+
+
+state 11
+
+   14 Instruction: tDIV . tNUM tNUM tNUM
+
+    tNUM  shift, and go to state 28
+
+
+state 12
+
+   15 Instruction: tJMP . tNUM
+
+    tNUM  shift, and go to state 29
+
+
+state 13
+
+   16 Instruction: tJMF . tNUM tNUM
+
+    tNUM  shift, and go to state 30
+
+
+state 14
+
+   17 Instruction: tPRI . tNUM
+
+    tNUM  shift, and go to state 31
+
+
+state 15
+
+    0 $accept: Start . $end
+
+    $end  shift, and go to state 32
+
+
+state 16
+
+    1 Start: Instructions .
+
+    $default  reduce using rule 1 (Start)
+
+
+state 17
+
+    2 Instructions: Instruction . Instructions
+
+    tCOP   shift, and go to state 1
+    tAFC   shift, and go to state 2
+    tEQU   shift, and go to state 3
+    tLEQ   shift, and go to state 4
+    tINF   shift, and go to state 5
+    tSEQ   shift, and go to state 6
+    tSUP   shift, and go to state 7
+    tADD   shift, and go to state 8
+    tLESS  shift, and go to state 9
+    tMUL   shift, and go to state 10
+    tDIV   shift, and go to state 11
+    tJMP   shift, and go to state 12
+    tJMF   shift, and go to state 13
+    tPRI   shift, and go to state 14
+
+    $default  reduce using rule 3 (Instructions)
+
+    Instructions  go to state 33
+    Instruction   go to state 17
+
+
+state 18
+
+    4 Instruction: tCOP tNUM . tNUM
+
+    tNUM  shift, and go to state 34
+
+
+state 19
+
+    5 Instruction: tAFC tNUM . tNUM
+
+    tNUM  shift, and go to state 35
+
+
+state 20
+
+    6 Instruction: tEQU tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 36
+
+
+state 21
+
+    7 Instruction: tLEQ tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 37
+
+
+state 22
+
+    8 Instruction: tINF tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 38
+
+
+state 23
+
+    9 Instruction: tSEQ tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 39
+
+
+state 24
+
+   10 Instruction: tSUP tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 40
+
+
+state 25
+
+   11 Instruction: tADD tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 41
+
+
+state 26
+
+   12 Instruction: tLESS tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 42
+
+
+state 27
+
+   13 Instruction: tMUL tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 43
+
+
+state 28
+
+   14 Instruction: tDIV tNUM . tNUM tNUM
+
+    tNUM  shift, and go to state 44
+
+
+state 29
+
+   15 Instruction: tJMP tNUM .
+
+    $default  reduce using rule 15 (Instruction)
+
+
+state 30
+
+   16 Instruction: tJMF tNUM . tNUM
+
+    tNUM  shift, and go to state 45
+
+
+state 31
+
+   17 Instruction: tPRI tNUM .
+
+    $default  reduce using rule 17 (Instruction)
+
+
+state 32
+
+    0 $accept: Start $end .
+
+    $default  accept
+
+
+state 33
+
+    2 Instructions: Instruction Instructions .
+
+    $default  reduce using rule 2 (Instructions)
+
+
+state 34
+
+    4 Instruction: tCOP tNUM tNUM .
+
+    $default  reduce using rule 4 (Instruction)
+
+
+state 35
+
+    5 Instruction: tAFC tNUM tNUM .
+
+    $default  reduce using rule 5 (Instruction)
+
+
+state 36
+
+    6 Instruction: tEQU tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 46
+
+
+state 37
+
+    7 Instruction: tLEQ tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 47
+
+
+state 38
+
+    8 Instruction: tINF tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 48
+
+
+state 39
+
+    9 Instruction: tSEQ tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 49
+
+
+state 40
+
+   10 Instruction: tSUP tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 50
+
+
+state 41
+
+   11 Instruction: tADD tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 51
+
+
+state 42
+
+   12 Instruction: tLESS tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 52
+
+
+state 43
+
+   13 Instruction: tMUL tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 53
+
+
+state 44
+
+   14 Instruction: tDIV tNUM tNUM . tNUM
+
+    tNUM  shift, and go to state 54
+
+
+state 45
+
+   16 Instruction: tJMF tNUM tNUM .
+
+    $default  reduce using rule 16 (Instruction)
+
+
+state 46
+
+    6 Instruction: tEQU tNUM tNUM tNUM .
+
+    $default  reduce using rule 6 (Instruction)
+
+
+state 47
+
+    7 Instruction: tLEQ tNUM tNUM tNUM .
+
+    $default  reduce using rule 7 (Instruction)
+
+
+state 48
+
+    8 Instruction: tINF tNUM tNUM tNUM .
+
+    $default  reduce using rule 8 (Instruction)
+
+
+state 49
+
+    9 Instruction: tSEQ tNUM tNUM tNUM .
+
+    $default  reduce using rule 9 (Instruction)
+
+
+state 50
+
+   10 Instruction: tSUP tNUM tNUM tNUM .
+
+    $default  reduce using rule 10 (Instruction)
+
+
+state 51
+
+   11 Instruction: tADD tNUM tNUM tNUM .
+
+    $default  reduce using rule 11 (Instruction)
+
+
+state 52
+
+   12 Instruction: tLESS tNUM tNUM tNUM .
+
+    $default  reduce using rule 12 (Instruction)
+
+
+state 53
+
+   13 Instruction: tMUL tNUM tNUM tNUM .
+
+    $default  reduce using rule 13 (Instruction)
+
+
+state 54
+
+   14 Instruction: tDIV tNUM tNUM tNUM .
+
+    $default  reduce using rule 14 (Instruction)
