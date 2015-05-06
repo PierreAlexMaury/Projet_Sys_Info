@@ -9,22 +9,25 @@ struct symb{
 struct table_symbole{
 	struct symb tab[maxSymb];
 	int sommet;
+	char * nom;
 };
+
+int table_exist(int num_table);
+
+int create_table(char * nom);
 
 int nb_chiffre(int nombre) ;
 
 int nb_chiffre_rec(int nombre, int compt) ;
 
-int initTab(void);
+int addSymb(char* identif, int type, int table_num);
 
-int addSymb(char* identif, int type);
+int addTemp(int table_num);
 
-int addTemp();
+int findSymb(char* identif, int table_num);
 
-int findSymb(char* identif);
+int getAddr(char* identif, int table_num);
 
-int getAddr(char* identif);
+void clearTemp(int table_num);
 
-void clearTemp();
-
-void printTabSymb(void);
+void printTabSymb(int table_num);

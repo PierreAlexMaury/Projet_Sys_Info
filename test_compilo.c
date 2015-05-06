@@ -1,5 +1,5 @@
 main() { 
-		const int a = 3, b = 10;
+		const int a = 3, b = 5,c=-120;
 		int i = 0;
 		while (i < b) {
 			if (i == 11)

@@ -2,19 +2,29 @@
 #include <stdlib.h>
 #include "table_symb.h"
 
-<<<<<<< Updated upstream
-int main() {
-    char identif1[] = "a";
-    char identif2[] = "b";
-    char identif3[] = "c";
+extern 
 
-    char temp1[] = "temp1";
-
-=======
 int main(void) {
-	int a,b;
->>>>>>> Stashed changes
-	printTabSymb();
+
+    addSymb("a",1,0);
+
+    create_table("main");
+    create_table("fonction1");
+    create_table("fonction2");
+
+
+    addSymb("a",1,0);
+    addSymb("b",1,1);
+    addSymb("c",1,2);
+    addSymb("d",1,0);
+    addSymb("e",1,1);
+    addSymb("a",1,2);
+
+    printTabSymb(0);
+    printTabSymb(1);
+    printTabSymb(2);
+
+	/*printTabSymb();
 	addSymb(identif1,1);
 	printTabSymb();
 	addSymb(identif2,0);
@@ -42,17 +52,15 @@ int main(void) {
 
     addSymb(identif3,0);
 	printTabSymb();
-<<<<<<< Updated upstream
-=======
+
 	a=addTemp();
 	b=addTemp();
 	printTabSymb();
 	
 	printf("premier add : %d , deuxième add: %d\n",a,b);
  	printf("%d",findSymb("a"));
- 	printf("%d",findSymb("c"));
+ 	printf("%d",findSymb("c"));*/
 	
->>>>>>> Stashed changes
 	return 0;
 }
 
