@@ -17,8 +17,8 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 %%
 
 "main()"	{return tMAIN;}
-"{"		{return tOBRACKET;}
-"}"		{return tCBRACKET;}
+"{"			{return tOBRACKET;}
+"}"			{return tCBRACKET;}
 "const"		{return tCONST;}
 "int"		{return tINT;}
 "if"    	{return tIF;}
@@ -30,29 +30,29 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 "!="    	{return tNE;}
 "<"     	{return tLT;}
 ">"     	{return tGT;}
-"+"		{return tPLUS;}
-"-"		{return tLESS;}
-"*"		{return tMUL;}
-"/"		{return tDIV;}
-"="		{return tEQ;}
-"("		{return tOPAR;}
+"+"			{return tPLUS;}
+"-"			{return tLESS;}
+"*"			{return tMUL;}
+"/"			{return tDIV;}
+"="			{return tEQ;}
+"("			{return tOPAR;}
 ")" 		{return tCPAR;}
-" "		{}
+" "			{}
 "\t"		{}
-","		{return tVIR;}
+","			{return tVIR;}
 "\n"		{yylineno;}
-";"		{return tSEMICOLON;}
+";"			{return tSEMICOLON;}
 "printf"	{return tPRINTF;}
 {NUMBER}	{yylval.num = atoi(yytext);
-		return tNUM;}
+			return tNUM;}
 {EXPONENTIAL}   {yylval.expo = (int)atof(yytext);
-		return tEXPO;}
+				return tEXPO;}
 
 {VAR}		{yylval.var= strdup(yytext);
-		return tVAR;}	
+			return tVAR;}	
 
 \/\/.* ;
-\/\*(.*\n)*.*\*\/ ;	
+\/\*(.*\n)*.*\*\/ ;	/*gestion des commentaires*/
 
 %%
 
