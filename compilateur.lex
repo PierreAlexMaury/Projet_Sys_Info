@@ -6,7 +6,7 @@
 
 %option yylineno
 
-/*Déclarations d'expr reg*/
+/*Déclaration de regexps*/
 
 NUMBER [0-9]+
 EXPONENTIAL {NUMBER}e{NUMBER}
