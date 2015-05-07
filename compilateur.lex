@@ -6,7 +6,7 @@
 
 %option yylineno
 
-/*Déclaration de regexps*/
+/*Déclarations d'expr reg*/
 
 NUMBER [0-9]+
 EXPONENTIAL {NUMBER}e{NUMBER}
@@ -43,6 +43,7 @@ VAR [A-Za-z][A-Z_a-z0-9]*
 "\n"		{yylineno;}
 ";"			{return tSEMICOLON;}
 "printf"	{return tPRINTF;}
+"return"	{return tRETURN;}
 {NUMBER}	{yylval.num = atoi(yytext);
 			return tNUM;}
 {EXPONENTIAL}   {yylval.expo = (int)atof(yytext);

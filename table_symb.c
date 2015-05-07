@@ -8,6 +8,44 @@ struct table_symbole table = {.sommet = 0};
 struct table_symbole * tables;
 int nb_tables = 0;
 
+int setLineASM(int table_num, int line) {
+	if (!table_exist(table_num) && line >= 0)
+		return -1;
+
+	tables[table_num].line_ASM = line;
+
+	return 0;
+}
+
+int getLineASM(char * nom) {
+	int i;
+	int found;
+
+	found = 0;
+	i = 0;
+	while (!found && i < nb_tables) {
+		if (strcmp(tables[i].nom,nom) == 0) {
+			found = 1;
+		}
+		else
+			i++;
+	}
+
+	if (!found)
+		return -1;
+
+	return tables[i].line_ASM;
+}
+
+int nommerTable(int table_num, char * nom) {
+	if (!table_exist(table_num))
+		return -1;
+
+	tables[table_num].nom = nom;
+
+	return 0;
+}
+
 int table_exist(int num_table) {
 	if (nb_tables <= num_table) {
 		printf("table_symb: Erreur : table %d does not exist\n",num_table);
@@ -16,8 +54,8 @@ int table_exist(int num_table) {
 	else return 1;
 }
 
-int createTable(char * nom) {
-	struct table_symbole new_table = {.sommet = 0,.nom = nom};
+int createTable() {
+	struct table_symbole new_table = {.sommet = 0};
 	struct table_symbole * tables_temp = malloc((nb_tables+1)*sizeof(struct table_symbole));
 	int i;
 
@@ -158,7 +196,10 @@ void printTabSymb(int table_num) {
 	int i;
 
 	if (table_exist(table_num)) {
-		printf("-------------------- Table Symboles %s ----------------------\n\n",tables[table_num].nom);
+		if (tables[table_num].nom != NULL)
+			printf("-------------------- Table Symboles %s ----------------------\n\n",tables[table_num].nom);
+		else
+			printf("-------------------- Table Symboles %d ----------------------\n\n",table_num);
 
 	    printf("-------------\n");
 		for (i = 0; i < tables[table_num].sommet; i++) {

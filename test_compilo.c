@@ -1,16 +1,23 @@
+int fonction1(int truc) {
+	int a = 1000;
+
+	if (a == 1000) {
+		a = 0;
+	}
+
+	return (3+4);
+}
+
+int fonction2(int truc) {
+	int c = 4000;
+
+
+}
+
 main() { 
-		const int a = 3, b = 5,c=-120;
-		int i = 0;
-		while (i < b) {
-			if (i == 11)
-				i = 3;
-			else if (i > a) {
-				printf(a);
-			}
-			else {
-				i = i + 1;
-			}
-			printf(i);
-			i = i + 1;
-		}
+	int a = 0;
+
+	fonction1();
+	if(a == 1)
+		fonction2();
  }

@@ -46,6 +46,8 @@ void execute(void) {
 
 		while (! finished) {
 
+			
+
 			switch (table.tab[table.PC].code_op) {
 				case 1:
 					*(&tab_var[0]+table.tab[table.PC].op1) = *(&tab_var[0]+table.tab[table.PC].op2) + *(&tab_var[0]+table.tab[table.PC].op3);

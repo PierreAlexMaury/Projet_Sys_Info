@@ -10,11 +10,18 @@ struct table_symbole{
 	struct symb tab[maxSymb];
 	int sommet;
 	char * nom;
+	int line_ASM;
 };
+
+int setLineASM(int table_num, int line);
+
+int getLineASM(char * nom);
+
+int nommerTable(int table_num, char * nom);
 
 int table_exist(int num_table);
 
-int create_table(char * nom);
+int createTable();
 
 int nb_chiffre(int nombre) ;
 

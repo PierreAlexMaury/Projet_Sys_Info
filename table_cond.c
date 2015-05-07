@@ -6,6 +6,17 @@
 
 struct table_cond tableCond = {.position = 0};
 
+int line_main;
+
+int setLine_main(int line) {
+	if (line >= 0) {
+		line_main = line;
+		return 0;
+	}
+	else 
+		return -1;
+}
+
 int pushCond(int from, int to){
 	
 	struct cond cond_temp;
@@ -78,6 +89,20 @@ int toASM(char * file_name) {
 	int i;
 	int line = 1;
 	char c;
+
+	c = fgetc(input_file);
+	while (c != '?') {
+		fputc(c,output_file);
+		c = fgetc(input_file);
+		if (c == '\n' || c == -1) {
+			printf("Fin de ligne ou de fichier atteind sans trouver de '?'\n");
+			return -1;
+		}
+	}
+
+	fprintf(output_file,"%d",line_main);
+
+	//line++;
 
 	for (i = 0; i < tableCond.position; i++) {
 		while (line < tableCond.table[i].from) {
