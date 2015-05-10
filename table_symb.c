@@ -37,6 +37,54 @@ int getLineASM(char * nom) {
 	return tables[i].line_ASM;
 }
 
+int getSizeTable(char * nom) {
+	int i;
+	int found;
+
+	found = 0;
+	i = 0;
+	while (!found && i < nb_tables) {
+		if (strcmp(tables[i].nom,nom) == 0) {
+			found = 1;
+		}
+		else
+			i++;
+	}
+
+	if (!found)
+		return -1;
+
+	return tables[i].sommet;
+}
+
+int getSizeTableFromNum(int num) {
+
+	if (num < 0 || num > nb_tables)
+		return -1;
+	
+	return tables[num].sommet;
+}
+
+int getNumTable(char * nom){
+	int i;
+	int found;
+
+	found = 0;
+	i = 0;
+	while (!found && i < nb_tables) {
+		if (strcmp(tables[i].nom,nom) == 0) {
+			found = 1;
+		}
+		else
+			i++;
+	}
+
+	if (!found)
+		return -1;
+
+	return i;
+}
+
 int nommerTable(int table_num, char * nom) {
 	if (!table_exist(table_num))
 		return -1;

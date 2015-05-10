@@ -15,11 +15,8 @@ int main(void) {
 
 
     addSymb("a",1,0);
-    addSymb("b",1,1);
-    addSymb("c",1,2);
     addSymb("d",1,0);
     addSymb("e",1,1);
-    addSymb("a",1,2);
 
     printf("after creates\n");
 
@@ -30,9 +27,11 @@ int main(void) {
     setLineASM(1,30);
     setLineASM(2,60);
 
-    printf("line : %d\n",getLineASM("fonction1"));
-    printf("line : %d\n",getLineASM("fonction2"));
-    printf("line : %d\n",getLineASM("fonction3"));
+    printf("size : %d\n",getNumTable("fonction1"));
+    printf("size : %d\n",getNumTable("fonction2"));
+    printf("size : %d\n",getNumTable("main"));
+    printf("size : %d\n",getNumTable("fonction3"));
+
 
     printTabSymb(0);
     printTabSymb(1);

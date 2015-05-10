@@ -11,7 +11,7 @@ extern int yylineno;
 
 %error-verbose
 
-%token tCOP tAFC tEQU tLEQ tINF tSEQ tSUP tADD tLESS tMUL tDIV tJMP tJMF tPRI
+%token tCOP tAFC tEQU tLEQ tINF tSEQ tSUP tADD tLESS tMUL tDIV tJMP tJMF tPRI tPUSH tPOP tNULL tSETSP tEOF
 %token <num> tNUM
 
 %start Start
@@ -82,6 +82,18 @@ extern int yylineno;
 		{
 			addInst(12,$2,0,0);
 		}
+		| tPUSH tNUM tNUM
+		{
+			addInst(15,$2,$3,0);
+		}
+		| tEOF tNUM
+		{
+			addInst(16,$2,0,0);
+		}
+		| tPOP tNUM
+		{
+			addInst(17,$2,0,0);
+		}
 	;
 
 	 %%
@@ -94,5 +106,5 @@ int main(){
     yyparse();
     printTabInst();
     execute();
-    //printTabVar(5); uniquement pour le debbug
+    
 }

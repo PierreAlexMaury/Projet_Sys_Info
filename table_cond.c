@@ -7,10 +7,20 @@
 struct table_cond tableCond = {.position = 0};
 
 int line_main;
+int size_main;
 
 int setLine_main(int line) {
 	if (line >= 0) {
 		line_main = line;
+		return 0;
+	}
+	else 
+		return -1;
+}
+
+int setSize_main(int size) {
+	if (size >= 0) {
+		size_main = size;
 		return 0;
 	}
 	else 
@@ -102,7 +112,7 @@ int toASM(char * file_name) {
 
 	fprintf(output_file,"%d",line_main);
 
-	//line++;
+
 
 	for (i = 0; i < tableCond.position; i++) {
 		while (line < tableCond.table[i].from) {

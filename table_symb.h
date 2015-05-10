@@ -17,6 +17,12 @@ int setLineASM(int table_num, int line);
 
 int getLineASM(char * nom);
 
+int getSizeTable(char * nom);
+
+int getSizeTableFromNum(int num);
+
+int getNumTable(char * nom);
+
 int nommerTable(int table_num, char * nom);
 
 int table_exist(int num_table);

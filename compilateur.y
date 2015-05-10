@@ -32,7 +32,7 @@ int nb_fonctions = 0;
 %left tPLUS tLESS
 %left tMUL tDIV
 
-%type <expo> Operation 
+%type <expo> Operation AppelFonction
 %type <num> While Nsautw
 %type <var> AssignmentInt AssignmentConst
 %start Start
@@ -41,7 +41,7 @@ int nb_fonctions = 0;
 	Start: Fonctions Raz Main
 	;
 
-	Fonctions: CreateTable Fonction Fonctions 
+	Fonctions: CreerTable Fonction Fonctions 
 	|
 	;
 
@@ -54,7 +54,7 @@ int nb_fonctions = 0;
 		}
 	;
 
-	CreateTable: 
+	CreerTable: 
 		{
 			createTable();
 			num_fonction++;
@@ -63,12 +63,37 @@ int nb_fonctions = 0;
 		}
 	;
 
-	Fonction: tINT NommerFonction tOPAR tINT tVAR tCPAR Block 
+	Fonction: tINT NommerFonction tOPAR ArgumentFonction tCPAR Block FinDeFonction
+	;
+
+	FinDeFonction:
 		{
-			printf("Execution code pour fonction avec table %d\n",num_fonction);
+			fprintf(ASM, "EOF 0\n");
+			compteur++;
+			clearTemp(num_fonction);
 		}
-		| tINT NommerFonction tOPAR tCONST tINT tVAR tCPAR Block
-		| tINT NommerFonction tOPAR tCPAR Block
+	;
+
+	ArgumentFonction: tCONST tINT tVAR	
+		{	
+			if (!findSymb($3,num_fonction)) {
+				addSymb($3,1,num_fonction);
+														
+			}else {
+				printf("ECHEC: %s existe deja\n",$3);
+			}
+		}
+										
+		| tINT tVAR		
+		{
+			if (!findSymb($2,num_fonction)) {
+				addSymb($2,0,num_fonction);
+										
+			}else {
+				printf("ECHEC: %s existe deja\n",$2);
+			}
+		}
+		|
 	;
 
 	NommerFonction: tVAR
@@ -695,20 +720,24 @@ int nb_fonctions = 0;
 			compteur ++;
 			$$ = ptemp;
 		}
+		| AppelFonction
+		{
+			$$ = $1;
+		}
 	;
 
 	Statement: While
 		| BIfElse
 		| Printf
 		| Declaration
-		| AppelFonction
 		| Return
 		| tSEMICOLON
 	;
 
 	Return : tRETURN Operation
 		{
-			printf("Will return %d\n",$2);
+			fprintf(ASM, "EOF %d\n", $2);
+			compteur++;
 		}
 	;
 
@@ -719,45 +748,34 @@ int nb_fonctions = 0;
 				printf("Echec: fonction %s n'existe pas\n",$1);
 			}
 			else {
-				/* TODO : pusher */
+				fprintf(ASM,"PUSH 0 %d\n",getSizeTableFromNum(num_fonction));
+
+				compteur++;
 				fprintf(ASM,"JMP %d\n",line);
 				compteur++;
+				int ptemp = addTemp(num_fonction);
+				fprintf(ASM,"POP %d\n",ptemp);
+				compteur++;
+				$$ = ptemp;
 			}
 		}
-		| tVAR tOPAR tVAR tCPAR
+		| tVAR tOPAR Operation tCPAR
 		{
 			int line = getLineASM($1);
 			if(line == -1) {
 				printf("Echec: fonction %s n'existe pas\n",$1);
 			}
 			else {
-				/* TODO : pusher */
+				fprintf(ASM,"PUSH %d %d\n",$3,getSizeTableFromNum(num_fonction));
+				printf("On appel la fonction depuis la fonction %d avec une taille %d\n\n\n\n",num_fonction,getSizeTableFromNum(num_fonction));
+				printTabSymb(num_fonction);
+				compteur++;
 				fprintf(ASM,"JMP %d\n",line);
 				compteur++;
-			}
-		}
-		| tVAR tOPAR tNUM tCPAR
-		{
-			int line = getLineASM($1);
-			if(line == -1) {
-				printf("Echec: fonction %s n'existe pas\n",$1);
-			}
-			else {
-				/* TODO : pusher */
-				fprintf(ASM,"JMP %d\n",line);
+				int ptemp = addTemp(num_fonction);
+				fprintf(ASM,"POP %d\n",ptemp);
 				compteur++;
-			}
-		}
-		| tVAR tOPAR tEXPO tCPAR
-		{
-			int line = getLineASM($1);
-			if(line == -1) {
-				printf("Echec: fonction %s n'existe pas\n",$1);
-			}
-			else {
-				/* TODO : pusher */
-				fprintf(ASM,"JMP %d\n",line);
-				compteur++;
+				$$ = ptemp;
 			}
 		}
 	;
@@ -918,6 +936,7 @@ int main(){
     	fprintf(ASM,"JMP ?\n");
     	compteur++;
     	yyparse();
+    	setSize_main(getSizeTable("main"));
     	fclose(ASM);
 		fclose(debbug_out);
     	toASM("ASM_temp.txt");

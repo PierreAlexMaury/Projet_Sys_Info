@@ -24,6 +24,9 @@ NUMBER [0-9]+
 "JMP"	{return tJMP;}
 "JMF"	{return tJMF;}
 "PRI"	{return tPRI;}
+"PUSH"	{return tPUSH;}
+"POP"	{return tPOP;}
+"EOF"	{return tEOF;}
 " "		{}
 "\n"	{yylineno;}
 "\t"	{}

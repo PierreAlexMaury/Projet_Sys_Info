@@ -10,6 +10,10 @@ struct table_cond{
 	int position;
 };
 
+int setLine_main(int line);
+
+int setSize_main(int size);
+
 int pushCond(int from,int to);
 
 void printTableCond();
