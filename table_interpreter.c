@@ -55,9 +55,6 @@ void execute(void) {
 	
 		while (! finished) {
 
-
-
-
 			code_op = table.tab[table.PC].code_op;
 			op1 = table.tab[table.PC].op1;
 			op2 = table.tab[table.PC].op2;

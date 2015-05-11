@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "y.tab.h"
+
 %}
 
-%option yylineno
+%option yylineno 
 
 /*Déclarations d'expr reg*/
 

@@ -80,7 +80,8 @@ int nb_fonctions = 0;
 				addSymb($3,1,num_fonction);
 														
 			}else {
-				printf("ECHEC: %s existe deja\n",$3);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 										
@@ -90,7 +91,8 @@ int nb_fonctions = 0;
 				addSymb($2,0,num_fonction);
 										
 			}else {
-				printf("ECHEC: %s existe deja\n",$2);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 		|
@@ -128,17 +130,19 @@ int nb_fonctions = 0;
 				addSymb($3,1,num_fonction);
 														
 			}else {
-				printf("ECHEC: %s existe deja\n",$3);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 										
 		| tINT tVAR tSEMICOLON		
-		{
+		{	
 			if (!findSymb($2,num_fonction)) {
 				addSymb($2,0,num_fonction);
 										
 			}else {
-				printf("ECHEC: %s existe deja\n",$2);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 	
@@ -151,7 +155,8 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,0,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -160,10 +165,12 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,0,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($3,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$3);													
+				yyerror("ECHEC: variable int non existante");
+				YYABORT;													
 			}else{
 				fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), getAddr($3,num_fonction));
 				compteur++;
@@ -178,10 +185,12 @@ int nb_fonctions = 0;
 				addSymb($1,0,num_fonction);
 				
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($4,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$4);
+				yyerror("ECHEC: variable int non existante");
+				YYABORT;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
@@ -201,10 +210,12 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,0,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($3,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$3);
+				yyerror("ECHEC: variable int non existante");
+				YYABORT;
 			}else{
 				fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), getAddr($3,num_fonction));
 				compteur ++;
@@ -217,10 +228,12 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,0,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($4,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$4);
+				yyerror("ECHEC: variable int non existante");
+				YYABORT;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
@@ -245,7 +258,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -266,7 +280,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}									
 
@@ -281,7 +296,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -302,7 +318,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -318,7 +335,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -339,7 +357,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -354,7 +373,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -375,7 +395,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 	
@@ -384,7 +405,8 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,0,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable int deja existante");
+				YYABORT;
 			}
 		}
 	;
@@ -394,7 +416,8 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,1,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -403,10 +426,12 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,1,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($3,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$3);													
+				yyerror("ECHEC: variable const int non existante");
+				YYABORT;													
 			}else{
 				fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), getAddr($3,num_fonction));
 				compteur ++;	
@@ -419,10 +444,12 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 					addSymb($1,1,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($4,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$4);
+				yyerror("ECHEC: variable const int non existante");
+				YYABORT;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
@@ -442,10 +469,12 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,1,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($3,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$3);
+				yyerror("ECHEC: variable const int non existante");
+				YYABORT;
 			}else{
 				fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), getAddr($3,num_fonction));
 				compteur ++;
@@ -457,10 +486,12 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,1,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 			if (!findSymb($4,num_fonction)) {
-				printf("ECHEC: %s n'existe pas\n",$4);
+				yyerror("ECHEC: variable const int non existante");
+				YYABORT;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
@@ -485,7 +516,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -506,7 +538,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}									
 
@@ -521,7 +554,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -542,7 +576,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -558,7 +593,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -579,7 +615,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -594,7 +631,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 
@@ -615,7 +653,8 @@ int nb_fonctions = 0;
 				compteur ++;
 				clearTemp(num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 	
@@ -624,7 +663,8 @@ int nb_fonctions = 0;
 			if (!findSymb($1,num_fonction)) {
 				addSymb($1,1,num_fonction);
 			}else {
-				printf("ECHEC: %s existe deja\n",$1);
+				yyerror("ECHEC: variable const int deja existante");
+				YYABORT;
 			}
 		}
 	;
@@ -745,7 +785,8 @@ int nb_fonctions = 0;
 		{
 			int line = getLineASM($1);
 			if(line == -1) {
-				printf("Echec: fonction %s n'existe pas\n",$1);
+				yyerror("ECHEC: La fonction n'existe pas");
+				YYABORT;
 			}
 			else {
 				fprintf(ASM,"PUSH 0 %d\n",getSizeTableFromNum(num_fonction));
@@ -763,7 +804,8 @@ int nb_fonctions = 0;
 		{
 			int line = getLineASM($1);
 			if(line == -1) {
-				printf("Echec: fonction %s n'existe pas\n",$1);
+				yyerror("ECHEC: La fonction n'existe pas");
+				YYABORT;
 			}
 			else {
 				fprintf(ASM,"PUSH %d %d\n",$3,getSizeTableFromNum(num_fonction));
@@ -915,6 +957,7 @@ int nb_fonctions = 0;
 	;
 
 %%
+
 void yyerror(const char*s){
     printf("line %d : %s\n", yylineno, s);
 }

@@ -5,6 +5,7 @@ int fois2(int a) {
 }
 
 int fonction1() {
+/*int fonction1(int truc) {
 	int a = 1000;
 	// int b =0;
 	// while(b < 5){
@@ -50,4 +51,21 @@ main() {
 	fonction1();
 
 
+ }*/
+}
+main() { 
+
+	int a;
+	int b;
+	int c;
+	
+	a = 3;
+	printf(a);
+	printf(b);
+	printf(a);
+	
+	//fonction1();
+	//if(a == 1)
+	//	a=2;
+		//fonction2();
  }

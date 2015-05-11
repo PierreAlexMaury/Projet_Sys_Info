@@ -11,7 +11,7 @@ extern int yylineno;
 
 %error-verbose
 
-%token tCOP tAFC tEQU tLEQ tINF tSEQ tSUP tADD tLESS tMUL tDIV tJMP tJMF tPRI tPUSH tPOP tNULL tSETSP tEOF
+%token tCOP tAFC tEQU tLEQ tINF tSEQ tSUP tADD tLESS tMUL tDIV tJMP tJMF tPRI tPUSH tPOP tNULL tEOF
 %token <num> tNUM
 
 %start Start
