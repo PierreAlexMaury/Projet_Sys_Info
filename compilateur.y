@@ -194,7 +194,7 @@ int nb_fonctions = 0;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
-				fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+				fprintf(ASM,"AFC %d %d\n", ptemp_neg,-1);
 				compteur++;
 				fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4,num_fonction));
 				compteur ++;
@@ -237,7 +237,7 @@ int nb_fonctions = 0;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
-				fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+				fprintf(ASM,"AFC %d %d\n", ptemp_neg,-1);
 				compteur ++;
 				fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4,num_fonction));
 				compteur ++;
@@ -453,7 +453,7 @@ int nb_fonctions = 0;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
-				fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+				fprintf(ASM,"AFC %d %d\n", ptemp_neg,-1);
 				compteur ++;
 				fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4,num_fonction));
 				compteur ++;
@@ -495,7 +495,7 @@ int nb_fonctions = 0;
 			}else{
 				int ptemp_neg = addTemp(num_fonction);
 				int ptemp = addTemp(num_fonction);
-				fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+				fprintf(ASM,"AFC %d %d\n", ptemp_neg,-1);
 				compteur ++;
 				fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,getAddr($4,num_fonction));
 				compteur ++;
@@ -682,8 +682,7 @@ int nb_fonctions = 0;
 
 	Operation: tOPAR Operation tCPAR	
 		{
-			int ptemp = addTemp(num_fonction);
-			$$ = ptemp;
+			$$ = $2;
 		}
 
 		| Operation tPLUS Operation		
@@ -730,7 +729,7 @@ int nb_fonctions = 0;
 		{
 			int ptemp_neg = addTemp(num_fonction);
 			int ptemp = addTemp(num_fonction);
-			fprintf(ASM,"COP %d %d\n", ptemp_neg,-1);
+			fprintf(ASM,"AFC %d %d\n", ptemp_neg,-1);
 			compteur ++;
 			fprintf(ASM,"MUL %d %d %d\n",ptemp,ptemp_neg,$2);
 			compteur ++;
@@ -951,7 +950,7 @@ int nb_fonctions = 0;
 
 	Printf: tPRINTF tOPAR Operation tCPAR tSEMICOLON	
 		{
-			fprintf(ASM,"PRI %d\n",/*getAddr($3,num_fonction)*/$3);
+			fprintf(ASM,"PRI %d\n",$3);
 			compteur++;
 		}
 	;

@@ -9,6 +9,7 @@ struct symb{
 struct table_symbole{
 	struct symb tab[maxSymb];
 	int sommet;
+	int max_size;
 	char * nom;
 	int line_ASM;
 };

@@ -3,7 +3,7 @@
 #include <string.h>
 #include "table_symb.h"
 
-struct table_symbole table = {.sommet = 0};
+struct table_symbole table = {.sommet = 0, .max_size = 0};
 
 struct table_symbole * tables;
 int nb_tables = 0;
@@ -54,7 +54,7 @@ int getSizeTable(char * nom) {
 	if (!found)
 		return -1;
 
-	return tables[i].sommet;
+	return tables[i].max_size;
 }
 
 int getSizeTableFromNum(int num) {
@@ -154,6 +154,7 @@ int addSymb(char* identif, int type, int table_num) {
 	tables[table_num].tab[tables[table_num].sommet] = symb_temp;
 
 	tables[table_num].sommet ++;
+	tables[table_num].max_size++;
 
 	return 0;
 }
@@ -178,6 +179,7 @@ int addTemp(int table_num) {
 	tables[table_num].tab[tables[table_num].sommet] = symb_temp;
 
 	tables[table_num].sommet ++;
+	tables[table_num].max_size++;
 
 	return tables[table_num].sommet - 1;
 }

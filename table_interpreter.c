@@ -60,8 +60,8 @@ void execute(void) {
 			op2 = table.tab[table.PC].op2;
 			op3 = table.tab[table.PC].op3;
 
-			printf("PC: %d et code_op : %d %d %d\n", table.PC+1, code_op, op1, op2);
-			printStack(12);
+			//printf("PC: %d et code_op : %d %d %d\n", table.PC+1, code_op, op1, op2);
+			//printStack(12);
 
 			switch (code_op) {
 				case 1: /* ADD op1 op2 op3 */
@@ -184,9 +184,12 @@ void execute(void) {
 					/* On décrémente l'indice de la table des FP */
 					str_FP.i_FP--;
 				 	/* On met SP à FP[i] */
-					str_stack.SP = str_FP.t_FP[str_FP.i_FP];
+				 	if (str_FP.t_FP[str_FP.i_FP] == 0)
+				 		str_stack.SP = 0;
+				 	else
+						str_stack.SP = str_FP.t_FP[str_FP.i_FP]+1;
 					/* on met le retour dans la variale souhaitee */
-					str_stack.stack[str_stack.SP + op1] = retour;
+					str_stack.stack[str_stack.SP + op1] = retour_pop;
 					
 					table.PC++;
 					break;
@@ -200,7 +203,7 @@ void execute(void) {
 				finished = 1;
 			}
 
-			printStack(10);
+			//printStack(10);
 
 		}
 

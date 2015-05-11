@@ -6,7 +6,7 @@
 
 %option yylineno
 
-NUMBER [0-9]+
+NUMBER -{0,1}[0-9]+
 
 %%
 

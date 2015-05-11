@@ -1,19 +1,13 @@
-int fonction2() {
-	int a = 1;
-	printf(a);
-}
-
-int fonction1() {
-	int a = 2;
-	fonction2();
-	printf(a);
+int incremente(int i) {
+	return i+1;
 }
 
 main() { 
-	int a = 3;
-
-	fonction1();
-	printf(a);
+	const int i = 0;
+	i = 3;
+	while((i = incremente(i)) < 5) {
+		printf(i);
+	}
 
 
 	// int a;
