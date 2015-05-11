@@ -720,9 +720,20 @@ int nb_fonctions = 0;
 								
 		| tVAR tEQ Operation		
 		{
-			fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), $3);
-			compteur ++;
-			$$ = getAddr($1,num_fonction);
+			if (!findSymb($1,num_fonction)) {
+				yyerror("ECHEC: la variable n'existe pas");
+				YYABORT;
+			}else{
+				if(getTypeSymb($1,num_fonction)!=1){
+					printf("!!!!!!! %d !!!!!!!!!!",getTypeSymb($1,num_fonction));
+					fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), $3);
+					compteur ++;
+					$$ = getAddr($1,num_fonction);
+				}else{
+					yyerror("ECHEC: la variable est de type const int");
+					YYABORT;
+				}
+			}
 		}
 
 		| tLESS Operation				
@@ -745,11 +756,16 @@ int nb_fonctions = 0;
 		}
 	
 		| tVAR						
-		{       
-			int ptemp = addTemp(num_fonction);
-			fprintf(ASM,"COP %d %d\n", ptemp, getAddr($1,num_fonction));
-			compteur ++;
-			$$ = ptemp; 
+		{   
+			if (!findSymb($1,num_fonction)) {
+				yyerror("ECHEC: la variable n'existe pas");
+				YYABORT;
+			}else{    
+				int ptemp = addTemp(num_fonction);
+				fprintf(ASM,"COP %d %d\n", ptemp, getAddr($1,num_fonction));
+				compteur ++;
+				$$ = ptemp;
+			}
 		}
 	
 		| tEXPO 					

@@ -24,6 +24,8 @@ int getSizeTableFromNum(int num);
 
 int getNumTable(char * nom);
 
+int getTypeSymb (char* identif, int table_num);
+
 int nommerTable(int table_num, char * nom);
 
 int table_exist(int num_table);

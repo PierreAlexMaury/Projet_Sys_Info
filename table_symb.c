@@ -85,6 +85,23 @@ int getNumTable(char * nom){
 	return i;
 }
 
+int getTypeSymb (char* identif, int table_num) {
+	int i = 0;
+	int type = 0;
+
+	if (!table_exist(table_num))
+		return -1;
+
+	while (!type && i < tables[table_num].sommet) {
+		if (!strcmp(tables[table_num].tab[i].identif,identif) && tables[table_num].tab[i].type != 2) {
+			type = tables[table_num].tab[i].type;
+		} else {
+			i++;
+		}
+	}
+	return type;
+}
+
 int nommerTable(int table_num, char * nom) {
 	if (!table_exist(table_num))
 		return -1;

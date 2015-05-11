@@ -1,13 +1,14 @@
-int incremente(int i) {
-	return i+1;
-}
+// int incremente(int i) {
+// 	return i+1;
+// }
 
 main() { 
 	const int i = 0;
 	i = 3;
 	while((i = incremente(i)) < 5) {
-		printf(i);
+	 	printf(i);
 	}
+	printf(a);
 
 
 	// int a;
