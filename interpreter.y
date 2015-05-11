@@ -106,5 +106,6 @@ int main(){
     yyparse();
     printTabInst();
     execute();
+    printStack(20);
     
 }

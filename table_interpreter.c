@@ -60,8 +60,8 @@ void execute(void) {
 			op2 = table.tab[table.PC].op2;
 			op3 = table.tab[table.PC].op3;
 
-			// printf("PC: %d et code_op : %d %d %d\n", table.PC+1, code_op, op1, op2);
-			// printStack(12);
+			printf("PC: %d et code_op : %d %d %d\n", table.PC+1, code_op, op1, op2);
+			printStack(12);
 
 			switch (code_op) {
 				case 1: /* ADD op1 op2 op3 */
@@ -200,6 +200,7 @@ void execute(void) {
 				finished = 1;
 			}
 
+			printStack(10);
 
 		}
 
@@ -211,7 +212,7 @@ void printStack(int max) {
 
     printf("--------\n");
 	for (i = 0; i < max; i++) {
-		printf("| %d |\n",str_stack.stack[i]);
+		printf("%d | %d |\n",i,str_stack.stack[i]);
 	}
 	printf("--------\n");
 
@@ -314,7 +315,7 @@ void printTabInst(void) {
 				default:
 					break;
 			}
-		printf("| %s | %d | %d | %d |\n",nom, table.tab[i].op1, table.tab[i].op2, table.tab[i].op3);
+		printf("%d | %s | %d | %d | %d |\n",i+1,nom, table.tab[i].op1, table.tab[i].op2, table.tab[i].op3);
 	}
 	printf("--------------------\n\n");
 }

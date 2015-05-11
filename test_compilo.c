@@ -1,68 +1,29 @@
-int fois2(int a) {
-	int b;
-	b = a * 2;
-	return b;
+int fonction2() {
+	int a = 1;
+	printf(a);
 }
 
 int fonction1() {
-/*int fonction1(int truc) {
-	int a = 1000;
-	// int b =0;
-	// while(b < 5){
-	// 	b = b+1;
-	// 	printf(a);
-	// }
-	// printf(a);
-	a = fois2(a);
+	int a = 2;
+	fonction2();
 	printf(a);
 }
-// int rec(int i){
-// 	if(i<5)
-// 		rec(i+1);
-
-// 	printf(i);
-// }
 
 main() { 
-	// int a = 3;
-	// int b = 4;
-	// int c;
-
-	// c = a *b/a;
-
-	// printf(a);
-	// printf(b);
-	// printf(c);
-
-	// fonction1();
-
-
-	// b = fois2(a = fois2(b));
-
-	// printf(a);
-	// printf(b);
-	// printf(c);
-
-	// while(a < 12){
-	// 	a = a+1;
-	// 	printf(a);
-	// }
+	int a = 3;
 
 	fonction1();
+	printf(a);
 
 
- }*/
-}
-main() { 
-
-	int a;
-	int b;
-	int c;
+	// int a;
+	// int b;
+	// int c;
 	
-	a = 3;
-	printf(a);
-	printf(b);
-	printf(a);
+	// a = 3;
+	// printf(a);
+	// printf(b);
+	// printf(a);
 	
 	//fonction1();
 	//if(a == 1)

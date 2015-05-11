@@ -949,9 +949,9 @@ int nb_fonctions = 0;
 		}
 	;	
 
-	Printf: tPRINTF tOPAR tVAR tCPAR tSEMICOLON	
+	Printf: tPRINTF tOPAR Operation tCPAR tSEMICOLON	
 		{
-			fprintf(ASM,"PRI %d\n",getAddr($3,num_fonction));
+			fprintf(ASM,"PRI %d\n",/*getAddr($3,num_fonction)*/$3);
 			compteur++;
 		}
 	;
