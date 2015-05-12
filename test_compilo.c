@@ -1,14 +1,21 @@
-// int incremente(int i) {
-// 	return i+1;
-// }
+int incremente(int j){//int i) {
+	printf(j);
+	return j;
+}
 
 main() { 
-	const int i = 0;
-	i = 3;
-	while((i = incremente(i)) < 5) {
-	 	printf(i);
-	}
-	printf(a);
+	int i;
+	const int j;
+
+	i = -2;
+
+	printf(i);
+
+
+	// while(i < 5) {
+	//  	printf(i);
+	// }
+	//printf(a);
 
 
 	// int a;
@@ -25,3 +32,4 @@ main() {
 	//	a=2;
 		//fonction2();
  }
+ //problème sur l'affectation tout court

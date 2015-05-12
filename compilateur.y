@@ -49,8 +49,6 @@ int nb_fonctions = 0;
 		{
 			num_fonction = 0;
 			setLine_main(compteur);
-			printf("Remise à zero et sauvegarde ligne Main\n");
-
 		}
 	;
 
@@ -59,7 +57,6 @@ int nb_fonctions = 0;
 			createTable();
 			num_fonction++;
 			nb_fonctions++;
-			printf("Table %d crée\n", num_fonction);
 		}
 	;
 
@@ -101,9 +98,7 @@ int nb_fonctions = 0;
 	NommerFonction: tVAR
 		{
 			nommerTable(num_fonction,$1);
-			printf("on vient de nommer la table %d %s\n",num_fonction,$1);
 			setLineASM(num_fonction,compteur);
-			printf("on vient de setter la ligne %d de la fonction dans la table %d\n",compteur,num_fonction);
 		}
 	;
 
@@ -724,15 +719,14 @@ int nb_fonctions = 0;
 				yyerror("ECHEC: la variable n'existe pas");
 				YYABORT;
 			}else{
-				if(getTypeSymb($1,num_fonction)!=1){
-					printf("!!!!!!! %d !!!!!!!!!!",getTypeSymb($1,num_fonction));
-					fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), $3);
-					compteur ++;
-					$$ = getAddr($1,num_fonction);
-				}else{
-					yyerror("ECHEC: la variable est de type const int");
-					YYABORT;
-				}
+			 	if(getTypeSymb($1,num_fonction)!=1){
+			 		fprintf(ASM,"COP %d %d\n", getAddr($1,num_fonction), $3);
+			 		compteur ++;
+			 		$$ = getAddr($1,num_fonction);
+			 	}else{
+			 		yyerror("ECHEC: la variable est de type const int");
+			 		YYABORT;
+			 	}
 			}
 		}
 
@@ -802,10 +796,8 @@ int nb_fonctions = 0;
 			if(line == -1) {
 				yyerror("ECHEC: La fonction n'existe pas");
 				YYABORT;
-			}
-			else {
+			}else {
 				fprintf(ASM,"PUSH 0 %d\n",getSizeTableFromNum(num_fonction));
-
 				compteur++;
 				fprintf(ASM,"JMP %d\n",line);
 				compteur++;
@@ -824,7 +816,6 @@ int nb_fonctions = 0;
 			}
 			else {
 				fprintf(ASM,"PUSH %d %d\n",$3,getSizeTableFromNum(num_fonction));
-				printf("On appel la fonction depuis la fonction %d avec une taille %d\n\n\n\n",num_fonction,getSizeTableFromNum(num_fonction));
 				printTabSymb(num_fonction);
 				compteur++;
 				fprintf(ASM,"JMP %d\n",line);
@@ -974,7 +965,7 @@ int nb_fonctions = 0;
 %%
 
 void yyerror(const char*s){
-    printf("line %d : %s\n", yylineno, s);
+    printf("\nline %d : %s\n\n", yylineno, s);
 }
 
 int main(){
