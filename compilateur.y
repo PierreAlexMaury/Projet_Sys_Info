@@ -973,7 +973,6 @@ int main(){
     ASM = fopen("ASM_temp.txt", "w+"); //on supprime le contenu au préalable avant de réécrire 
 	debbug_out = fopen("debbug_out.txt","w+");
 
-
     if (ASM == NULL){
        printf("fichier ASM.txt inexistant dans ce répertoire ! \n");
 	}else if(debbug_out == NULL) {
@@ -990,5 +989,4 @@ int main(){
 		fclose(debbug_out);
     	toASM("ASM_temp.txt");
     }
-
 }

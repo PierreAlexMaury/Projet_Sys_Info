@@ -10,4 +10,3 @@ MUL 4 3 2
 COP 0 4
 COP 2 0
 PRI 2
-AFC 3 3
