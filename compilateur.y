@@ -4,7 +4,6 @@
 #include "table_symb.h"
 
 FILE * ASM;
-FILE * debbug_out;
 
 void yyerror (const char*s);
 extern int yylineno;
@@ -971,14 +970,10 @@ void yyerror(const char*s){
 int main(){
     
     ASM = fopen("ASM_temp.txt", "w+"); //on supprime le contenu au préalable avant de réécrire 
-	debbug_out = fopen("debbug_out.txt","w+");
 
     if (ASM == NULL){
        printf("fichier ASM.txt inexistant dans ce répertoire ! \n");
-	}else if(debbug_out == NULL) {
-		printf("fichier debbug_out.txt inexistant !\n");
     }else{
-    	fprintf(debbug_out,"\n*** Nous sommes dans le fichier de debbug ***\n\n");
     	createTable();
     	nommerTable(0,"main");
     	fprintf(ASM,"JMP ?\n");
@@ -986,7 +981,6 @@ int main(){
     	yyparse();
     	setSize_main(getSizeTable("main"));
     	fclose(ASM);
-		fclose(debbug_out);
     	toASM("ASM_temp.txt");
     }
 }
