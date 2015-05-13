@@ -12,11 +12,16 @@ struct table_symbole{
 	int max_size;
 	char * nom;
 	int line_ASM;
+	int arg;
 };
 
 int setLineASM(int table_num, int line);
 
+int setArg(int table_num, int arg);
+
 int getLineASM(char * nom);
+
+int getArg(char * nom);
 
 int getSizeTable(char * nom);
 

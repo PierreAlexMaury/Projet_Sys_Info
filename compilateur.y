@@ -74,6 +74,7 @@ int nb_fonctions = 0;
 		{	
 			if (!findSymb($3,num_fonction)) {
 				addSymb($3,1,num_fonction);
+				setArg(num_fonction,1);
 														
 			}else {
 				yyerror("ECHEC: variable const int deja existante");
@@ -85,6 +86,7 @@ int nb_fonctions = 0;
 		{
 			if (!findSymb($2,num_fonction)) {
 				addSymb($2,0,num_fonction);
+				setArg(num_fonction,1);
 										
 			}else {
 				yyerror("ECHEC: variable int deja existante");
@@ -795,6 +797,9 @@ int nb_fonctions = 0;
 			if(line == -1) {
 				yyerror("ECHEC: La fonction n'existe pas");
 				YYABORT;
+			}else if(getArg($1)==1){
+				yyerror("ECHEC: La fonction devrait avoir un argument");
+				YYABORT;
 			}else {
 				fprintf(ASM,"PUSH 0 %d\n",getSizeTableFromNum(num_fonction));
 				compteur++;
@@ -812,8 +817,10 @@ int nb_fonctions = 0;
 			if(line == -1) {
 				yyerror("ECHEC: La fonction n'existe pas");
 				YYABORT;
-			}
-			else {
+			}else if(getArg($1)==0){
+				yyerror("ECHEC: La fonction ne devrait pas avoir un argument");
+				YYABORT;
+			}else {
 				fprintf(ASM,"PUSH %d %d\n",$3,getSizeTableFromNum(num_fonction));
 				printTabSymb(num_fonction);
 				compteur++;

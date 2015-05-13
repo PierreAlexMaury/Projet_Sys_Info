@@ -1,6 +1,6 @@
-int incremente(int j){//int i) {
-	printf(j);
-	return j;
+int incremente(){
+	//printf(j);
+	return 1;
 }
 
 main() { 
@@ -10,6 +10,8 @@ main() {
 	i = -2;
 
 	printf(i);
+
+	incremente();
 
 
 	// while(i < 5) {
@@ -32,4 +34,3 @@ main() {
 	//	a=2;
 		//fonction2();
  }
- //problème sur l'affectation tout court

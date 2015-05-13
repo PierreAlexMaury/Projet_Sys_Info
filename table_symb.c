@@ -3,7 +3,7 @@
 #include <string.h>
 #include "table_symb.h"
 
-struct table_symbole table = {.sommet = 0, .max_size = 0};
+struct table_symbole table = {.sommet = 0, .max_size = 0, .arg=0};
 
 struct table_symbole * tables;
 int nb_tables = 0;
@@ -13,6 +13,15 @@ int setLineASM(int table_num, int line) {
 		return -1;
 
 	tables[table_num].line_ASM = line;
+
+	return 0;
+}
+
+int setArg(int table_num, int arg) {
+	if (!table_exist(table_num) && arg >= 0)
+		return -1;
+
+	tables[table_num].arg = arg;
 
 	return 0;
 }
@@ -35,6 +44,26 @@ int getLineASM(char * nom) {
 		return -1;
 
 	return tables[i].line_ASM;
+}
+
+int getArg(char * nom) {
+	int i;
+	int found;
+
+	found = 0;
+	i = 0;
+	while (!found && i < nb_tables) {
+		if (strcmp(tables[i].nom,nom) == 0) {
+			found = 1;
+		}
+		else
+			i++;
+	}
+
+	if (!found)
+		return -1;
+
+	return tables[i].arg;
 }
 
 int getSizeTable(char * nom) {
