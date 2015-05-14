@@ -224,6 +224,10 @@ void printStack(int max) {
 
 void printTabInst(void) {
 	int i;
+
+	if (table.PC == 0)
+		exit(-1);
+
 	printf("-------------------- Table Instructions ------------------\n\n");
     printf("--------------------\n");
     char * nom;

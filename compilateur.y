@@ -10,6 +10,7 @@ extern int yylineno;
 int compteur = 1;
 int num_fonction = 0;
 int nb_fonctions = 0;
+int erreur = 0;
 %}
 
 %union {int expo; int num; char* var;}
@@ -971,6 +972,7 @@ int nb_fonctions = 0;
 %%
 
 void yyerror(const char*s){
+	erreur = 1;
     printf("\nline %d : %s\n\n", yylineno, s);
 }
 
@@ -986,8 +988,16 @@ int main(){
     	fprintf(ASM,"JMP ?\n");
     	compteur++;
     	yyparse();
-    	setSize_main(getSizeTable("main"));
-    	fclose(ASM);
-    	toASM("ASM_temp.txt");
+	    if(erreur==1){
+	    	fclose(ASM);
+	    	ASM = fopen("ASM_temp.txt", "w+");
+	    	fclose(ASM);
+	    	ASM = fopen("ASM.txt", "w+");
+	    	fclose(ASM);
+	  	}else{
+		    setSize_main(getSizeTable("main"));
+		    fclose(ASM);
+		    toASM("ASM_temp.txt");
+		}
     }
 }

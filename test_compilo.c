@@ -7,18 +7,15 @@ main() {
 	int i;
 	const int j;
 
-	i = -2;
+	i = -2
 
 	printf(i);
-
-	incremente();
-
 
 	// while(i < 5) {
 	//  	printf(i);
 	// }
 	//printf(a);
-
+	incremente();
 
 	// int a;
 	// int b;

@@ -104,7 +104,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 15 "compilateur.y"
+#line 16 "compilateur.y"
 {int expo; int num; char* var;}
 /* Line 1529 of yacc.c.  */
 #line 111 "y.tab.h"
