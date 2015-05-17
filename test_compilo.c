@@ -1,13 +1,17 @@
-int incremente(){
+int incremente(int a){
 	//printf(j);
-	return 1;
+	return a;
+}
+
+int incremente1(int b) {
+	int a = 3;
 }
 
 main() { 
 	int i;
 	const int j;
 
-	i = -2
+	i = -2;
 
 	printf(i);
 
@@ -15,7 +19,7 @@ main() {
 	//  	printf(i);
 	// }
 	//printf(a);
-	incremente();
+	printf(incremente(i));
 
 	// int a;
 	// int b;

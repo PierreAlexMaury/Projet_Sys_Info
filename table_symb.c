@@ -8,6 +8,20 @@ struct table_symbole table = {.sommet = 0, .max_size = 0, .arg=0};
 struct table_symbole * tables;
 int nb_tables = 0;
 
+int functionExist(char * nom) {
+	int i = 0;
+	int found = 0;
+
+	while (!found && i < nb_tables-1) {
+		if (strcmp(tables[i].nom,nom) == 0) {
+			found = 1;
+		}
+		i++;
+	}
+
+	return found;
+}
+
 int setLineASM(int table_num, int line) {
 	if (!table_exist(table_num) && line >= 0)
 		return -1;

@@ -45,6 +45,7 @@ int erreur = 0;
 	|
 	;
 
+	//Remise A Zero
 	Raz:
 		{
 			num_fonction = 0;
@@ -99,8 +100,14 @@ int erreur = 0;
 
 	NommerFonction: tVAR
 		{
-			nommerTable(num_fonction,$1);
-			setLineASM(num_fonction,compteur);
+			if (!functionExist($1)) {
+				nommerTable(num_fonction,$1);
+				setLineASM(num_fonction,compteur);
+			}
+			else {
+				yyerror("ECHEC: fonction deja existante");
+				YYABORT;
+			}
 		}
 	;
 

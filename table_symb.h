@@ -15,6 +15,8 @@ struct table_symbole{
 	int arg;
 };
 
+int functionExist(char * nom);
+
 int setLineASM(int table_num, int line);
 
 int setArg(int table_num, int arg);
